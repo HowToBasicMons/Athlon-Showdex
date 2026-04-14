@@ -175,6 +175,10 @@
     "overrides": {
       "webpack-visualizer-plugin2>react": "$react",
       "webpack-visualizer-plugin2>react-dom": "$react-dom"
+    },
+    "patchedDependencies": {
+      "@smogon/calc@0.11.0": "patches/@smogon__calc@0.11.0.patch",
+      "react-select@5.10.2": "patches/react-select@5.10.2.patch"
     }
   }
 }
