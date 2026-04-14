@@ -125,7 +125,8 @@ export const PokeMoves = ({
 
   const showTeraToggle = !!pokemon?.speciesForme
     && !rules?.tera
-    && gen > 8;
+    && gen > 8
+    && !format?.includes('champions');
 
   const disableTeraToggle = !pokemon?.speciesForme
     || (!pokemon.teraType && !pokemon.dirtyTeraType)
