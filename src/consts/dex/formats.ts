@@ -60,6 +60,11 @@ export const FormatLabels: Record<string, string> = {
   cap1v1: 'CAP 1v1',
   caplc: 'CAP LC',
   caprandombattle: 'CAP Randoms',
+  championsou: 'Champions OU',
+  championsbss: 'Champions BSS',
+  championsvgc2026: 'Champions VGC 2026',
+  championsdraft: 'Champions Draft',
+  championscustomgame: 'Champions Customs',
   categoryswap: 'Category Swap',
   challengecup: 'Challenge Cup',
   challengecup1v1: 'Challenge Cup 1v1',
@@ -269,6 +274,7 @@ export const FormatSuffixes: [test: RegExp, replacement: string][] = [
   [/unrated/, 'Unrated'],
   [/^dlc(\d)/, 'DLC $1'],
   [/series(\d+)/, 'Series $1'],
+  [/regm([a-z])/, 'Reg M-$1'],
   [/reg([a-z])(?!lation)/, 'Reg $1'],
   [/regulation([a-z])/, 'Reg $1'],
   [/muk$/, `${times} Muk`], // saw a "[Gen 2] UU (+ Muk)" lol
@@ -289,6 +295,7 @@ export const DoublesFormatMatchers: RegExp[] = [
   /partnersincrime/,
   /triples/,
   /vgc\d{2,4}/,
+  /championsvgc/,
 ];
 
 /**
@@ -427,6 +434,7 @@ export const LegalLockedFormats: (string | RegExp)[] = [
   /battlespot/, // e.g., 'battlespotsingles', 'battlespotdoubles'
   /battlestadium/, // e.g., 'battlestadiumsingles', 'battlestadiumdoublesseries13',
   /^bdsp/, // e.g., 'bdspou'
+  /^champions/, // e.g., 'championsou', 'championsvgc2026'
   'computergeneratedteams',
   'doubleslc',
   'doublesou',
