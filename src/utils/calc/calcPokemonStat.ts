@@ -49,12 +49,37 @@ export const calcPokemonStat = (
 
   const legacy = detectLegacyGen(gen);
   const supportsAvs = typeof format === 'string' && format.includes('letsgo');
+  const isChampions = typeof format === 'string' && format.includes('champions');
   // const supportsEvs = !legacy && !supportsAvs;
 
   const parsedIv = iv ?? getDefaultSpreadValue('iv', format);
   const actualIv = clamp(0, parsedIv - (legacy && parsedIv % 2 === 1 ? 1 : 0));
   const actualEv = clamp(0, ev ?? getDefaultSpreadValue('ev', format));
   const actualLevel = clamp(0, level, 100);
+
+  // Champions stat formula: flat stat points (evs param), no IVs in formula
+  if (isChampions) {
+    if (stat === 'hp') {
+      if (base === 1) return base; // Shedinja
+      return base + actualEv + 75;
+    }
+
+    const value = base + actualEv + 20;
+
+    if (nature && nature in PokemonNatureBoosts) {
+      const [plus, minus] = PokemonNatureBoosts[nature];
+
+      if (plus && stat === plus) {
+        return tr(tr(value * 110, 16) / 100);
+      }
+
+      if (minus && stat === minus) {
+        return tr(tr(value * 90, 16) / 100);
+      }
+    }
+
+    return value;
+  }
 
   if (stat === 'hp') {
     if (base === 1) {
