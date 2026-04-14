@@ -270,6 +270,8 @@
       "evs": {
         "aria": "{{stat}} $t(pokedex:stats.evs_one.1) for {{pokemon}}",
         "label": "$t(pokedex:stats.evs_one.1)<smol>s</smol>",
+        "championsLabel": "Pts",
+        "championsAria": "{{stat}} Stat Points for {{pokemon}}",
         "stat_one": "$t(pokedex:stats.evs_one.1)",
         "stat_other": "$t(pokedex:stats.evs_other.1)",
         "validatedTooltip": "nice",

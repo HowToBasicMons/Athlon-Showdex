@@ -506,7 +506,7 @@ export const PokeStats = ({
               align="right"
               header
             >
-              {isChampions ? 'Pts' : (
+              {isChampions ? t('poke.stats.evs.championsLabel') : (
                 <Trans
                   t={t}
                   i18nKey="poke.stats.evs.label"
@@ -558,7 +558,7 @@ export const PokeStats = ({
                     missingEvs && styles.warning,
                   )}
                   inputStyle={missingEvs && warningColor ? { color: warningColor } : undefined}
-                  label={t('poke.stats.evs.aria', {
+                  label={t(isChampions ? 'poke.stats.evs.championsAria' : 'poke.stats.evs.aria', {
                     stat: statLabel,
                     pokemon: friendlyPokemonName,
                   }) as string}
