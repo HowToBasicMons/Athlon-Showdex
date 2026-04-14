@@ -7,6 +7,7 @@ import { mergeRevealedMoves, sanitizePokemon } from '@showdex/utils/battle';
 import { calcPokemonSpreadStats, populateStatsTable } from '@showdex/utils/calc';
 import { formatId } from '@showdex/utils/core';
 // import { logger } from '@showdex/utils/debug';
+import { PokemonStatNames } from '@showdex/consts/dex';
 import {
   detectGenFromFormat,
   detectLegacyGen,
@@ -83,6 +84,22 @@ export const applyPreset = (
     ivs: populateStatsTable(preset.ivs, { spread: 'iv', format }),
     evs: populateStatsTable(preset.evs, { spread: 'ev', format }),
   };
+
+  // convert standard EVs (0-252, total 510) to Champions Stat Points (0-32, total 66)
+  if (format?.includes('champions') && output.evs) {
+    const hasStandardEvs = PokemonStatNames.some((s) => (output.evs[s] || 0) > 32);
+
+    if (hasStandardEvs) {
+      let total = 0;
+
+      for (const stat of PokemonStatNames) {
+        const converted = Math.round((output.evs[stat] || 0) / 252 * 32);
+
+        output.evs[stat] = Math.min(converted, 32, 66 - total);
+        total += output.evs[stat];
+      }
+    }
+  }
 
   if (usage?.calcdexId) {
     output.usageId = usage.calcdexId;
