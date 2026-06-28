@@ -506,7 +506,14 @@ export const PokeStats = ({
               align="right"
               header
             >
-              {isChampions ? t('poke.stats.evs.championsLabel') : (
+              {isChampions ? (
+                <Trans
+                  t={t}
+                  i18nKey="poke.stats.evs.championsLabel"
+                  shouldUnescape
+                  components={{ smol: <span className={styles.small} /> }}
+                />
+              ) : (
                 <Trans
                   t={t}
                   i18nKey="poke.stats.evs.label"
