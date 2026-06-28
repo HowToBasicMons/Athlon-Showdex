@@ -27,9 +27,23 @@
         "ext": null,
         "gen": 9,
         "format": "vgc2025",
-        "desc": "Curated VGC sets from the Nimbasa City Post VGC Damage Calculator, as of August 2025.",
+        "desc": "Curated VGC sets from the Nimbasa City Post VGC Damage Calculator, as of June 2026.",
         "created": "2024-01-04T09:38:33Z",
-        "updated": "2025-08-14T06:37:44.128Z",
+        "updated": "2026-06-28T04:41:56.443Z",
+        "disabled": false
+      },
+      "4a0f6bd0-52a2-4322-9adc-3258a74b6f68": {
+        "id": "4a0f6bd0-52a2-4322-9adc-3258a74b6f68",
+        "ntt": "presets",
+        "name": "Nimbasa City Post Champions",
+        "label": "NCP Champions 2026",
+        "author": "nerd-of-now",
+        "ext": null,
+        "gen": 9,
+        "format": "championsvgc2026",
+        "desc": "Curated Pokémon Champions sets from the Nimbasa City Post VGC Damage Calculator, as of June 2026.",
+        "created": "2026-06-28T04:41:56.443Z",
+        "updated": "2026-06-28T04:41:56.443Z",
         "disabled": false
       }
     },
