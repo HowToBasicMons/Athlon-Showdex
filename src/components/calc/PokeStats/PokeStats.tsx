@@ -116,7 +116,9 @@ export const PokeStats = ({
 
   const totalEvs = Object.values(pokemon?.evs || {}).reduce((sum, ev) => sum + (ev || 0), 0);
   const maxLegalEvs = isChampions
-    ? 66
+    // randbats Champions have no total stat-point budget (only the per-stat <= 32 cap, so 6*32=192);
+    // VGC/BSS-style Champions (Flat Rules) cap the total at 66
+    ? (format?.includes('random') ? 6 * 32 : 66)
     : env.int(format?.includes('random') ? 'calcdex-pokemon-max-legal-randoms-evs' : 'calcdex-pokemon-max-legal-evs');
   const transformedLegalEvs = pokemon?.transformedForme ? pokemon?.evs?.hp ?? 0 : 0;
 
