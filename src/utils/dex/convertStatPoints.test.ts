@@ -10,9 +10,11 @@ describe('evToStatPoint()', () => {
     expect(evToStatPoint(252)).toBe(32);
   });
 
-  it('yields fractional ("floating") points for EVs not of the form 8N-4', () => {
-    expect(evToStatPoint(80)).toBe(10.5);
-    expect(evToStatPoint(8)).toBe(1.5);
+  it('rounds to the nearest integer point for EVs not of the form 8N-4 (Champions points are integers)', () => {
+    expect(evToStatPoint(248)).toBe(32); // Cam's case: 248 HP -> 31.5 -> 32 (no more "31.5 SPs" lol)
+    expect(evToStatPoint(8)).toBe(2); // 1.5 -> 2
+    expect(evToStatPoint(80)).toBe(11); // 10.5 -> 11
+    expect(evToStatPoint(84)).toBe(11); // 11 exactly (8*11-4)
   });
 
   it('clamps to 32 & floors negatives to 0', () => {
