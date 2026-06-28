@@ -176,6 +176,11 @@
         "activeTooltip": "Désactiver <strong>$t(pokedex:ultimates.z.0)</strong>",
         "inactiveTooltip": "Activer <strong>$t(pokedex:ultimates.z.0)</strong>"
       },
+      "mega": {
+        "label": "$t(pokedex:ultimates.mega.2)",
+        "activeTooltip": "Revenir au <strong>{{forme}}</strong>",
+        "inactiveTooltip": "$t(pokedex:ultimates.mega.1) en <strong>{{forme}}</strong>"
+      },
 
       "dmax": {
         "label": "{{ultimate}}",
