@@ -12,6 +12,7 @@ import {
   detectGenFromFormat,
   detectLegacyGen,
   determineDefaultLevel,
+  evToStatPoint,
   legalLockedFormat,
 } from '@showdex/utils/dex';
 import { detectCompletePreset } from './detectCompletePreset';
@@ -85,18 +86,15 @@ export const applyPreset = (
     evs: populateStatsTable(preset.evs, { spread: 'ev', format }),
   };
 
-  // convert standard EVs (0-252, total 510) to Champions Stat Points (0-32, total 66)
+  // convert standard EVs to Champions stat points (PS rule: 1st pt = 4 EVs, the rest 8 -> pts = (EV+4)/8).
+  // keep fractional ("floating") points -- calcPokemonStat()'s champions branch (max(2*pts-1, 0)) consumes
+  // them exactly, so rounding here would drift the damage calc.
   if (format?.includes('champions') && output.evs) {
     const hasStandardEvs = PokemonStatNames.some((s) => (output.evs[s] || 0) > 32);
 
     if (hasStandardEvs) {
-      let total = 0;
-
       for (const stat of PokemonStatNames) {
-        const converted = Math.round((output.evs[stat] || 0) / 252 * 32);
-
-        output.evs[stat] = Math.min(converted, 32, 66 - total);
-        total += output.evs[stat];
+        output.evs[stat] = evToStatPoint(output.evs[stat] || 0);
       }
     }
   }

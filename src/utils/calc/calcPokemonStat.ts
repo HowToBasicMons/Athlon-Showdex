@@ -57,14 +57,19 @@ export const calcPokemonStat = (
   const actualEv = clamp(0, ev ?? getDefaultSpreadValue('ev', format));
   const actualLevel = clamp(0, level, 100);
 
-  // Champions stat formula: flat stat points (evs param), no IVs in formula
+  // Champions stat formula (PS `champions` mod under levelclausemod): the standard level-scaled formula, but
+  // floor(EV/4) is replaced by max(2*statPoints - 1, 0) & the IV is a fixed 31. The flat L50 shorthand
+  // (base + pts + 20/75) is just this evaluated at level 50, so VGC (fixed L50) is unaffected while other
+  // levels (e.g. randbats L48) are now correct. The `actualEv` param carries the stat points (0-32) here.
   if (isChampions) {
+    const points = Math.max(2 * actualEv - 1, 0); // stat points -> floor(EV/4)-equivalent
+
     if (stat === 'hp') {
       if (base === 1) return base; // Shedinja
-      return base + actualEv + 75;
+      return tr(((2 * base + 31 + points) * actualLevel) / 100) + actualLevel + 10;
     }
 
-    const value = base + actualEv + 20;
+    const value = tr(((2 * base + 31 + points) * actualLevel) / 100) + 5;
 
     if (nature && nature in PokemonNatureBoosts) {
       const [plus, minus] = PokemonNatureBoosts[nature];
