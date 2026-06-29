@@ -10,6 +10,7 @@
   "contextMenu": {
     "switchSides": "Switch Players",
     "convertHonk": "Convert to Honk",
+    "dumpBugReport": "Dump Bug Report",
     "openHellodex": "$t(common:products.hellodex_one)",
     "closeOverlay": "$t(common:labels.close)",
     "closeTab": "Close Tab"
