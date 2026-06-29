@@ -8,7 +8,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import { BuildInfo } from '@showdex/components/debug';
 import { TextField } from '@showdex/components/form';
-import { PageContainer } from '@showdex/components/layout';
+import { Card, PageContainer } from '@showdex/components/layout';
 import { ToggleButton } from '@showdex/components/ui';
 import { type LoggerLevel, LoggerLevelValues, teledex } from '@showdex/utils/debug';
 import styles from './Devdex.module.scss';
@@ -19,6 +19,31 @@ export interface DevdexProps {
 
 const l = { scope: '@showdex/pages/Devdex' };
 
+/**
+ * Devdex-only "funny" level labels — restoring the vibe of Keith's old `logger.ts`.
+ *
+ * @since 1.2.5
+ */
+const LevelLabels: Record<LoggerLevel, string> = {
+  silly: 'SILL',
+  debug: 'DBUG',
+  verbose: 'VERB',
+  info: 'INFO',
+  success: 'GUCC',
+  warn: 'SHIT',
+  error: 'FUCK',
+};
+
+// scopes are all `@showdex/…`, so truncate the *start* (keep the meaningful tail) to a fixed monospace width
+const ScopeMaxChars = 32;
+
+// msgs longer than this get a click-to-expand toggle (collapsed = single truncated line)
+const ExpandThreshold = 120;
+
+const truncateStart = (value: string, max: number) => (
+  value.length > max ? `…${value.slice(-(max - 1))}` : value
+);
+
 export const Devdex = ({
   onLeaveRoom,
 }: DevdexProps): React.JSX.Element => {
@@ -26,81 +51,203 @@ export const Devdex = ({
   const [minLevel] = React.useState<LoggerLevel>('debug');
   const [scope, setScope] = React.useState('');
   const [text, setText] = React.useState('');
+  const [expanded, setExpanded] = React.useState<Set<string>>(() => new Set());
+  const [atTop, setAtTop] = React.useState(true);
+  const [atBottom, setAtBottom] = React.useState(true);
+
+  const scrollRef = React.useRef<HTMLDivElement>(null);
+  const stick = React.useRef(true); // pinned to the bottom (tail-follow)
 
   React.useEffect(() => teledex.subscribe(() => force()), []);
 
   const rows = teledex.filter({ level: LoggerLevelValues[minLevel], scope, text }).slice(-500);
+
+  // attach a scroll listener to the (SimpleBar) scroll element once it's mounted
+  React.useEffect(() => {
+    let raf: number;
+    let el: HTMLDivElement;
+
+    const onScroll = () => {
+      if (!el) {
+        return;
+      }
+
+      const top = el.scrollTop <= 8;
+      const bottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 8;
+
+      stick.current = bottom;
+      setAtTop(top);
+      setAtBottom(bottom);
+    };
+
+    const attach = () => {
+      el = scrollRef.current;
+
+      if (!el) {
+        raf = requestAnimationFrame(attach);
+
+        return;
+      }
+
+      el.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    };
+
+    attach();
+
+    return () => {
+      cancelAnimationFrame(raf);
+      el?.removeEventListener('scroll', onScroll);
+    };
+  }, []);
+
+  // auto-scroll to the bottom when new rows arrive & we're already pinned there
+  React.useEffect(() => {
+    if (stick.current && scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [rows.length]);
+
+  const scrollTo = (to: 'top' | 'bottom') => {
+    const el = scrollRef.current;
+
+    if (!el) {
+      return;
+    }
+
+    el.scrollTop = to === 'top' ? 0 : el.scrollHeight;
+  };
+
+  const toggleExpand = (id: string) => setExpanded((prev) => {
+    const next = new Set(prev);
+
+    if (next.has(id)) {
+      next.delete(id);
+    } else {
+      next.add(id);
+    }
+
+    return next;
+  });
 
   return (
     <PageContainer
       name="devdex"
       className={styles.container}
       prefix={<BuildInfo className={styles.buildInfo} position="top-right" />}
+      suffix={(
+        <div className={styles.fabs}>
+          {!atTop && (
+            <button
+              type="button"
+              className={styles.fab}
+              aria-label="Scroll to top"
+              onClick={() => scrollTo('top')}
+            >
+              <i className="fa fa-chevron-up" />
+            </button>
+          )}
+
+          {!atBottom && (
+            <button
+              type="button"
+              className={styles.fab}
+              aria-label="Scroll to bottom"
+              onClick={() => scrollTo('bottom')}
+            >
+              <i className="fa fa-chevron-down" />
+            </button>
+          )}
+        </div>
+      )}
+      scrollRef={scrollRef}
       contentScrollable
     >
-      <div className={styles.toolbar}>
-        <TextField
-          hint="scope…"
-          meta={{}}
-          input={{
-            name: `${l.scope}:Scope`,
-            value: scope,
-            onChange: (value: string) => setScope(value),
-            onBlur: () => void 0,
-            onFocus: () => void 0,
-          }}
-        />
+      <Card className={styles.toolbar}>
+        <div className={styles.filters}>
+          <TextField
+            hint="scope…"
+            meta={{}}
+            input={{
+              name: `${l.scope}:Scope`,
+              value: scope,
+              onChange: (value: string) => setScope(value),
+              onBlur: () => void 0,
+              onFocus: () => void 0,
+            }}
+          />
 
-        <TextField
-          hint="text…"
-          meta={{}}
-          input={{
-            name: `${l.scope}:Text`,
-            value: text,
-            onChange: (value: string) => setText(value),
-            onBlur: () => void 0,
-            onFocus: () => void 0,
-          }}
-        />
+          <TextField
+            hint="text…"
+            meta={{}}
+            input={{
+              name: `${l.scope}:Text`,
+              value: text,
+              onChange: (value: string) => setText(value),
+              onBlur: () => void 0,
+              onFocus: () => void 0,
+            }}
+          />
+        </div>
 
-        <ToggleButton
-          label="Flush"
-          absoluteHover
-          onPress={() => void teledex.flush({ to: 'file' })}
-        />
+        <div className={styles.actions}>
+          <ToggleButton
+            className={styles.actionButton}
+            label="Flush"
+            absoluteHover
+            onPress={() => void teledex.flush({ to: 'file' })}
+          />
 
-        <ToggleButton
-          label="Copy"
-          absoluteHover
-          onPress={() => void teledex.flush({ to: 'clipboard' })}
-        />
+          <ToggleButton
+            className={styles.actionButton}
+            label="Copy"
+            absoluteHover
+            onPress={() => void teledex.flush({ to: 'clipboard' })}
+          />
 
-        <ToggleButton
-          label="Clear"
-          absoluteHover
-          onPress={() => void teledex.clear()}
-        />
+          <ToggleButton
+            className={styles.actionButton}
+            label="Clear"
+            absoluteHover
+            onPress={() => void teledex.clear()}
+          />
 
-        <ToggleButton
-          absoluteHover
-          onPress={onLeaveRoom}
-        >
-          <i className="fa fa-close" />
-          <span>Close</span>
-        </ToggleButton>
-      </div>
+          <ToggleButton
+            className={styles.actionButton}
+            absoluteHover
+            onPress={onLeaveRoom}
+          >
+            <i className="fa fa-close" />
+            <span>Close</span>
+          </ToggleButton>
+        </div>
+      </Card>
 
       <div className={styles.log}>
-        {rows.map((r) => (
-          <div key={r.id} className={cx(styles.row, styles[r.level])}>
-            <span className={styles.ts}>{new Date(r.ts).toLocaleTimeString()}</span>
-            <span className={styles.level}>{r.level}</span>
-            <span className={styles.scope}>{r.scope}</span>
-            <span className={styles.msg}>
-              {r.args.map((a) => (typeof a === 'string' ? a : JSON.stringify(a))).join(' ')}
-            </span>
-          </div>
-        ))}
+        {rows.map((r) => {
+          const msg = r.args.map((a) => (typeof a === 'string' ? a : JSON.stringify(a))).join(' ');
+          const expandable = msg.length > ExpandThreshold;
+          const open = expanded.has(r.id);
+
+          return (
+            // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
+            <div
+              key={r.id}
+              className={cx(
+                styles.row,
+                styles[r.level],
+                expandable && styles.expandable,
+                open && styles.open,
+              )}
+              onClick={expandable ? () => toggleExpand(r.id) : undefined}
+            >
+              <span className={styles.ts}>{new Date(r.ts).toLocaleTimeString()}</span>
+              <span className={styles.level}>{LevelLabels[r.level] || r.level}</span>
+              <span className={styles.scope} title={r.scope}>{truncateStart(r.scope, ScopeMaxChars)}</span>
+              <span className={styles.msg}>{msg}</span>
+            </div>
+          );
+        })}
       </div>
     </PageContainer>
   );

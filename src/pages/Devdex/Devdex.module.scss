@@ -9,22 +9,51 @@
 @use 'functions/color';
 @use 'mixins/flex';
 @use 'mixins/font';
+@use 'mixins/position';
 @use 'mixins/spacing';
+@use 'mixins/transition';
 
 .container {
-  // inherits PageContainer layout
+  // inherits PageContainer layout; relative so the scroll FABs anchor to the panel
+  position: relative;
 }
 
 .buildInfo {
   z-index: 6;
 }
 
+// sticky header — mirrors the Honkdex/Notedex toolbar pattern
 .toolbar {
+  @include position.sticky($x: 0, $t: 16px);
+  @include flex.row-between;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: 16px;
+  row-gap: 8px;
+  @include spacing.mx(12px);
+  @include spacing.p($x: 16px, $y: 12px);
+  z-index: 5;
+}
+
+.filters {
   @include flex.row-start;
   column-gap: 8px;
-  flex-wrap: wrap;
-  @include spacing.mx(12px);
-  @include spacing.py(8px);
+  flex: 1;
+  min-width: 200px;
+}
+
+.actions {
+  @include flex.row-start;
+  align-items: center;
+  column-gap: 12px;
+}
+
+.actionButton {
+  font-size: 8px;
+
+  i {
+    line-height: 11px;
+  }
 }
 
 .log {
@@ -34,17 +63,26 @@
   font-family: monospace;
   font-size: 11px;
   line-height: 16px;
-  overflow-x: auto;
 }
 
 .row {
-  @include flex.row-start;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
   column-gap: 8px;
   @include spacing.py(2px);
   border-bottom: 1px solid rgba(colors.$white, 0.04);
 
   &:last-child {
     border-bottom: none;
+  }
+
+  &.expandable {
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba(colors.$white, 0.03);
+    }
   }
 }
 
@@ -56,25 +94,42 @@
 
 .level {
   flex-shrink: 0;
-  width: 52px;
+  width: 42px;
   font-weight: 600;
+  letter-spacing: 0.5px;
   user-select: none;
 }
 
+// fixed-width scope column; truncated at the start (in JS) since they're all `@showdex/…`
 .scope {
   flex-shrink: 0;
-  max-width: 240px;
+  width: 32ch;
   overflow: hidden;
-  text-overflow: ellipsis;
   white-space: nowrap;
   color: colors.$gray;
+  cursor: help;
 }
 
 .msg {
   flex: 1;
+  min-width: 0;
   white-space: pre-wrap;
-  word-break: break-all;
+  word-break: break-word;
   color: colors.$gray-lighter;
+}
+
+// collapsed-but-long: keep it to a single truncated line until expanded
+.row.expandable:not(.open) .msg {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// expanded: drop the full message onto its own line, wrapping freely
+.row.open .msg {
+  flex-basis: 100%;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 // per-level color classes
@@ -104,4 +159,34 @@
 
 .error {
   .level { color: colors.$red; }
+}
+
+// translucent scroll FABs near the right scrollbar
+.fabs {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  @include flex.col-start;
+  row-gap: 8px;
+  z-index: 7;
+}
+
+.fab {
+  @include flex.center;
+  width: 32px;
+  height: 32px;
+  font-size: 12px;
+  color: colors.$white;
+  background-color: rgba(colors.$black, 0.4);
+  border: 1px solid rgba(colors.$white, 0.15);
+  border-radius: 50%;
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+  @include transition.apply(background-color, opacity);
+  opacity: 0.65;
+
+  &:hover {
+    opacity: 1;
+    background-color: rgba(colors.$black, 0.6);
+  }
 }
