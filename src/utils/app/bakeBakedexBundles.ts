@@ -12,7 +12,9 @@ import {
   type BakedexApiBunsResponse,
   BakedexApiBunsNamespaces,
 } from '@showdex/interfaces/api';
-import { type RootStore, type ShowdexSliceBundles, showdexSlice } from '@showdex/redux/store';
+import {
+ type RootState, type RootStore, type ShowdexSliceBundles, showdexSlice,
+} from '@showdex/redux/store';
 import {
   env,
   getResourceUrl,
@@ -325,6 +327,31 @@ export const bakeBakedexBundles = async (
       '\n', 'writePayload', writePayload,
       '\n', 'statePayload', statePayload,
     );
+  }
+
+  // one-time migration: default-enable every (non-disabled) preset bundle so users get them out of the box
+  // -- incl. the NCP Champions + Smogon Champions usage bundles. gated by a `bundlesDefaulted` meta flag so it
+  // runs exactly once per user (even if they'd already baked some bundles before this shipped); afterwards the
+  // user's explicit enable/disable choices in the settings are fully respected.
+  if (typeof store?.dispatch === 'function') {
+    const { bundlesDefaulted } = await readMetaDb<Record<'bundlesDefaulted', boolean>>(['bundlesDefaulted'], { db });
+
+    if (!bundlesDefaulted) {
+      const presetBundleIds = Object.values(latestBuns?.presets || {})
+        .filter((bun) => !!bun?.id && !bun.disabled)
+        .map((bun) => bun.id);
+
+      if (presetBundleIds.length) {
+        const currentBundleIds = (store.getState() as RootState)
+          ?.showdex?.settings?.calcdex?.includePresetsBundles || [];
+
+        store.dispatch(showdexSlice.actions.updateSettings({
+          calcdex: { includePresetsBundles: [...new Set([...currentBundleIds, ...presetBundleIds])] },
+        }));
+      }
+
+      await writeMetaDb({ bundlesDefaulted: true }, { db });
+    }
   }
 
   if (typeof store?.dispatch !== 'function' || !Object.values(statePayload).some((v) => nonEmptyObject(v))) {
