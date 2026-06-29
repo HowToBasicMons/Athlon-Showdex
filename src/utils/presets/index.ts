@@ -25,4 +25,6 @@ export * from './usageAltPercentFinder';
 export * from './usageAltPercentSorter';
 export * from './useBattlePresets';
 export * from './usePokemonPresets';
+export * from './usePokeathlonPresets';
+export * from './usePokeathlonRandomsPresets';
 export * from './useUsageAltSorter';

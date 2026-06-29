@@ -28,24 +28,40 @@ const l = logger('@showdex/main');
 
 l.debug('Starting', env('build-name', 'showdex'));
 
-// first gotta make sure we're in Showdown
-if (
-  typeof window?.Dex?.gen !== 'number'
-    || typeof window.Dex.forGen !== 'function'
-    || (
-      typeof window.app?.receive !== 'function'
-        && typeof window.PS?.startTime !== 'number'
+/**
+ * Whether the host page currently exposes the Showdown client globals Showdex needs.
+ *
+ * * Classic (Backbone.js) client → `window.app.receive`.
+ * * Preact client → `window.PS.startTime`.
+ */
+const hostReady = (host: typeof window): boolean => (
+  typeof host?.Dex?.gen === 'number'
+    && typeof host.Dex.forGen === 'function'
+    && (
+      typeof host.app?.receive === 'function'
+        || typeof host.PS?.startTime === 'number'
     )
-) {
-  l.error(
-    'main may have executed too fast or we\'re not in Showdown anymore...',
-    '\n', 'window.Dex', '(typeof)', wtf(window?.Dex), window?.Dex,
-    '\n', 'window.app', '(typeof)', wtf(window?.app), window?.app,
-    '\n', 'window.PS', '(typeof)', wtf(window?.PS), window?.PS,
-  );
+);
 
-  throw new Error('Showdex attempted to start in an unsupported website.');
-}
+/**
+ * Polls for the Showdown client globals before giving up.
+ *
+ * * The injected `main.js` can run (at `document_idle`) before the host client has finished
+ *   initializing `window.app` / `window.Dex` / `window.PS` — especially on forks/mirrors
+ *   (e.g. Pokéathlon) whose client scripts load on a different timeline than the official site.
+ * * Rather than throwing immediately (which permanently disables Showdex for that page load),
+ *   we wait up to `timeoutMs` for the globals to appear.
+ */
+const waitForHost = async (timeoutMs = 30000, intervalMs = 250): Promise<boolean> => {
+  const start = Date.now();
+
+  while (!hostReady(window) && (Date.now() - start) < timeoutMs) {
+    // eslint-disable-next-line no-await-in-loop
+    await new Promise((resolve) => { setTimeout(resolve, intervalMs); });
+  }
+
+  return hostReady(window);
+};
 
 // not sure when we'll run into this, but it's entirely possible now that standalone builds are a thing
 if (window.__SHOWDEX_INIT) {
@@ -62,15 +78,32 @@ if (window.__SHOWDEX_INIT) {
 // basically using this as a Showdex init mutex lock lol
 window.__SHOWDEX_INIT = env('build-name', 'showdex');
 
-// determine if we're in that new new preact mode or nahhhhh
-// ("new" at the time of me writing this on 2025/08/08, anyway)
-window.__SHOWDEX_HOST = (detectPreactHost(window) && 'preact')
-  || (detectClassicHost(window) && 'classic')
-  || null;
-
 // note: don't inline await, otherwise, there'll be a race condition with the login
 // (also makes the Hellodex not appear immediately when Showdown first opens)
 void (async () => {
+  // first gotta make sure we're in Showdown (polling since the host client may still be loading)
+  const ready = await waitForHost();
+
+  if (!ready) {
+    l.error(
+      'main timed out waiting for the Showdown client globals, or we\'re not in Showdown...',
+      '\n', 'window.Dex', '(typeof)', wtf(window?.Dex), window?.Dex,
+      '\n', 'window.app', '(typeof)', wtf(window?.app), window?.app,
+      '\n', 'window.PS', '(typeof)', wtf(window?.PS), window?.PS,
+    );
+
+    // release the mutex so a subsequent (re)injection can try again
+    window.__SHOWDEX_INIT = undefined;
+
+    throw new Error('Showdex attempted to start in an unsupported website.');
+  }
+
+  // determine if we're in that new new preact mode or nahhhhh
+  // ("new" at the time of me writing this on 2025/08/08, anyway)
+  window.__SHOWDEX_HOST = (detectPreactHost(window) && 'preact')
+    || (detectClassicHost(window) && 'classic')
+    || null;
+
   switch (window.__SHOWDEX_HOST) {
     case 'preact': {
       l.silly(

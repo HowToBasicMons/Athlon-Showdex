@@ -1,7 +1,7 @@
 {
   "manifest_version": "<-- auto-filled; do not edit -->",
 
-  "name": "Showdex",
+  "name": "Athlon Showdex",
   "version": "<-- auto-filled; do not edit -->",
   "description": "<-- auto-filled; do not edit -->",
   "author": "<-- auto-filled; do not edit -->",
@@ -19,13 +19,13 @@
   },
 
   "permissions": [
-    "*://play.pokemonshowdown.com/*",
-    "*://*.psim.us/*",
-    "*://play.radicalred.net/*"
+    "*://play.pokeathlon.com/*"
   ],
 
   "host_permissions": [
     "https://play.pokemonshowdown.com/*",
+    "https://play.pokeathlon.com/*",
+    "https://usage.pokeathlon.com/*",
     "https://pkmn.github.io/*",
     "https://bake.dex.tize.io/*"
   ],

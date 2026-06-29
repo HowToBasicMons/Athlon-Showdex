@@ -36,6 +36,26 @@ export interface CalcdexPokemon extends CalcdexLeanPokemon {
   calcdexId?: string;
 
   /**
+   * Pokéathlon Infinite Fusion: the Body species name (the fusion partner).
+   *
+   * * In Infinite Fusion formats, a Pokémon can be a fusion of two base species:
+   *   the **Head** (the named, displayed species, carried in `speciesForme`) &
+   *   the **Body** (carried here, in this `fusion` field).
+   * * When set to a species that exists in the active gen's Pokédex, the
+   *   Pokémon's typing & base stats are derived from both the Head & this Body
+   *   via the documented Infinite Fusion formulas (see `fuseSpecies` utils).
+   * * Sourced from the same `fusion` field the Pokéathlon battle client reports
+   *   on `Showdown.Pokemon` (`pokeathlon-battle.js` / `pokeathlon-client-battle.js`).
+   * * An absent, empty, or whitespace-only value means the Pokémon is a single
+   *   base species (not a fusion).
+   *
+   * @example 'Nidoking'
+   * @default null
+   * @since 1.3.0
+   */
+  fusion?: string;
+
+  /**
    * Where the Pokemon object originates from.
    *
    * * Prior to v1.2.0, this was called `serverSourced`, where `true` maps to `'server'` & `false` to `'client'`.

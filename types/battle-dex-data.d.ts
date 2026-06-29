@@ -70,6 +70,11 @@ declare namespace Showdown {
     | 'Dark'
     | 'Fairy'
     | 'Stellar'
+    | 'Sound'
+    | 'Light'
+    | 'Cosmic'
+    | 'Nuclear'
+    | 'Crystal'
     | '???';
 
   type StatusName =

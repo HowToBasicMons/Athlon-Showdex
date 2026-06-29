@@ -16,8 +16,9 @@
   },
 
   "header": {
-    "title": "<keith /> <and>&amp;</and> <cameron />",
-    "subtitle": "présentent"
+    "title": "<author />",
+    "subtitle": "présente",
+    "forkedFrom": "forké depuis <keith /> <and>&amp;</and> <cameron />"
   },
 
   "instances": {

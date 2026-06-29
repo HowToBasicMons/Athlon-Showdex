@@ -1,3 +1,6 @@
+> **Athlon Showdex** — a fork of [`doshidak/showdex`](https://github.com/doshidak/showdex), adapted for [Pokéathlon](https://play.pokeathlon.com) (Infinite Fusion, custom types/items, fangame mods).
+> Maintained by **HowToBasicMons** at [`HowToBasicMons/Athlon-Showdex`](https://github.com/HowToBasicMons/Athlon-Showdex). Licensed under AGPL-3.0, same as upstream.
+
 <p align="center">
   <img alt="showdex-icon" width="250px" src="./src/assets/favicons/showdex-1024.png">
 </p>

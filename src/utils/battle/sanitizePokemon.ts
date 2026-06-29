@@ -1,4 +1,4 @@
-import { type AbilityName, type GenerationNum, type ItemName } from '@smogon/calc';
+import { type AbilityName, type GenerationNum, type ItemName, type TypeName } from '@smogon/calc';
 import { PokemonBoostNames, PokemonNatures, PokemonStatNames } from '@showdex/consts/dex';
 import { type CalcdexPokemon } from '@showdex/interfaces/calc';
 import { calcPokemonCalcdexId, populateStatsTable } from '@showdex/utils/calc';
@@ -9,7 +9,7 @@ import {
   nonEmptyObject,
   similarArrays,
 } from '@showdex/utils/core';
-import { detectGenFromFormat, detectLegacyGen, getDexForFormat } from '@showdex/utils/dex';
+import { detectGenFromFormat, detectLegacyGen, fuseBaseStats, fuseTypes, getDexForFormat, orderFusionTypes } from '@showdex/utils/dex';
 import { flattenAlts } from '@showdex/utils/presets';
 import { detectPlayerKeyFromPokemon } from './detectPlayerKey';
 import { detectPokemonIdent } from './detectPokemonIdent';
@@ -58,6 +58,13 @@ export const sanitizePokemon = <
     active: (pokemon as CalcdexPokemon)?.active || false,
 
     speciesForme: detectSpeciesForme(pokemon)?.replace('-*', '') || null,
+
+    // Pokéathlon Infinite Fusion: the Body species (fusion partner), reported by the
+    // pokeathlon battle client on Showdown.Pokemon or carried on the CalcdexPokemon
+    fusion: (pokemon as CalcdexPokemon)?.fusion
+      || (pokemon as Partial<Showdown.Pokemon>)?.fusion
+      || null,
+
     altFormes: (pokemon as CalcdexPokemon)?.altFormes || [],
     cosmeticForme: (pokemon as CalcdexPokemon)?.cosmeticForme || null,
     transformedForme: (
@@ -245,6 +252,22 @@ export const sanitizePokemon = <
   sanitizedPokemon.baseStats = { ...species?.baseStats };
   sanitizedPokemon.dmaxable = !species?.cannotDynamax;
 
+  // Pokéathlon Infinite Fusion: fuse the Head (speciesForme) & Body (fusion) base stats here so the
+  // fused values flow into everything downstream — calcPokemonSpreadStats (the displayed stats),
+  // guessServerSpread (EV/IV/nature guessing for your own team) & createSmogonPokemon's rawStats
+  // (the actual numbers the damage calc uses). Head-biased for HP/SpA/SpD, body-biased for Atk/Def/Spe.
+  // (Skipped while transformed, which copies the target's stats instead.)
+  if (!sanitizedPokemon.transformedForme && sanitizedPokemon.fusion && nonEmptyObject(species?.baseStats)) {
+    const fusionSpecies = dex.species.get(sanitizedPokemon.fusion);
+
+    if (fusionSpecies?.exists && nonEmptyObject(fusionSpecies.baseStats)) {
+      sanitizedPokemon.baseStats = fuseBaseStats(
+        species.baseStats as Showdown.StatsTable,
+        fusionSpecies.baseStats as Showdown.StatsTable,
+      );
+    }
+  }
+
   // grab the base species forme to obtain its other formes
   // (since sanitizedPokemon.speciesForme could be one of those other formes)
   const baseSpeciesForme = species?.baseSpecies;
@@ -361,7 +384,19 @@ export const sanitizePokemon = <
   const speciesTypes = (transformedSpecies || species)?.types;
 
   if (!typeChanged && speciesTypes?.length) {
-    sanitizedPokemon.types = [...speciesTypes];
+    // Pokéathlon Infinite Fusion: derive the fused typing from the Head (speciesForme) &
+    // Body (fusion) when a Body species is present & resolves in the dex; otherwise use the
+    // species' own types as-is. (Skipped while transformed, which copies the target's types.)
+    const fusionSpecies = (!sanitizedPokemon.transformedForme && sanitizedPokemon.fusion)
+      ? dex.species.get(sanitizedPokemon.fusion)
+      : null;
+
+    sanitizedPokemon.types = fusionSpecies?.exists && fusionSpecies.types?.length
+      ? fuseTypes(
+        orderFusionTypes((transformedSpecies || species)?.name, speciesTypes as TypeName[]) as TypeName[],
+        orderFusionTypes(fusionSpecies.name, fusionSpecies.types as TypeName[]) as TypeName[],
+      ) as Showdown.TypeName[]
+      : [...speciesTypes];
   }
 
   // clear the dirtyTypes if it matches the current types
@@ -376,9 +411,30 @@ export const sanitizePokemon = <
   }
 
   // only update the abilities if the dex returned abilities (of the original, non-transformed Pokemon)
-  sanitizedPokemon.abilities = [
+  // Pokéathlon Infinite Fusion: merge the Body's abilities into the pool (Head abilities first,
+  // then the Body's, deduped by id) — mirrors the live client's fusion ability pool.
+  const fusionAbilitySpecies = sanitizedPokemon.fusion
+    ? dex.species.get(sanitizedPokemon.fusion)
+    : null;
+
+  const seenAbilityIds = new Set<string>();
+
+  sanitizedPokemon.abilities = ([
     ...(Object.values(species?.abilities || {}) as AbilityName[]),
-  ].filter((a) => !!a && formatId(a) !== 'noability');
+    ...((fusionAbilitySpecies?.exists
+      ? Object.values(fusionAbilitySpecies.abilities || {})
+      : []) as AbilityName[]),
+  ]).filter((a) => {
+    const id = formatId(a);
+
+    if (!a || id === 'noability' || seenAbilityIds.has(id)) {
+      return false;
+    }
+
+    seenAbilityIds.add(id);
+
+    return true;
+  });
 
   // if transformed, update the legal abilities of the transformed Pokemon
   sanitizedPokemon.transformedAbilities = [

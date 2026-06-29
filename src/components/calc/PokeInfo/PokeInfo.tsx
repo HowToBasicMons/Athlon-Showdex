@@ -50,7 +50,7 @@ import {
   writeClipboardText,
 } from '@showdex/utils/core';
 import { logger } from '@showdex/utils/debug';
-import { hasNickname, legalLockedFormat, toggleableAbility } from '@showdex/utils/dex';
+import { getFusionName, hasNickname, legalLockedFormat, toggleableAbility } from '@showdex/utils/dex';
 import { useRandomUuid } from '@showdex/utils/hooks';
 import { openSmogonDex } from '@showdex/utils/host';
 import { capitalize } from '@showdex/utils/humanize';
@@ -130,6 +130,13 @@ export const PokeInfo = ({
   const pokemonKey = pokemon?.calcdexId || pokemon?.name || randomUuid || '???';
   const friendlyPokemonName = pokemon?.speciesForme || pokemon?.name || pokemonKey;
   const nickname = (hasNickname(pokemon) && settings?.showNicknames && pokemon.name) || null;
+
+  // Pokéathlon Infinite Fusion: the proper fusion name (e.g. Jirachi + Hawlucha -> 'Jilucha'),
+  // shown in place of the bare head species when the player hasn't set a nickname.
+  // (skipped while transformed, since the displayed forme is the transform target)
+  const fusionName = (!pokemon?.transformedForme && pokemon?.fusion && pokemon?.speciesForme)
+    ? getFusionName(pokemon.speciesForme, pokemon.fusion)
+    : null;
 
   const hpPercentage = calcPokemonHpPercentage(pokemon);
   const abilityName = pokemon?.dirtyAbility ?? pokemon?.ability;
@@ -551,6 +558,9 @@ export const PokeInfo = ({
                   || pokemon?.cosmeticForme
                   || pokemon?.speciesForme
               )?.replace(pokemon?.useMax ? '' : '-Gmax', ''), // replace('', '') does nothing btw
+              // Pokéathlon Infinite Fusion: Body species for the fusion sprite
+              // (skipped while transformed, since the shown forme is the transform target)
+              fusion: pokemon?.transformedForme ? undefined : pokemon?.fusion,
               item: itemName,
             }}
             tooltip={smogonPageTooltip}
@@ -625,6 +635,7 @@ export const PokeInfo = ({
                   labelClassName={styles.nameLabel}
                   label={(
                     nickname
+                      || fusionName
                       || t(`pokedex:species.${formatId(pokemon?.speciesForme)}`, '')
                       || pokemon?.speciesForme
                       || t('pokedex:species.missingno', 'MissingNo.')

@@ -53,6 +53,7 @@ export const PokeGlance = ({
     name: pokemonName,
     speciesForme,
     cosmeticForme,
+    fusion,
     level,
     types: currentTypes,
     dirtyTypes,
@@ -155,6 +156,7 @@ export const PokeGlance = ({
           <Picon
             pokemon={{
               speciesForme: cosmeticForme || speciesForme,
+              fusion, // Pokéathlon Infinite Fusion: Body species, for the fusion sprite
               item: (!itemEffect && item) || null,
             }}
           />

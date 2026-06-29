@@ -9,6 +9,7 @@ import {
   PokemonPseudoToggleAbilities,
   PokemonRuinAbilities,
   PokemonSturdyAbilities,
+  getPokeathlonItemStatMods,
 } from '@showdex/consts/dex';
 import { type CalcdexPokemon } from '@showdex/interfaces/calc';
 import { clamp, formatId, nonEmptyObject } from '@showdex/utils/core';
@@ -53,6 +54,13 @@ export const createSmogonPokemon = (
   // nullish-coalescing (`??`) here since `item` can be cleared by the user (dirtyItem) in PokeInfo
   // (note: when cleared, `dirtyItem` will be set to null, which will default to `item`)
   const item = (gen > 1 && (pokemon.dirtyItem ?? pokemon.item)) || null;
+
+  // Pokéathlon Infinite Fusion: the Body species (`fusion`) is resolved here only for the NFE/Eviolite
+  // check below. The fused base stats are already baked into `pokemon.baseStats` (& thus `spreadStats`)
+  // by sanitizePokemon(), so we must NOT fuse again here — doing so would double-fuse & skew the calc.
+  const fusionSpecies = (pokemon.fusion
+    ? dex.species.get(formatId(pokemon.fusion) as never)
+    : null) as (Specie & { exists?: boolean }) || null;
 
   // shouldn't happen, but just in case, ja feel
   if (!pokemon.speciesForme) {
@@ -125,7 +133,7 @@ export const createSmogonPokemon = (
     level: pokemon.level,
     gender: pokemon.gender,
 
-    teraType: (pokemon.terastallized && (pokemon.dirtyTeraType || pokemon.teraType)) || null,
+    teraType: ((pokemon.terastallized && (pokemon.dirtyTeraType || pokemon.teraType)) || null) as SmogonPokemonOptions['teraType'],
     status,
     toxicCounter: pokemon.toxicCounter,
 
@@ -182,6 +190,8 @@ export const createSmogonPokemon = (
     overrides: {
       // update (2022/11/06): now allowing base stat editing as a setting
       baseStats: {
+        // Pokéathlon Infinite Fusion: pokemon.baseStats is already the fused Head+Body table
+        // (fused in sanitizePokemon), so use it directly here.
         ...(pokemon.baseStats as Required<Showdown.StatsTable>),
 
         // only spread non-negative numerical values
@@ -208,6 +218,20 @@ export const createSmogonPokemon = (
       ].slice(0, 2) as SmogonPokemonOverrides['types'],
     },
   };
+
+  // Pokéathlon custom items: @smogon/calc doesn't know their effects, so pre-apply their base-stat
+  // multipliers (e.g. Goomba Boots 2x Spe, Sturdy Shell 2x Def, ...) to the rawStats fed into the
+  // calc. Known items (Choice Band, etc.) aren't in this table, so there's no double-application.
+  // (matched against the Head &/or Body for fusions)
+  if (item) {
+    const poaItemMods = getPokeathlonItemStatMods(item, pokemon.speciesForme, pokemon.fusion);
+
+    (Object.entries(poaItemMods) as [keyof typeof options.rawStats, number][]).forEach(([stat, mult]) => {
+      if (mult && mult !== 1 && typeof options.rawStats[stat] === 'number') {
+        options.rawStats[stat] = Math.floor(options.rawStats[stat] * mult);
+      }
+    });
+  }
 
   // in legacy gens, make sure that the SPD DVs match the SPA DVs
   // (even though gen 1 doesn't have SPD [or even SPA, technically], doesn't hurt to set it anyways)
@@ -286,7 +310,8 @@ export const createSmogonPokemon = (
   );
 
   if (typeof smogonPokemon?.species?.nfe !== 'boolean') {
-    (smogonPokemon.species as Writable<Specie>).nfe = notFullyEvolved(pokemon.speciesForme, format);
+    (smogonPokemon.species as Writable<Specie>).nfe = notFullyEvolved(pokemon.speciesForme, format)
+      || (!!fusionSpecies?.exists && notFullyEvolved(pokemon.fusion, format));
   }
 
   return smogonPokemon;

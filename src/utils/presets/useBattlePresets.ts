@@ -12,12 +12,15 @@ import { useCalcdexSettings, useTeamdexPresets } from '@showdex/redux/store';
 // import { logger } from '@showdex/utils/debug';
 import {
   detectGenFromFormat,
+  detectPokeathlonModFormat,
   getGenfulFormat,
   getGenlessFormat,
   legalLockedFormat,
   parseBattleFormat,
 } from '@showdex/utils/dex';
 import { type CalcdexPokemonUsageAltSorter, usageAltPercentFinder, usageAltPercentSorter } from '@showdex/utils/presets';
+import { usePokeathlonPresets } from './usePokeathlonPresets';
+import { usePokeathlonRandomsPresets } from './usePokeathlonRandomsPresets';
 
 /**
  * Options for the `useBattlePresets()` hook.
@@ -212,10 +215,26 @@ export const useBattlePresets = (
 
   const shouldSkipAny = disabled || !gen || !genlessFormat;
   const shouldSkipBundles = shouldSkipAny || !includePresetsBundles?.length;
-  const shouldSkipFormats = shouldSkipAny || randoms || !downloadSmogonPresets;
-  const shouldSkipFormatStats = shouldSkipAny || randoms || !downloadUsageStats;
+  // Pokéathlon: standard Smogon sets & pkmn usage stats don't apply to custom-mod formats
+  // (Infinite Fusion, Soulstones, Insurgence, Uranium, Infinity, Mariomon, Chaos — none of their
+  // custom rosters are in the Smogon dataset), so skip those downloads & use the server's own usage.
+  const customFormat = detectPokeathlonModFormat(format);
+  const shouldSkipFormats = shouldSkipAny || randoms || customFormat || !downloadSmogonPresets;
+  const shouldSkipFormatStats = shouldSkipAny || randoms || customFormat || !downloadUsageStats;
   const shouldSkipRandoms = shouldSkipAny || !randoms || !downloadRandomsPresets;
   const shouldSkipRandomsStats = shouldSkipAny || !randoms || !downloadUsageStats;
+
+  // Pokéathlon: pull the server's own usage + sets data (incl. fusion sets) as the preset source.
+  // The hook returns [] for formats without Pokéathlon usage data, so it's safe to always enable.
+  const { presets: pokeathlonPresets } = usePokeathlonPresets(format, {
+    disabled: shouldSkipAny || randoms,
+  });
+
+  // Pokéathlon: bundled fangame randbats sets (e.g. Mariomon Random Battle) — the pkmn randbats
+  // data doesn't cover these, so surface our bundled dump as 'bundle'-source presets.
+  const { presets: pokeathlonRandomsPresets } = usePokeathlonRandomsPresets(format, {
+    disabled: shouldSkipAny || !randoms,
+  });
 
   const {
     data: bundledPresets,
@@ -280,7 +299,10 @@ export const useBattlePresets = (
 
   const presets = React.useMemo<CalcdexPokemonPreset[]>(() => {
     if (randoms) {
-      return [...(randomsPresets || [])];
+      return [
+        ...(randomsPresets || []),
+        ...(pokeathlonRandomsPresets || []),
+      ];
     }
 
     const output = [
@@ -288,6 +310,7 @@ export const useBattlePresets = (
       ...(bundledPresets || []),
       ...(formatPresets || []),
       ...(formatStats || []),
+      ...(pokeathlonPresets || []),
     ];
 
     if (!legalFormat || includeOtherMetaPresets) {
@@ -302,6 +325,8 @@ export const useBattlePresets = (
     formatStats,
     includeOtherMetaPresets,
     legalFormat,
+    pokeathlonPresets,
+    pokeathlonRandomsPresets,
     randoms,
     randomsPresets,
     teambuilderPresets,
@@ -333,9 +358,10 @@ export const useBattlePresets = (
   const usages = React.useMemo<CalcdexPokemonPreset[]>(() => (
     randoms
       ? [...(randomsStats || [])]
-      : [...(formatStats || [])]
+      : [...(formatStats || []), ...(pokeathlonPresets || [])]
   ), [
     formatStats,
+    pokeathlonPresets,
     randoms,
     randomsStats,
   ]);

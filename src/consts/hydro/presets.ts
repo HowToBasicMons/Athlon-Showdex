@@ -38,6 +38,7 @@ export const HydroPresetsDehydrationMap: Record<HydroPresetsDehydrationKeys, str
   nickname: 'nkn',
   usage: 'usg',
   speciesForme: 'fme',
+  fusion: 'fsn',
   level: 'lvl',
   gender: 'gdr',
   hiddenPowerType: 'hpt',

@@ -5,6 +5,7 @@ import {
   type CalcdexPokemonPresetSource,
 } from '@showdex/interfaces/calc';
 // import { logger } from '@showdex/utils/debug';
+import { formatId } from '@showdex/utils/core';
 import { detectGenFromFormat, getGenfulFormat, getGenlessFormat } from '@showdex/utils/dex';
 import { getPresetFormes } from './getPresetFormes';
 import { sortPresetsByForme } from './sortPresetsByForme';
@@ -92,10 +93,18 @@ export const selectPokemonPresets = (
     ? getGenlessFormat(format)
     : null;
 
+  // Pokéathlon Infinite Fusion: presets that declare a Body (`fusion`) — i.e. the server's usage
+  // sets — only match a Pokémon fused with that same Body. Otherwise Togekiss/Gliscor would pull in
+  // Togekiss/Volcarona's usage set & show illegal moves (e.g. Fiery Dance). Presets without a
+  // `fusion` (server/sheet/Teambuilder/standard) still match by Head as before, so a player's own
+  // revealed set isn't lost.
+  const pokemonFusionId = pokemon.fusion ? formatId(pokemon.fusion) : null;
+
   const filtered = presets.filter((preset) => (
     (!source || ignoreSource || preset.source === source)
       && (!genlessFormat || (getGenfulFormat(gen, genlessFormat) === getGenfulFormat(preset.gen, preset.format)))
       && presetFormes.includes(preset.speciesForme)
+      && (!preset.fusion || formatId(preset.fusion) === pokemonFusionId)
       && (typeof additionalPredicate !== 'function' || additionalPredicate(preset))
   ));
 

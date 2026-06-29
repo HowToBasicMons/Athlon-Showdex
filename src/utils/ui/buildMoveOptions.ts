@@ -250,6 +250,12 @@ export const buildMoveOptions = (
     learnset.push(...getPokemonLearnset(format, transformedForme, showAllMoves));
   }
 
+  // Pokéathlon Infinite Fusion: a fusion can learn moves from BOTH the Head (speciesForme) & the
+  // Body (fusion), so merge the Body's learnset into the pool too.
+  if (pokemon.fusion && !transformedForme) {
+    learnset.push(...getPokemonLearnset(format, pokemon.fusion, showAllMoves));
+  }
+
   if (learnset.length) {
     const learnsetMoves = learnset
       .filter((n) => !!n && !formatId(n).startsWith('hiddenpower') && !filterMoves.includes(n))

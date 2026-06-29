@@ -217,6 +217,18 @@ export interface CalcdexPokemonPreset {
   speciesForme: string;
 
   /**
+   * Pokéathlon Infinite Fusion: the Body species (fusion partner) this usage preset is for.
+   *
+   * * Pokéathlon usage data keys fusion sets as `head+body` (e.g. `sylveon+flygon`); `speciesForme`
+   *   holds the Head & this holds the Body.
+   * * Absent for non-fusion presets.
+   *
+   * @example 'Flygon'
+   * @since 1.3.0
+   */
+  fusion?: string;
+
+  /**
    * Usage percentage of this particular species forme in this specific `format`.
    *
    * * Primarily only available in the pkmn Usage Stats API (for formats like OU) & not Randoms.

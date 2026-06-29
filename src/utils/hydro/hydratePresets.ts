@@ -169,12 +169,12 @@ export const hydratePreset = (
           // 'Normal' & AbilityName & ItemName & MoveName, ... etc.; type asserting output[key] is
           // required here to make TypeScript happy >:(
           (output[key] as (typeof output[typeof key][0])[]).push(
-            currentValue.includes(altDelimiter)
+            (currentValue.includes(altDelimiter)
               ? hydrateAlt<Extract<typeof output[typeof key][0], string>>(
                 currentValue,
                 altDelimiter,
               )
-              : hydrateValue<Extract<typeof output[typeof key][0], string>>(currentValue),
+              : hydrateValue<Extract<typeof output[typeof key][0], string>>(currentValue)) as never,
           );
         });
 

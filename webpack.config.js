@@ -340,7 +340,7 @@ const copyPatterns = [
     from: 'src/assets/bundles/*.json',
     to: (data) => {
       const { absoluteFilename } = data;
-      const basename = absoluteFilename.split('/').pop();
+      const basename = absoluteFilename.split(/[\\/]/).pop();
 
       if (/\.json$/.test(basename)) {
         dynamicResources.push(basename);

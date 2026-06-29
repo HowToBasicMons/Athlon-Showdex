@@ -28,6 +28,12 @@ export const PokemonTypes: Showdown.TypeName[] = [
   'Steel',
   'Fairy',
   'Stellar',
+  // Pokéathlon custom types (from the server's BattleTypeChart; e.g. Soulstones, Uranium)
+  'Sound',
+  'Light',
+  'Cosmic',
+  'Nuclear',
+  'Crystal',
   '???',
 ];
 
@@ -65,4 +71,9 @@ export const PokemonTypeLabels: Record<Exclude<Showdown.TypeName, '???'>, [full:
   Steel: ['STEEL', 'STL', 'STL'],
   Fairy: ['FAIRY', 'FARY', 'FRY'],
   Stellar: ['STELLR', 'STLR', 'SLR'],
+  Sound: ['SOUND', 'SND', 'SND'],
+  Light: ['LIGHT', 'LGHT', 'LGT'],
+  Cosmic: ['COSMIC', 'CSMC', 'CSM'],
+  Nuclear: ['NUCLR', 'NUKE', 'NUK'],
+  Crystal: ['CRYSTL', 'CRYS', 'CRY'],
 };

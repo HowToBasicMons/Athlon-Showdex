@@ -29,8 +29,8 @@ export const syncField = (
   const newField = cloneField(state.field);
   const updatedField = sanitizeField(battle);
 
-  Object.keys(updatedField).forEach((key: keyof CalcdexBattleField) => {
-    if (['attackerSide', 'defenderSide'].includes(key)) {
+  (Object.keys(updatedField) as (keyof CalcdexBattleField)[]).forEach((key) => {
+    if ((['attackerSide', 'defenderSide'] as string[]).includes(key as string)) {
       return;
     }
 

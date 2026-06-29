@@ -40,6 +40,13 @@ $types: (
     dark: #41332A,
     fairy: #E76D88,
 
+    // Pokéathlon custom types (Soulstones, Uranium, etc.)
+    sound: #C45FA0,
+    light: color.shade(#E8D44D, 6%),
+    cosmic: #4B2E83,
+    nuclear: #6FB52A,
+    crystal: color.shade(#5FC6DC, 6%),
+
     // note: this one's special uwu
     // (colors extracted from in-game Stellar type icon; will be used to populate gradient stops)
     // (also... should've just made PokeType into an SVG in hindsight lmao)

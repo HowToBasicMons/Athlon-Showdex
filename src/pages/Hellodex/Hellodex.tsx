@@ -209,10 +209,12 @@ export const Hellodex = ({
           src={getResourceUrl('minarex.svg')}
         />
       ) : (
-        <Svg
+        <img
           className={styles.showdexIcon}
-          description="Showdex Icon"
-          src={getResourceUrl('showdex.svg')}
+          src="https://play.pokeathlon.com/sprites/fangame-sprites/pokeathlon/front/electrodemega.gif"
+          alt="Athlon Showdex Mascot"
+          draggable={false}
+          style={{ height: 'auto', imageRendering: 'pixelated' }}
         />
       )}
 
@@ -223,6 +225,51 @@ export const Hellodex = ({
             i18nKey="header.title"
             parent="div"
             className={styles.authors}
+            shouldUnescape
+            components={{
+              author: (
+                <Button
+                  className={styles.authorButton}
+                  labelClassName={styles.label}
+                  label="howtobasicmon"
+                  hoverScale={1}
+                  absoluteHover
+                  disabled={typeof onUserPopup !== 'function'}
+                  onPress={() => void onUserPopup?.('howtobasicmons')}
+                />
+              ),
+            }}
+          />
+
+          <Trans
+            t={t}
+            i18nKey="header.subtitle"
+            parent="div"
+            className={styles.presents}
+            shouldUnescape
+          />
+
+          {/* besides BuildInfo's, this is the only other visually hardcoded "Showdex" not affected by i18n */}
+          <div className={styles.extensionName}>
+            Athlon Showdex
+          </div>
+
+          <div className={styles.extensionVersion}>
+            {packageVersion}
+
+            <span className={styles.extensionVersionSuffix}>
+              {!!versionSuffix && `-${versionSuffix}`}
+              {__DEV__ && !!buildDate && `-b${buildDate.slice(-4)}`}
+              {!!buildSuffix && `-${buildSuffix}`}
+              {__DEV__ && '-dev'}
+            </span>
+          </div>
+
+          <Trans
+            t={t}
+            i18nKey="header.forkedFrom"
+            parent="div"
+            className={styles.presents}
             shouldUnescape
             components={{
               and: <div className={styles.ampersand} />,
@@ -250,30 +297,6 @@ export const Hellodex = ({
               ),
             }}
           />
-
-          <Trans
-            t={t}
-            i18nKey="header.subtitle"
-            parent="div"
-            className={styles.presents}
-            shouldUnescape
-          />
-
-          {/* besides BuildInfo's, this is the only other visually hardcoded "Showdex" not affected by i18n */}
-          <div className={styles.extensionName}>
-            Showdex
-          </div>
-
-          <div className={styles.extensionVersion}>
-            {packageVersion}
-
-            <span className={styles.extensionVersionSuffix}>
-              {!!versionSuffix && `-${versionSuffix}`}
-              {__DEV__ && !!buildDate && `-b${buildDate.slice(-4)}`}
-              {!!buildSuffix && `-${buildSuffix}`}
-              {__DEV__ && '-dev'}
-            </span>
-          </div>
         </div>
 
         <div className={styles.instancesContainer}>

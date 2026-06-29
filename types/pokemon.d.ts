@@ -327,6 +327,20 @@ declare namespace Showdown {
     speciesForme: string;
 
     /**
+     * Pokéathlon Infinite Fusion: the Body species name (the fusion partner).
+     *
+     * * Custom property added by the Pokéathlon battle client
+     *   (`pokeathlon-battle.js` / `pokeathlon-client-battle.js`) on fused Pokémon.
+     * * The Head (named/displayed species) is carried in `speciesForme`; this is
+     *   the Body, from which the bonus type & physical-stat bias are derived.
+     * * Absent/empty on non-fused (single base species) Pokémon.
+     *
+     * @example 'Nidoking'
+     * @since 1.3.0
+     */
+    fusion?: string;
+
+    /**
      * Custom property used to track Pokemon since the server does not provide consistent IDs.
      *
      * * Luckily in my testing, I have found that custom properties persist throughout updates,

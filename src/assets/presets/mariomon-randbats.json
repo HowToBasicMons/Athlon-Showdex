@@ -1,0 +1,3583 @@
+{
+  "amazydayzee": {
+    "name": "Amazy Dayzee",
+    "level": 93,
+    "sets": [
+      {
+        "item": "Throat Spray",
+        "ability": "Effect Spore",
+        "moves": [
+          "Moonblast",
+          "Hyper Voice",
+          "Mystical Fire",
+          "Sing"
+        ]
+      },
+      {
+        "item": "Choice Specs",
+        "ability": "Effect Spore",
+        "moves": [
+          "Moonblast",
+          "Energy Ball",
+          "Hyper Voice",
+          "Mystical Fire"
+        ]
+      },
+      {
+        "item": "Throat Spray",
+        "ability": "Effect Spore",
+        "moves": [
+          "Moonblast",
+          "Energy Ball",
+          "Hyper Voice",
+          "Agility"
+        ]
+      }
+    ]
+  },
+  "angrysun": {
+    "name": "Angry Sun",
+    "level": 90,
+    "sets": [
+      {
+        "item": "Choice Band",
+        "ability": "Drought",
+        "moves": [
+          "Sacred Fire",
+          "Solar Blade",
+          "Photon Geyser",
+          "Stomping Tantrum"
+        ]
+      },
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Drought",
+        "moves": [
+          "Sacred Fire",
+          "Solar Blade",
+          "Work Up",
+          "Morning Sun"
+        ]
+      }
+    ]
+  },
+  "antasma": {
+    "name": "Antasma",
+    "level": 84,
+    "sets": [
+      {
+        "item": "Light Clay",
+        "ability": "Bad Dreams",
+        "moves": [
+          "Dark Pulse",
+          "Reflect",
+          "Light Screen",
+          "Dark Void"
+        ]
+      },
+      {
+        "item": "Choice Scarf",
+        "ability": "Bad Dreams",
+        "moves": [
+          "Dark Pulse",
+          "Heat Wave",
+          "Dark Void",
+          "Trick"
+        ]
+      },
+      {
+        "item": "Life Orb",
+        "ability": "Bad Dreams",
+        "moves": [
+          "Dark Pulse",
+          "Heat Wave",
+          "Nasty Plot",
+          "Dark Void"
+        ]
+      }
+    ]
+  },
+  "balloonboo": {
+    "name": "Balloon Boo",
+    "level": 94,
+    "sets": [
+      {
+        "item": "Eviolite",
+        "ability": "Levitate",
+        "moves": [
+          "Night Shade",
+          "Will-o-Wisp",
+          "Rest",
+          "Sleep Talk"
+        ]
+      }
+    ]
+  },
+  "bandit": {
+    "name": "Bandit",
+    "level": 94,
+    "sets": [
+      {
+        "item": "Scope Lens",
+        "ability": "Super Luck",
+        "moves": [
+          "Knock Off",
+          "Sucker Punch",
+          "Pursuit",
+          "U-turn"
+        ]
+      },
+      {
+        "item": "Choice Band",
+        "ability": "Super Luck",
+        "moves": [
+          "Knock Off",
+          "Sucker Punch",
+          "U-turn",
+          "Pursuit"
+        ]
+      }
+    ]
+  },
+  "banzaibill": {
+    "name": "Banzai Bill",
+    "level": 89,
+    "sets": [
+      {
+        "item": "Life Orb",
+        "ability": "Sheer Force",
+        "moves": [
+          "Iron Head",
+          "Flare Blitz",
+          "Rock Slide",
+          "High Horsepower"
+        ]
+      },
+      {
+        "item": "Choice Band",
+        "ability": "Levitate",
+        "moves": [
+          "Iron Head",
+          "Flare Blitz",
+          "High Horsepower",
+          "U-turn"
+        ]
+      },
+      {
+        "item": "Leftovers",
+        "ability": "Levitate",
+        "moves": [
+          "Iron Head",
+          "High Horsepower",
+          "Extreme Speed",
+          "Parting Shot"
+        ]
+      }
+    ]
+  },
+  "birdo": {
+    "name": "Birdo",
+    "level": 84,
+    "sets": [
+      {
+        "item": "Choice Scarf",
+        "ability": "Pixilate",
+        "moves": [
+          "Boomburst",
+          "Burning Jealousy",
+          "Sludge Bomb",
+          "Trick"
+        ]
+      },
+      {
+        "item": "Choice Specs",
+        "ability": "Pixilate",
+        "moves": [
+          "Boomburst",
+          "Burning Jealousy",
+          "Sludge Bomb",
+          "Energy Ball"
+        ]
+      },
+      {
+        "item": "Leftovers",
+        "ability": "Pixilate",
+        "moves": [
+          "Boomburst",
+          "Burning Jealousy",
+          "Lovely Kiss",
+          "Soft-Boiled"
+        ]
+      }
+    ]
+  },
+  "blargg": {
+    "name": "Blargg",
+    "level": 87,
+    "sets": [
+      {
+        "item": "Choice Specs",
+        "ability": "Flame Body",
+        "moves": [
+          "Draco Meteor",
+          "Magma Storm",
+          "Thunderbolt",
+          "Scorching Sands"
+        ]
+      },
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Flame Body",
+        "moves": [
+          "Draco Meteor",
+          "Magma Storm",
+          "Fire Lash",
+          "Will-O-Wisp"
+        ]
+      },
+      {
+        "item": "Choice Scarf",
+        "ability": "Flame Body",
+        "moves": [
+          "Draco Meteor",
+          "Magma Storm",
+          "Thunderbolt",
+          "Scorching Sands"
+        ]
+      }
+    ]
+  },
+  "blueyoshi": {
+    "name": "Blue Yoshi",
+    "level": 89,
+    "sets": [
+      {
+        "item": "Choice Specs",
+        "ability": "Aerilate",
+        "moves": [
+          "Hyper Voice",
+          "Esper Wing",
+          "Dragon Pulse",
+          "Icy Wind"
+        ]
+      },
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Aerilate",
+        "moves": [
+          "Hyper Voice",
+          "Esper Wing",
+          "Work Up",
+          "Roost"
+        ]
+      }
+    ]
+  },
+  "bonetail": {
+    "name": "Bonetail",
+    "level": 88,
+    "sets": [
+      {
+        "item": "Loaded Dice",
+        "ability": "Multiscale",
+        "moves": [
+          "Shadow Bone",
+          "Scale Shot",
+          "Earthquake",
+          "Dragon Dance"
+        ]
+      },
+      {
+        "item": "Chesto Berry",
+        "ability": "Multiscale",
+        "moves": [
+          "Shadow Bone",
+          "Play Rough",
+          "Dragon Dance",
+          "Rest"
+        ]
+      },
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Multiscale",
+        "moves": [
+          "Shadow Bone",
+          "Earthquake",
+          "Will-O-Wisp",
+          "Defog"
+        ]
+      },
+      {
+        "item": "Weakness Policy",
+        "ability": "Multiscale",
+        "moves": [
+          "Shadow Bone",
+          "Play Rough",
+          "Flamethrower",
+          "Dragon Dance"
+        ]
+      },
+      {
+        "item": "Weakness Policy",
+        "ability": "Multiscale",
+        "moves": [
+          "Shadow Bone",
+          "Draco Meteor",
+          "Earthquake",
+          "Dragon Dance"
+        ]
+      }
+    ]
+  },
+  "bossbrolder": {
+    "name": "Boss Brolder",
+    "level": 94,
+    "sets": [
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Steam Engine",
+        "moves": [
+          "Stone Edge",
+          "Sizzly Slide",
+          "Rapid Spin",
+          "Stealth Rock"
+        ]
+      },
+      {
+        "item": "Assault Vest",
+        "ability": "Steam Engine",
+        "moves": [
+          "Stone Edge",
+          "Drain Punch",
+          "Sizzly Slide",
+          "Rapid Spin"
+        ]
+      }
+    ]
+  },
+  "bowser": {
+    "name": "Bowser",
+    "level": 83,
+    "sets": [
+      {
+        "item": "White Herb",
+        "ability": "Supreme Overlord",
+        "moves": [
+          "Dragon Claw",
+          "Drain Punch",
+          "Iron Head",
+          "Shell Smash"
+        ]
+      },
+      {
+        "item": "Loaded Dice",
+        "ability": "Supreme Overlord",
+        "moves": [
+          "Scale Shot",
+          "Iron Head",
+          "Fire Blast",
+          "Shell Smash"
+        ]
+      }
+    ]
+  },
+  "bristle": {
+    "name": "Bristle",
+    "level": 96,
+    "sets": [
+      {
+        "item": "Leftovers",
+        "ability": "Iron Barbs",
+        "moves": [
+          "Spin Out",
+          "Spiky Shield",
+          "Spikes",
+          "Stealth Rock"
+        ]
+      },
+      {
+        "item": "Chesto Berry",
+        "ability": "Iron Barbs",
+        "moves": [
+          "Stone Edge",
+          "Gyro Ball",
+          "Curse",
+          "Rest"
+        ]
+      }
+    ]
+  },
+  "broozer": {
+    "name": "Broozer",
+    "level": 82,
+    "sets": [
+      {
+        "item": "Punching Glove",
+        "ability": "Iron Fist",
+        "moves": [
+          "Drain Punch",
+          "Rage Fist",
+          "Mach Punch",
+          "Swords Dance"
+        ]
+      },
+      {
+        "item": "Punching Glove",
+        "ability": "Iron Fist",
+        "moves": [
+          "Drain Punch",
+          "Rage Fist",
+          "Knock Off",
+          "Swords Dance"
+        ]
+      }
+    ]
+  },
+  "bubbleblooper": {
+    "name": "Bubble Blooper",
+    "level": 95,
+    "sets": [
+      {
+        "item": "Eviolite",
+        "ability": "Sticky Hold",
+        "moves": [
+          "Surf",
+          "Topsy-Turvy",
+          "Rapid Spin",
+          "Flip Turn"
+        ]
+      }
+    ]
+  },
+  "chainchomp": {
+    "name": "Chain Chomp",
+    "level": 89,
+    "sets": [
+      {
+        "item": "Leftovers",
+        "ability": "Stamina",
+        "moves": [
+          "Iron Head",
+          "Earthquake",
+          "Curse",
+          "Rest"
+        ]
+      },
+      {
+        "item": "Life Orb",
+        "ability": "Guard Dog",
+        "moves": [
+          "Iron Head",
+          "Earthquake",
+          "Superpower",
+          "Stone Edge"
+        ]
+      },
+      {
+        "item": "Leftovers",
+        "ability": "Intimidate",
+        "moves": [
+          "Iron Head",
+          "Superpower",
+          "Earthquake",
+          "Swords Dance"
+        ]
+      }
+    ]
+  },
+  "charginchuck": {
+    "name": "Chargin' Chuck",
+    "level": 89,
+    "sets": [
+      {
+        "item": "Leftovers",
+        "ability": "Anger Shell",
+        "moves": [
+          "Drain Punch",
+          "Earthquake",
+          "Stone Edge",
+          "Court Change"
+        ]
+      },
+      {
+        "item": "Flame Orb",
+        "ability": "Guts",
+        "moves": [
+          "Drain Punch",
+          "Earthquake",
+          "Facade",
+          "Bulk Up"
+        ]
+      },
+      {
+        "item": "White Herb",
+        "ability": "Anger Shell",
+        "moves": [
+          "Drain Punch",
+          "Earthquake",
+          "Rock Slide",
+          "Bulk Up"
+        ]
+      },
+      {
+        "item": "Assault Vest",
+        "ability": "Guts",
+        "moves": [
+          "Drain Punch",
+          "Headlong Rush",
+          "Stone Edge",
+          "U-turn"
+        ]
+      },
+      {
+        "item": "Choice Band",
+        "ability": "Defiant",
+        "moves": [
+          "Superpower",
+          "Headlong Rush",
+          "Stone Edge",
+          "U-turn"
+        ]
+      }
+    ]
+  },
+  "chillbully": {
+    "name": "Chill Bully",
+    "level": 93,
+    "sets": [
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Steely Spirit",
+        "moves": [
+          "Stone Edge",
+          "Triple Axel",
+          "Headlong Rush",
+          "Iron Head"
+        ]
+      },
+      {
+        "item": "Weakness Policy",
+        "ability": "Steely Spirit",
+        "moves": [
+          "Stone Edge",
+          "Triple Axel",
+          "Headlong Rush",
+          "Iron Head"
+        ]
+      }
+    ]
+  },
+  "chillvirus": {
+    "name": "Chill Virus",
+    "level": 95,
+    "sets": [
+      {
+        "item": "Life Orb",
+        "ability": "Ice Body",
+        "moves": [
+          "Ice Beam",
+          "Sludge Bomb",
+          "Shadow Ball",
+          "Nasty Plot"
+        ]
+      },
+      {
+        "item": "Life Orb",
+        "ability": "Ice Body",
+        "moves": [
+          "Triple Axel",
+          "Drain Punch",
+          "Knock Off",
+          "Swords Dance"
+        ]
+      },
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Ice Body",
+        "moves": [
+          "Ice Beam",
+          "Recover",
+          "Taunt",
+          "Will-O-Wisp"
+        ]
+      }
+    ]
+  },
+  "chincho": {
+    "name": "Chincho",
+    "level": 92,
+    "sets": [
+      {
+        "item": "Leftovers",
+        "ability": "Mummy",
+        "moves": [
+          "Body Slam",
+          "Poltergeist",
+          "Will-O-Wisp",
+          "Sucker Punch"
+        ]
+      },
+      {
+        "item": "Leftovers",
+        "ability": "Mummy",
+        "moves": [
+          "Return",
+          "Poltergeist",
+          "Substitute",
+          "Focus Punch"
+        ]
+      }
+    ]
+  },
+  "clubba": {
+    "name": "Clubba",
+    "level": 91,
+    "sets": [
+      {
+        "item": "Choice Band",
+        "ability": "Huge Power",
+        "moves": [
+          "Double-Edge",
+          "Iron Head",
+          "First Impression",
+          "Knock Off"
+        ]
+      },
+      {
+        "item": "Life Orb",
+        "ability": "Huge Power",
+        "moves": [
+          "Return",
+          "Iron Head",
+          "Knock Off",
+          "Swords Dance"
+        ]
+      }
+    ]
+  },
+  "crystalking": {
+    "name": "Crystal King",
+    "level": 89,
+    "sets": [
+      {
+        "item": "Choice Specs",
+        "ability": "Refrigerate",
+        "moves": [
+          "Tri Attack",
+          "Shadow Ball",
+          "Mystical Fire",
+          "Trick"
+        ]
+      },
+      {
+        "item": "Choice Scarf",
+        "ability": "Refrigerate",
+        "moves": [
+          "Tri Attack",
+          "Shadow Ball",
+          "Mystical Fire",
+          "Trick"
+        ]
+      },
+      {
+        "item": "Leftovers",
+        "ability": "Refrigerate",
+        "moves": [
+          "Tri Attack",
+          "Shadow Ball",
+          "Substitute",
+          "Calm Mind"
+        ]
+      }
+    ]
+  },
+  "dinorhino": {
+    "name": "Dino Rhino",
+    "level": 94,
+    "sets": [
+      {
+        "item": "Sitrus Berry",
+        "ability": "Flash Fire",
+        "moves": [
+          "Headlong Rush",
+          "Flamethrower",
+          "Shed Tail",
+          "Stealth Rock"
+        ]
+      }
+    ]
+  },
+  "drybones": {
+    "name": "Dry Bones",
+    "level": 94,
+    "sets": [
+      {
+        "item": "Focus Sash",
+        "ability": "Wonder Guard",
+        "moves": [
+          "Knock Off",
+          "U-turn",
+          "Bonemerang",
+          "Will-O-Wisp"
+        ]
+      },
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Wonder Guard",
+        "moves": [
+          "Knock Off",
+          "Protect",
+          "Rapid Spin",
+          "Will-O-Wisp"
+        ]
+      }
+    ]
+  },
+  "duplighost": {
+    "name": "Duplighost",
+    "level": 93,
+    "sets": [
+      {
+        "item": "Choice Scarf",
+        "ability": "Imposter",
+        "moves": [
+          "Transform"
+        ]
+      }
+    ]
+  },
+  "eerie": {
+    "name": "Eerie",
+    "level": 100,
+    "sets": [
+      {
+        "item": "Leftovers",
+        "ability": "Rattled",
+        "moves": [
+          "Bitter Malice",
+          "Dragon Pulse",
+          "Calm Mind",
+          "Strength Sap"
+        ]
+      }
+    ]
+  },
+  "elitexnaut": {
+    "name": "Elite X-Naut",
+    "level": 90,
+    "sets": [
+      {
+        "item": "Life Orb",
+        "ability": "Regenerator",
+        "moves": [
+          "Body Slam",
+          "Knock Off",
+          "Sucker Punch",
+          "Swords Dance"
+        ]
+      },
+      {
+        "item": "Assault Vest",
+        "ability": "Regenerator",
+        "moves": [
+          "Body Slam",
+          "Knock Off",
+          "Sucker Punch",
+          "Drain Punch"
+        ]
+      },
+      {
+        "item": "Choice Scarf",
+        "ability": "Regenerator",
+        "moves": [
+          "Double-Edge",
+          "Knock Off",
+          "Drain Punch",
+          "Trick"
+        ]
+      },
+      {
+        "item": "Flying Gem",
+        "ability": "Regenerator",
+        "moves": [
+          "Knock Off",
+          "Acrobatics",
+          "Drain Punch",
+          "Swords Dance"
+        ]
+      },
+      {
+        "item": "Choice Band",
+        "ability": "Regenerator",
+        "moves": [
+          "Double-Edge",
+          "Knock Off",
+          "Triple Axel",
+          "Drain Punch"
+        ]
+      }
+    ]
+  },
+  "exor": {
+    "name": "Exor",
+    "level": 83,
+    "sets": [
+      {
+        "item": "Choice Band",
+        "ability": "Sharpness",
+        "moves": [
+          "Behemoth Blade",
+          "Leaf Blade",
+          "Sacred Sword",
+          "Psycho Cut"
+        ]
+      },
+      {
+        "item": "Assault Vest",
+        "ability": "Sharpness",
+        "moves": [
+          "Behemoth Blade",
+          "Leaf Blade",
+          "Sacred Sword",
+          "Sucker Punch"
+        ]
+      },
+      {
+        "item": "Leftovers",
+        "ability": "Sharpness",
+        "moves": [
+          "Behemoth Blade",
+          "Sucker Punch",
+          "Sacred Sword",
+          "Swords Dance"
+        ]
+      }
+    ]
+  },
+  "fevervirus": {
+    "name": "Fever Virus",
+    "level": 97,
+    "sets": [
+      {
+        "item": "Life Orb",
+        "ability": "Flash Fire",
+        "moves": [
+          "Flare Blitz",
+          "Drain Punch",
+          "Knock Off",
+          "Swords Dance"
+        ]
+      },
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Flame Body",
+        "moves": [
+          "Fire Punch",
+          "Knock Off",
+          "Will-O-Wisp",
+          "Recover"
+        ]
+      }
+    ]
+  },
+  "fishbone": {
+    "name": "Fish Bone",
+    "level": 92,
+    "sets": [
+      {
+        "item": "Choice Band",
+        "ability": "Swift Swim",
+        "moves": [
+          "Liquidation",
+          "Shadow Bone",
+          "Aqua Jet",
+          "Flip Turn"
+        ]
+      },
+      {
+        "item": "Leftovers",
+        "ability": "Swift Swim",
+        "moves": [
+          "Shadow Ball",
+          "Liquidation",
+          "Substitute",
+          "Will-O-Wisp"
+        ]
+      },
+      {
+        "item": "Choice Band",
+        "ability": "Swift Swim",
+        "moves": [
+          "Liquidation",
+          "Shadow Bone",
+          "Shadow Sneak",
+          "Flip Turn"
+        ]
+      },
+      {
+        "item": "Life Orb",
+        "ability": "Swift Swim",
+        "moves": [
+          "Hydro Pump",
+          "Shadow Bone",
+          "Substitute",
+          "Flip Turn"
+        ]
+      }
+    ]
+  },
+  "fuzzy": {
+    "name": "Fuzzy",
+    "level": 90,
+    "sets": [
+      {
+        "item": "Choice Band",
+        "ability": "Schooling",
+        "moves": [
+          "First Impression",
+          "Knock Off",
+          "Leech Life",
+          "U-turn"
+        ]
+      },
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Schooling",
+        "moves": [
+          "First Impression",
+          "Leech Life",
+          "Sucker Punch",
+          "U-turn"
+        ]
+      },
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Schooling",
+        "moves": [
+          "Leech Life",
+          "Knock Off",
+          "Sucker Punch",
+          "Swords Dance"
+        ]
+      }
+    ]
+  },
+  "gloomtail": {
+    "name": "Gloomtail",
+    "level": 86,
+    "sets": [
+      {
+        "item": "Loaded Dice",
+        "ability": "Moxie",
+        "moves": [
+          "Knock Off",
+          "Scale Shot",
+          "Earthquake",
+          "Dragon Dance"
+        ]
+      },
+      {
+        "item": "Choice Band",
+        "ability": "Moxie",
+        "moves": [
+          "Knock Off",
+          "Play Rough",
+          "Earthquake",
+          "Pursuit"
+        ]
+      },
+      {
+        "item": "Assault Vest",
+        "ability": "Moxie",
+        "moves": [
+          "Knock Off",
+          "Sucker Punch",
+          "Earthquake",
+          "Pursuit"
+        ]
+      },
+      {
+        "item": "Life Orb",
+        "ability": "Moxie",
+        "moves": [
+          "Knock Off",
+          "Draco Meteor",
+          "Flamethrower",
+          "Play Rough"
+        ]
+      },
+      {
+        "item": "Life Orb",
+        "ability": "Moxie",
+        "moves": [
+          "Knock Off",
+          "Sucker Punch",
+          "Earthquake",
+          "Dragon Dance"
+        ]
+      }
+    ]
+  },
+  "goombastack": {
+    "name": "Goomba Stack",
+    "level": 96,
+    "sets": [
+      {
+        "item": "Goomba Boots",
+        "ability": "Run Away",
+        "moves": [
+          "Body Slam",
+          "Play Rough",
+          "Ice Spinner",
+          "No Retreat"
+        ]
+      },
+      {
+        "item": "Goomba Boots",
+        "ability": "Run Away",
+        "moves": [
+          "Body Slam",
+          "Play Rough",
+          "Crunch",
+          "No Retreat"
+        ]
+      }
+    ]
+  },
+  "gooperblooper": {
+    "name": "Gooper Blooper",
+    "level": 89,
+    "sets": [
+      {
+        "item": "Assault Vest",
+        "ability": "Sticky Hold",
+        "moves": [
+          "Surf",
+          "Sludge Bomb",
+          "Rapid Spin",
+          "Flip Turn"
+        ]
+      },
+      {
+        "item": "Leftovers",
+        "ability": "Sticky Hold",
+        "moves": [
+          "Surf",
+          "Sludge Bomb",
+          "Ice Beam",
+          "Rapid Spin"
+        ]
+      },
+      {
+        "item": "Choice Specs",
+        "ability": "Sticky Hold",
+        "moves": [
+          "Hydro Pump",
+          "Sludge Wave",
+          "Ice Beam",
+          "Flip Turn"
+        ]
+      }
+    ]
+  },
+  "gushen": {
+    "name": "Gushen",
+    "level": 85,
+    "sets": [
+      {
+        "item": "Mystic Water",
+        "ability": "Water Bubble",
+        "moves": [
+          "Water Spout",
+          "Hydro Pump",
+          "Aqua Jet",
+          "Flip Turn"
+        ]
+      },
+      {
+        "item": "Choice Specs",
+        "ability": "Water Bubble",
+        "moves": [
+          "Water Spout",
+          "Hydro Pump",
+          "Flip Turn",
+          "Trick"
+        ]
+      }
+    ]
+  },
+  "hammerbro": {
+    "name": "Hammer Bro",
+    "level": 89,
+    "sets": [
+      {
+        "item": "Life Orb",
+        "ability": "Forecast",
+        "moves": [
+          "Return",
+          "Gigaton Hammer",
+          "Crabhammer",
+          "Shell Smash"
+        ]
+      },
+      {
+        "item": "Life Orb",
+        "ability": "Forecast",
+        "moves": [
+          "Return",
+          "Ice Beam",
+          "Fire Blast",
+          "Shell Smash"
+        ]
+      },
+      {
+        "item": "Sturdy Shell",
+        "ability": "Forecast",
+        "moves": [
+          "Return",
+          "Gigaton Hammer",
+          "Crabhammer",
+          "Shell Smash"
+        ]
+      },
+      {
+        "item": "Sturdy Shell",
+        "ability": "Forecast",
+        "moves": [
+          "Return",
+          "Ice Beam",
+          "Fire Blast",
+          "Shell Smash"
+        ]
+      }
+    ]
+  },
+  "handfake": {
+    "name": "Handfake",
+    "level": 87,
+    "sets": [
+      {
+        "item": "Life Orb",
+        "ability": "Illusion",
+        "moves": [
+          "Knock Off",
+          "Sucker Punch",
+          "Drain Punch",
+          "Swords Dance"
+        ]
+      },
+      {
+        "item": "Choice Band",
+        "ability": "Illusion",
+        "moves": [
+          "Knock Off",
+          "Sucker Punch",
+          "Drain Punch",
+          "Rock Tomb"
+        ]
+      }
+    ]
+  },
+  "happymoon": {
+    "name": "Happy Moon",
+    "level": 91,
+    "sets": [
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Shadow Shield",
+        "moves": [
+          "Moonblast",
+          "Earth Power",
+          "Stealth Rock",
+          "Moonlight"
+        ]
+      },
+      {
+        "item": "Weakness Policy",
+        "ability": "Shadow Shield",
+        "moves": [
+          "Moonblast",
+          "Dark Pulse",
+          "Earth Power",
+          "Rock Polish"
+        ]
+      },
+      {
+        "item": "Power Herb",
+        "ability": "Shadow Shield",
+        "moves": [
+          "Meteor Beam",
+          "Moonblast",
+          "Earth Power",
+          "Dark Pulse"
+        ]
+      }
+    ]
+  },
+  "heaveho": {
+    "name": "Heave-Ho",
+    "level": 91,
+    "sets": [
+      {
+        "item": "Assault Vest",
+        "ability": "Galvanize",
+        "moves": [
+          "Double-Edge",
+          "Circle Throw",
+          "Razor Shell",
+          "Volt Switch"
+        ]
+      },
+      {
+        "item": "Choice Band",
+        "ability": "Galvanize",
+        "moves": [
+          "Double-Edge",
+          "Superpower",
+          "Razor Shell",
+          "Volt Switch"
+        ]
+      },
+      {
+        "item": "Magnet",
+        "ability": "Electromorphosis",
+        "moves": [
+          "Thunderbolt",
+          "Volt Switch",
+          "Supercell Slam",
+          "Razor Shell"
+        ]
+      }
+    ]
+  },
+  "hisstocrat": {
+    "name": "Hisstocrat",
+    "level": 90,
+    "sets": [
+      {
+        "item": "Leftovers",
+        "ability": "Earth Eater",
+        "moves": [
+          "Earthquake",
+          "Pyro Ball",
+          "Glare",
+          "Stealth Rock"
+        ]
+      },
+      {
+        "item": "Life Orb",
+        "ability": "Earth Eater",
+        "moves": [
+          "Earthquake",
+          "Stone Edge",
+          "Pyro Ball",
+          "Coil"
+        ]
+      }
+    ]
+  },
+  "hooktail": {
+    "name": "Hooktail",
+    "level": 86,
+    "sets": [
+      {
+        "item": "Choice Specs",
+        "ability": "Berserk",
+        "moves": [
+          "Draco Meteor",
+          "Fire Blast",
+          "Dragon Pulse",
+          "Trick"
+        ]
+      },
+      {
+        "item": "Life Orb",
+        "ability": "Berserk",
+        "moves": [
+          "Fire Blast",
+          "Play Rough",
+          "Earthquake",
+          "Dragon Dance"
+        ]
+      },
+      {
+        "item": "Sitrus Berry",
+        "ability": "Berserk",
+        "moves": [
+          "Draco Meteor",
+          "Fire Blast",
+          "Scale Shot",
+          "Earthquake"
+        ]
+      },
+      {
+        "item": "Loaded Dice",
+        "ability": "Berserk",
+        "moves": [
+          "Scale Shot",
+          "Fire Blast",
+          "Earthquake",
+          "Work Up"
+        ]
+      }
+    ]
+  },
+  "hornedanttrooper": {
+    "name": "Horned Ant Trooper",
+    "level": 94,
+    "sets": [
+      {
+        "item": "Life Orb",
+        "ability": "Hustle",
+        "moves": [
+          "Megahorn",
+          "Iron Head",
+          "Knock Off",
+          "Agility"
+        ]
+      },
+      {
+        "item": "Sitrus Berry",
+        "ability": "Swarm",
+        "moves": [
+          "Megahorn",
+          "Drill Run",
+          "Swords Dance",
+          "Agility"
+        ]
+      },
+      {
+        "item": "Life Orb",
+        "ability": "Hustle",
+        "moves": [
+          "Megahorn",
+          "Smart Strike",
+          "Knock Off",
+          "Swords Dance"
+        ]
+      },
+      {
+        "item": "Choice Band",
+        "ability": "Hustle",
+        "moves": [
+          "Megahorn",
+          "Smart Strike",
+          "Knock Off",
+          "U-turn"
+        ]
+      }
+    ]
+  },
+  "huffnpuff": {
+    "name": "Huff n Puff",
+    "level": 91,
+    "sets": [
+      {
+        "item": "Black Sludge",
+        "ability": "Levitate",
+        "moves": [
+          "Sludge Bomb",
+          "Volt Switch",
+          "Knock Off",
+          "Thunder Wave"
+        ]
+      },
+      {
+        "item": "Assault Vest",
+        "ability": "Levitate",
+        "moves": [
+          "Sludge Bomb",
+          "Heat Wave",
+          "Ice Beam",
+          "Volt Switch"
+        ]
+      },
+      {
+        "item": "Choice Specs",
+        "ability": "Neutralizing Gas",
+        "moves": [
+          "Sludge Wave",
+          "Heat Wave",
+          "Volt Switch",
+          "Ice Beam"
+        ]
+      },
+      {
+        "item": "Choice Scarf",
+        "ability": "Neutralizing Gas",
+        "moves": [
+          "Sludge Bomb",
+          "Ice Beam",
+          "Volt Switch",
+          "Trick"
+        ]
+      }
+    ]
+  },
+  "ironcleft": {
+    "name": "Iron Cleft",
+    "level": 92,
+    "sets": [
+      {
+        "item": "Focus Sash",
+        "ability": "Rock Head",
+        "moves": [
+          "Head Smash",
+          "Iron Head",
+          "Earthquake",
+          "Shell Smash"
+        ]
+      },
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Sturdy",
+        "moves": [
+          "Head Smash",
+          "Iron Head",
+          "Earthquake",
+          "Stealth Rock"
+        ]
+      }
+    ]
+  },
+  "jabbi": {
+    "name": "Jabbi",
+    "level": 96,
+    "sets": [
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Technician",
+        "moves": [
+          "Air Cutter",
+          "Silver Wind",
+          "Ominous Wind",
+          "Quiver Dance"
+        ]
+      }
+    ]
+  },
+  "kingbobomb": {
+    "name": "King Bob-Omb",
+    "level": 89,
+    "sets": [
+      {
+        "item": "Salac Berry",
+        "ability": "Aftermath",
+        "moves": [
+          "Heat Crash",
+          "Drain Punch",
+          "Substitute",
+          "Belly Drum"
+        ]
+      },
+      {
+        "item": "Sitrus Berry",
+        "ability": "Aftermath",
+        "moves": [
+          "Heat Crash",
+          "Drain Punch",
+          "Sucker Punch",
+          "Belly Drum"
+        ]
+      },
+      {
+        "item": "Choice Scarf",
+        "ability": "Aftermath",
+        "moves": [
+          "Final Gambit",
+          "Flare Blitz",
+          "Superpower",
+          "Earthquake"
+        ]
+      },
+      {
+        "item": "Leftovers",
+        "ability": "Aftermath",
+        "moves": [
+          "Drain Punch",
+          "Flare Blitz",
+          "Knock Off",
+          "Bulk Up"
+        ]
+      },
+      {
+        "item": "Expert Belt",
+        "ability": "Aftermath",
+        "moves": [
+          "Superpower",
+          "Flare Blitz",
+          "Sucker Punch",
+          "Swords Dance"
+        ]
+      }
+    ]
+  },
+  "kingboo": {
+    "name": "King Boo",
+    "level": 88,
+    "sets": [
+      {
+        "item": "Leftovers",
+        "ability": "Levitate",
+        "moves": [
+          "Hex",
+          "Draining Kiss",
+          "Will-O-Wisp",
+          "Nasty Plot"
+        ]
+      },
+      {
+        "item": "Assault Vest",
+        "ability": "Levitate",
+        "moves": [
+          "Bitter Malice",
+          "Draining Kiss",
+          "Mystical Fire",
+          "U-turn"
+        ]
+      },
+      {
+        "item": "Leftovers",
+        "ability": "Levitate",
+        "moves": [
+          "Shadow Ball",
+          "Draining Kiss",
+          "Mystical Fire",
+          "Nasty Plot"
+        ]
+      }
+    ]
+  },
+  "klepto": {
+    "name": "Klepto",
+    "level": 89,
+    "sets": [
+      {
+        "item": "Eject Pack",
+        "ability": "Pickpocket",
+        "moves": [
+          "Headlong Rush",
+          "Drill Peck",
+          "Superpower",
+          "Roost"
+        ]
+      },
+      {
+        "item": "Life Orb",
+        "ability": "Sheer Force",
+        "moves": [
+          "Headlong Rush",
+          "Drill Peck",
+          "Iron Head",
+          "Rock Slide"
+        ]
+      },
+      {
+        "item": "Leftovers",
+        "ability": "Pickpocket",
+        "moves": [
+          "Earthquake",
+          "Drill Peck",
+          "U-turn",
+          "Roost"
+        ]
+      },
+      {
+        "item": "Rocky Helmet",
+        "ability": "Pickpocket",
+        "moves": [
+          "Earthquake",
+          "Knock Off",
+          "Defog",
+          "Roost"
+        ]
+      }
+    ]
+  },
+  "lakitu": {
+    "name": "Lakitu",
+    "level": 91,
+    "sets": [
+      {
+        "item": "Choice Band",
+        "ability": "Rocky Payload",
+        "moves": [
+          "Iron Head",
+          "Stone Edge",
+          "Mountain Gale",
+          "U-turn"
+        ]
+      },
+      {
+        "item": "White Herb",
+        "ability": "Rocky Payload",
+        "moves": [
+          "Iron Head",
+          "Acrobatics",
+          "Stone Edge",
+          "Shell Smash"
+        ]
+      },
+      {
+        "item": "Rocky Helmet",
+        "ability": "Cloud Nine",
+        "moves": [
+          "Iron Head",
+          "Spikes",
+          "Stealth Rock",
+          "Roost"
+        ]
+      }
+    ]
+  },
+  "lavadrop": {
+    "name": "Lava Drop",
+    "level": 99,
+    "sets": [
+      {
+        "item": "Life Orb",
+        "ability": "Flame Body",
+        "moves": [
+          "Fire Blast",
+          "Thunderbolt",
+          "Scorching Sands",
+          "Nasty Plot"
+        ]
+      },
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Solar Power",
+        "moves": [
+          "Fire Blast",
+          "Thunderbolt",
+          "Scorching Sands",
+          "Sunny Day"
+        ]
+      },
+      {
+        "item": "Choice Specs",
+        "ability": "Flame Body",
+        "moves": [
+          "Fire Blast",
+          "Thunderbolt",
+          "Scorching Sands",
+          "U-turn"
+        ]
+      }
+    ]
+  },
+  "lubba": {
+    "name": "Lubba",
+    "level": 88,
+    "sets": [
+      {
+        "item": "Power Herb",
+        "ability": "Victory Star",
+        "moves": [
+          "Draining Kiss",
+          "Psychic",
+          "Meteor Beam",
+          "Mystical Fire"
+        ]
+      },
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Natural Cure",
+        "moves": [
+          "Moonblast",
+          "Wish",
+          "Protect",
+          "Heal Bell"
+        ]
+      },
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Natural Cure",
+        "moves": [
+          "Moonblast",
+          "Wish",
+          "Protect",
+          "Teleport"
+        ]
+      }
+    ]
+  },
+  "madpiano": {
+    "name": "Mad Piano",
+    "level": 91,
+    "sets": [
+      {
+        "item": "Sitrus Berry",
+        "ability": "Unburden",
+        "moves": [
+          "Poltergeist",
+          "Superpower",
+          "Substitute",
+          "Swords Dance"
+        ]
+      },
+      {
+        "item": "Liechi Berry",
+        "ability": "Unburden",
+        "moves": [
+          "Poltergeist",
+          "Superpower",
+          "Sucker Punch",
+          "Substitute"
+        ]
+      },
+      {
+        "item": "Red Card",
+        "ability": "Unburden",
+        "moves": [
+          "Poltergeist",
+          "Superpower",
+          "Sucker Punch",
+          "Swords Dance"
+        ]
+      },
+      {
+        "item": "Choice Band",
+        "ability": "Strong Jaw",
+        "moves": [
+          "Poltergeist",
+          "Psychic Fangs",
+          "Superpower",
+          "Trick"
+        ]
+      }
+    ]
+  },
+  "magikoopa": {
+    "name": "Magikoopa",
+    "level": 87,
+    "sets": [
+      {
+        "item": "Choice Specs",
+        "ability": "Transmutate",
+        "moves": [
+          "Tri Attack",
+          "Ice Beam",
+          "Thunderbolt",
+          "Trick"
+        ]
+      },
+      {
+        "item": "Life Orb",
+        "ability": "Magic Guard",
+        "moves": [
+          "Psychic",
+          "Hurricane",
+          "Moonblast",
+          "Fire Blast"
+        ]
+      },
+      {
+        "item": "Light Clay",
+        "ability": "Prankster",
+        "moves": [
+          "Psychic",
+          "Moonblast",
+          "Reflect",
+          "Light Screen"
+        ]
+      }
+    ]
+  },
+  "majorburrows": {
+    "name": "Major Burrows",
+    "level": 83,
+    "sets": [
+      {
+        "item": "Choice Band",
+        "ability": "Arena Trap",
+        "moves": [
+          "Earthquake",
+          "Iron Head",
+          "Superpower",
+          "Stone Edge"
+        ]
+      },
+      {
+        "item": "Life Orb",
+        "ability": "Arena Trap",
+        "moves": [
+          "Earthquake",
+          "Iron Head",
+          "Sucker Punch",
+          "Swords Dance"
+        ]
+      }
+    ]
+  },
+  "mawmaw": {
+    "name": "Maw-Maw",
+    "level": 92,
+    "sets": [
+      {
+        "item": "Assault Vest",
+        "ability": "Dragon's Maw",
+        "moves": [
+          "Dragon Claw",
+          "Body Slam",
+          "Superpower",
+          "Earthquake"
+        ]
+      },
+      {
+        "item": "Life Orb",
+        "ability": "Dragon's Maw",
+        "moves": [
+          "Dragon Claw",
+          "Body Slam",
+          "Superpower",
+          "Draco Meteor"
+        ]
+      },
+      {
+        "item": "Sitrus Berry",
+        "ability": "Cheek Pouch",
+        "moves": [
+          "Body Slam",
+          "Dragon Tail",
+          "Knock Off",
+          "Recycle"
+        ]
+      },
+      {
+        "item": "Starf Berry",
+        "ability": "Cheek Pouch",
+        "moves": [
+          "Body Slam",
+          "Knock Off",
+          "Recycle",
+          "Stuff Cheeks"
+        ]
+      },
+      {
+        "item": "Loaded Dice",
+        "ability": "Dragon's Maw",
+        "moves": [
+          "Scale Shot",
+          "Knock Off",
+          "Earthquake",
+          "Draco Meteor"
+        ]
+      }
+    ]
+  },
+  "mawray": {
+    "name": "Maw-Ray",
+    "level": 90,
+    "sets": [
+      {
+        "item": "Choice Band",
+        "ability": "Intimidate",
+        "moves": [
+          "Waterfall",
+          "Earthquake",
+          "Superpower",
+          "Flip Turn"
+        ]
+      },
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Intimidate",
+        "moves": [
+          "Flip Turn",
+          "Earthquake",
+          "Superpower",
+          "Glare"
+        ]
+      },
+      {
+        "item": "Rocky Helmet",
+        "ability": "Rough Skin",
+        "moves": [
+          "Flip Turn",
+          "Earthquake",
+          "Superpower",
+          "Play Rough"
+        ]
+      },
+      {
+        "item": "Leftovers",
+        "ability": "Intimidate",
+        "moves": [
+          "Aqua Tail",
+          "Earthquake",
+          "Glare",
+          "Coil"
+        ]
+      },
+      {
+        "item": "Assault Vest",
+        "ability": "Intimidate",
+        "moves": [
+          "Waterfall",
+          "Dragon Tail",
+          "Earthquake",
+          "Flip Turn"
+        ]
+      }
+    ]
+  },
+  "mechachomp": {
+    "name": "Mechachomp",
+    "level": 92,
+    "sets": [
+      {
+        "item": "Air Balloon",
+        "ability": "Reckless",
+        "moves": [
+          "Supercell Slam",
+          "Iron Head",
+          "Head Smash",
+          "Shift Gear"
+        ]
+      },
+      {
+        "item": "Choice Band",
+        "ability": "Analytic",
+        "moves": [
+          "Gear Grind",
+          "Supercell Slam",
+          "Razor Shell",
+          "U-turn"
+        ]
+      }
+    ]
+  },
+  "mollusquelanceur": {
+    "name": "Mollusque-Lanceur",
+    "level": 86,
+    "sets": [
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Marvel Scale",
+        "moves": [
+          "Steam Eruption",
+          "Rapid Spin",
+          "Recover",
+          "Flip Turn"
+        ]
+      },
+      {
+        "item": "Choice Specs",
+        "ability": "Swift Swim",
+        "moves": [
+          "Steam Eruption",
+          "Flamethrower",
+          "Ice Beam",
+          "Flip Turn"
+        ]
+      }
+    ]
+  },
+  "mrblizzard": {
+    "name": "Mr. Blizzard",
+    "level": 90,
+    "sets": [
+      {
+        "item": "Light Clay",
+        "ability": "Snow Warning",
+        "moves": [
+          "Blizzard",
+          "Freeze-Dry",
+          "Encore",
+          "Aurora Veil"
+        ]
+      }
+    ]
+  },
+  "mri": {
+    "name": "Mr. I",
+    "level": 95,
+    "sets": [
+      {
+        "item": "Assault Vest",
+        "ability": "Magic Guard",
+        "moves": [
+          "Lumina Crash",
+          "Payback",
+          "Moonblast",
+          "Mystical Fire"
+        ]
+      },
+      {
+        "item": "Leftovers",
+        "ability": "Magic Guard",
+        "moves": [
+          "Lumina Crash",
+          "Mystical Fire",
+          "Moonblast",
+          "Calm Mind"
+        ]
+      },
+      {
+        "item": "Life Orb",
+        "ability": "Magic Guard",
+        "moves": [
+          "Payback",
+          "Lumina Crash",
+          "Moonblast",
+          "Will-O-Wisp"
+        ]
+      }
+    ]
+  },
+  "muncher": {
+    "name": "Muncher",
+    "level": 93,
+    "sets": [
+      {
+        "item": "Leftovers",
+        "ability": "Strong Jaw",
+        "moves": [
+          "Crunch",
+          "Snap Trap",
+          "Strength Sap",
+          "Spore"
+        ]
+      },
+      {
+        "item": "Leftovers",
+        "ability": "Strong Jaw",
+        "moves": [
+          "Crunch",
+          "Psychic Fangs",
+          "Strength Sap",
+          "Spore"
+        ]
+      }
+    ]
+  },
+  "parabeanie": {
+    "name": "Parabeanie",
+    "level": 98,
+    "sets": [
+      {
+        "item": "Sitrus Berry",
+        "ability": "Harvest",
+        "moves": [
+          "Dual Wingbeat",
+          "Leech Seed",
+          "Substitute",
+          "Protect"
+        ]
+      }
+    ]
+  },
+  "parabiddy": {
+    "name": "Parabiddy",
+    "level": 95,
+    "sets": [
+      {
+        "item": "Choice Band",
+        "ability": "Hustle",
+        "moves": [
+          "Floaty Fall",
+          "Return",
+          "Iron Head",
+          "U-turn"
+        ]
+      },
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Hustle",
+        "moves": [
+          "Floaty Fall",
+          "Body Slam",
+          "Iron Head",
+          "Roost"
+        ]
+      },
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Tangled Feet",
+        "moves": [
+          "Body Slam",
+          "U-turn",
+          "Roost",
+          "Defog"
+        ]
+      }
+    ]
+  },
+  "paratroopa": {
+    "name": "Paratroopa",
+    "level": 87,
+    "sets": [
+      {
+        "item": "White Herb",
+        "ability": "Speed Boost",
+        "moves": [
+          "Acrobatics",
+          "Triple Axel",
+          "Brick Break",
+          "Shell Smash"
+        ]
+      },
+      {
+        "item": "Sturdy Shell",
+        "ability": "Speed Boost",
+        "moves": [
+          "Brave Bird",
+          "Triple Axel",
+          "Rapid Spin",
+          "Roost"
+        ]
+      },
+      {
+        "item": "Sturdy Shell",
+        "ability": "Speed Boost",
+        "moves": [
+          "Brave Bird",
+          "Triple Axel",
+          "Brick Break",
+          "Shell Smash"
+        ]
+      }
+    ]
+  },
+  "penguin": {
+    "name": "Penguin",
+    "level": 95,
+    "sets": [
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Slush Rush",
+        "moves": [
+          "Wave Crash",
+          "Blizzard",
+          "Roost",
+          "Snowscape"
+        ]
+      },
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Slush Rush",
+        "moves": [
+          "Ice Beam",
+          "Wave Crash",
+          "Flip Turn",
+          "Roost"
+        ]
+      }
+    ]
+  },
+  "peteypiranha": {
+    "name": "Petey Piranha",
+    "level": 83,
+    "sets": [
+      {
+        "item": "Salac Berry",
+        "ability": "Overgrow",
+        "moves": [
+          "Power Whip",
+          "Knock Off",
+          "Substitute",
+          "Swords Dance"
+        ]
+      },
+      {
+        "item": "Sitrus Berry",
+        "ability": "Unburden",
+        "moves": [
+          "Power Whip",
+          "Acrobatics",
+          "Substitute",
+          "Swords Dance"
+        ]
+      },
+      {
+        "item": "Red Card",
+        "ability": "Unburden",
+        "moves": [
+          "Power Whip",
+          "Acrobatics",
+          "Fire Fang",
+          "Swords Dance"
+        ]
+      },
+      {
+        "item": "Power Herb",
+        "ability": "Unburden",
+        "moves": [
+          "Power Whip",
+          "Acrobatics",
+          "Dig",
+          "Swords Dance"
+        ]
+      }
+    ]
+  },
+  "phanto": {
+    "name": "Phanto",
+    "level": 82,
+    "sets": [
+      {
+        "item": "Light Clay",
+        "ability": "Shadow Tag",
+        "moves": [
+          "Moonblast",
+          "Light Screen",
+          "Reflect",
+          "Parting Shot"
+        ]
+      },
+      {
+        "item": "Choice Specs",
+        "ability": "Shadow Tag",
+        "moves": [
+          "Moonblast",
+          "Dark Pulse",
+          "Trick",
+          "Parting Shot"
+        ]
+      },
+      {
+        "item": "Choice Specs",
+        "ability": "Shadow Tag",
+        "moves": [
+          "Moonblast",
+          "Dark Pulse",
+          "Mystical Fire",
+          "Parting Shot"
+        ]
+      },
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Shadow Tag",
+        "moves": [
+          "Moonblast",
+          "Dark Pulse",
+          "Mystical Fire",
+          "Parting Shot"
+        ]
+      }
+    ]
+  },
+  "pidgit": {
+    "name": "Pidgit",
+    "level": 94,
+    "sets": [
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Magic Bounce",
+        "moves": [
+          "Psychic",
+          "Air Slash",
+          "Mystical Fire",
+          "Revival Blessing"
+        ]
+      },
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Magic Bounce",
+        "moves": [
+          "Psychic",
+          "Chatter",
+          "Thunder Wave",
+          "Revival Blessing"
+        ]
+      },
+      {
+        "item": "Choice Scarf",
+        "ability": "Magic Bounce",
+        "moves": [
+          "Hurricane",
+          "Psychic",
+          "Mystical Fire",
+          "Healing Wish"
+        ]
+      }
+    ]
+  },
+  "plungelo": {
+    "name": "Plungelo",
+    "level": 91,
+    "sets": [
+      {
+        "item": "Assault Vest",
+        "ability": "Water Absorb",
+        "moves": [
+          "Aqua Step",
+          "Circle Throw",
+          "Knock Off",
+          "Flip Turn"
+        ]
+      },
+      {
+        "item": "Choice Specs",
+        "ability": "Mega Launcher",
+        "moves": [
+          "Water Pulse",
+          "Aura Sphere",
+          "Dragon Pulse",
+          "Flip Turn"
+        ]
+      },
+      {
+        "item": "Life Orb",
+        "ability": "Opportunist",
+        "moves": [
+          "Storm Throw",
+          "Aqua Step",
+          "Knock Off",
+          "Swords Dance"
+        ]
+      }
+    ]
+  },
+  "poisonpokey": {
+    "name": "Poison Pokey",
+    "level": 84,
+    "sets": [
+      {
+        "item": "Black Sludge",
+        "ability": "Toxic Debris",
+        "moves": [
+          "Earthquake",
+          "Knock Off",
+          "Mortal Spin",
+          "Spikes"
+        ]
+      }
+    ]
+  },
+  "pokey": {
+    "name": "Pokey",
+    "level": 89,
+    "sets": [
+      {
+        "item": "Eviolite",
+        "ability": "Rough Skin",
+        "moves": [
+          "Earthquake",
+          "Leaf Blade",
+          "Rapid Spin",
+          "Spikes"
+        ]
+      }
+    ]
+  },
+  "porcupuffer": {
+    "name": "Porcupuffer",
+    "level": 90,
+    "sets": [
+      {
+        "item": "Assault Vest",
+        "ability": "Strong Jaw",
+        "moves": [
+          "Poison Fang",
+          "Psychic Fangs",
+          "Crunch",
+          "Flip Turn"
+        ]
+      },
+      {
+        "item": "Choice Band",
+        "ability": "Strong Jaw",
+        "moves": [
+          "Poison Fang",
+          "Psychic Fangs",
+          "Crunch",
+          "Flip Turn"
+        ]
+      },
+      {
+        "item": "Black Sludge",
+        "ability": "Drizzle",
+        "moves": [
+          "Barb Barrage",
+          "Flip Turn",
+          "Baneful Bunker",
+          "Toxic Spikes"
+        ]
+      },
+      {
+        "item": "Assault Vest",
+        "ability": "Drizzle",
+        "moves": [
+          "Hydro Pump",
+          "Sludge Bomb",
+          "Ice Beam",
+          "Flip Turn"
+        ]
+      },
+      {
+        "item": "Black Sludge",
+        "ability": "Drizzle",
+        "moves": [
+          "Hydro Pump",
+          "Sludge Bomb",
+          "Ice Beam",
+          "Toxic Spikes"
+        ]
+      }
+    ]
+  },
+  "pyoro": {
+    "name": "Pyoro",
+    "level": 92,
+    "sets": [
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Gale Wings",
+        "moves": [
+          "Dual Wingbeat",
+          "Knock Off",
+          "Power Whip",
+          "Roost"
+        ]
+      },
+      {
+        "item": null,
+        "ability": "Gale Wings",
+        "moves": [
+          "Acrobatics",
+          "Knock Off",
+          "Power Whip",
+          "Swords Dance"
+        ]
+      },
+      {
+        "item": "Scope Lens",
+        "ability": "Super Luck",
+        "moves": [
+          "Brave Bird",
+          "Knock Off",
+          "Sucker Punch",
+          "Swords Dance"
+        ]
+      }
+    ]
+  },
+  "redyoshi": {
+    "name": "Red Yoshi",
+    "level": 93,
+    "sets": [
+      {
+        "item": "Weakness Policy",
+        "ability": "Flash Fire",
+        "moves": [
+          "Flare Blitz",
+          "Seed Bomb",
+          "High Horsepower",
+          "Agility"
+        ]
+      },
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Flash Fire",
+        "moves": [
+          "Flare Blitz",
+          "Seed Bomb",
+          "High Horsepower",
+          "Soft-Boiled"
+        ]
+      },
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Flame Body",
+        "moves": [
+          "Flare Blitz",
+          "Knock Off",
+          "Will-O-Wisp",
+          "Soft-Boiled"
+        ]
+      }
+    ]
+  },
+  "rex": {
+    "name": "Rex",
+    "level": 96,
+    "sets": [
+      {
+        "item": "Leftovers",
+        "ability": "Defeatist",
+        "moves": [
+          "Scale Shot",
+          "Earthquake",
+          "Iron Head",
+          "Dragon Dance"
+        ]
+      },
+      {
+        "item": "Leftovers",
+        "ability": "Defeatist",
+        "moves": [
+          "Dragon Hammer",
+          "Earthquake",
+          "Iron Head",
+          "Roost"
+        ]
+      },
+      {
+        "item": "Leftovers",
+        "ability": "Defeatist",
+        "moves": [
+          "Breaking Swipe",
+          "Earthquake",
+          "Roost",
+          "Dragon Dance"
+        ]
+      },
+      {
+        "item": "Sitrus Berry",
+        "ability": "Defeatist",
+        "moves": [
+          "Dragon Hammer",
+          "Earthquake",
+          "Iron Head",
+          "Dragon Dance"
+        ]
+      }
+    ]
+  },
+  "scuttlebug": {
+    "name": "Scuttlebug",
+    "level": 89,
+    "sets": [
+      {
+        "item": "Choice Scarf",
+        "ability": "Magic Bounce",
+        "moves": [
+          "Wave Crash",
+          "U-turn",
+          "Sticky Web",
+          "Switcheroo"
+        ]
+      },
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Magic Bounce",
+        "moves": [
+          "Leech Life",
+          "Wave Crash",
+          "Sticky Web",
+          "Victory Dance"
+        ]
+      },
+      {
+        "item": "Focus Sash",
+        "ability": "Magic Bounce",
+        "moves": [
+          "Sticky Web",
+          "Flip Turn",
+          "First Impression",
+          "Leech Life"
+        ]
+      },
+      {
+        "item": "Choice Band",
+        "ability": "Magic Bounce",
+        "moves": [
+          "Sticky Web",
+          "Wave Crash",
+          "Flip Turn",
+          "First Impression"
+        ]
+      }
+    ]
+  },
+  "shrooboid": {
+    "name": "Shrooboid",
+    "level": 89,
+    "sets": [
+      {
+        "item": "Black Sludge",
+        "ability": "Corrosion",
+        "moves": [
+          "Poison Jab",
+          "Toxic",
+          "Protect",
+          "Rapid Spin"
+        ]
+      },
+      {
+        "item": "Black Sludge",
+        "ability": "Corrosion",
+        "moves": [
+          "Knock Off",
+          "Toxic",
+          "Pain Split",
+          "Rapid Spin"
+        ]
+      },
+      {
+        "item": "Black Sludge",
+        "ability": "Poison Touch",
+        "moves": [
+          "Poison Jab",
+          "Knock Off",
+          "Drain Punch",
+          "Swords Dance"
+        ]
+      }
+    ]
+  },
+  "sniffit": {
+    "name": "Sniffit",
+    "level": 92,
+    "sets": [
+      {
+        "item": "Choice Specs",
+        "ability": "Sniper",
+        "moves": [
+          "Flamethrower",
+          "Flash Cannon",
+          "Snipe Shot",
+          "Tri Attack"
+        ]
+      },
+      {
+        "item": "Scope Lens",
+        "ability": "Sniper",
+        "moves": [
+          "Tri Attack",
+          "Snipe Shot",
+          "Flash Cannon",
+          "Flamethrower"
+        ]
+      }
+    ]
+  },
+  "snoozorb": {
+    "name": "Snoozorb",
+    "level": 93,
+    "sets": [
+      {
+        "item": "Life Orb",
+        "ability": "Unaware",
+        "moves": [
+          "Thunderbolt",
+          "Iron Head",
+          "Energy Ball",
+          "Slack Off"
+        ]
+      },
+      {
+        "item": "Leftovers",
+        "ability": "Unaware",
+        "moves": [
+          "Discharge",
+          "Flash Cannon",
+          "Volt Switch",
+          "Slack Off"
+        ]
+      },
+      {
+        "item": "Air Balloon",
+        "ability": "Unaware",
+        "moves": [
+          "Flash Cannon",
+          "Earthquake",
+          "Thunder Wave",
+          "Slack Off"
+        ]
+      }
+    ]
+  },
+  "sonic": {
+    "name": "Sonic",
+    "level": 71,
+    "sets": [
+      {
+        "item": "Liechi Berry",
+        "ability": "Chaos Emeralds",
+        "moves": [
+          "Plasma Fists",
+          "Thunderous Kick",
+          "Knock Off",
+          "Ice Punch"
+        ]
+      },
+      {
+        "item": "Punching Glove",
+        "ability": "Chaos Emeralds",
+        "moves": [
+          "Plasma Fists",
+          "Drain Punch",
+          "Ice Punch",
+          "U-turn"
+        ]
+      }
+    ]
+  },
+  "spark": {
+    "name": "Spark",
+    "level": 91,
+    "sets": [
+      {
+        "item": "Choice Band",
+        "ability": "Motor Drive",
+        "moves": [
+          "Bolt Strike",
+          "Zing Zap",
+          "Volt Tackle",
+          "U-turn"
+        ]
+      },
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Motor Drive",
+        "moves": [
+          "Bolt Strike",
+          "Energy Ball",
+          "Nuzzle",
+          "U-turn"
+        ]
+      }
+    ]
+  },
+  "spiketop": {
+    "name": "Spike Top",
+    "level": 89,
+    "sets": [
+      {
+        "item": "Chesto Berry",
+        "ability": "Levitate",
+        "moves": [
+          "Knock Off",
+          "Gyro Ball",
+          "Curse",
+          "Rest"
+        ]
+      },
+      {
+        "item": "White Herb",
+        "ability": "Levitate",
+        "moves": [
+          "Knock Off",
+          "Iron Head",
+          "Earthquake",
+          "Shell Smash"
+        ]
+      },
+      {
+        "item": "Leftovers",
+        "ability": "Levitate",
+        "moves": [
+          "Knock Off",
+          "Iron Head",
+          "Topsy-Turvy",
+          "Spikes"
+        ]
+      },
+      {
+        "item": "Weakness Policy",
+        "ability": "Levitate",
+        "moves": [
+          "Knock Off",
+          "Iron Head",
+          "Earthquake",
+          "Trick Room"
+        ]
+      }
+    ]
+  },
+  "spindrift": {
+    "name": "Spindrift",
+    "level": 92,
+    "sets": [
+      {
+        "item": "Leftovers",
+        "ability": "Prankster",
+        "moves": [
+          "Moonblast",
+          "Leech Seed",
+          "Substitute",
+          "Protect"
+        ]
+      },
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Prankster",
+        "moves": [
+          "Moonblast",
+          "Giga Drain",
+          "Moonlight",
+          "Defog"
+        ]
+      },
+      {
+        "item": "Life Orb",
+        "ability": "Chlorophyll",
+        "moves": [
+          "Moonblast",
+          "Giga Drain",
+          "Weather Ball",
+          "Sunny Day"
+        ]
+      }
+    ]
+  },
+  "starbag": {
+    "name": "Starbag",
+    "level": 92,
+    "sets": [
+      {
+        "item": "Light Clay",
+        "ability": "Good as Gold",
+        "moves": [
+          "Lumina Crash",
+          "Parting Shot",
+          "Reflect",
+          "Light Screen"
+        ]
+      },
+      {
+        "item": "Power Herb",
+        "ability": "Good as Gold",
+        "moves": [
+          "Meteor Beam",
+          "Lumina Crash",
+          "Flamethrower",
+          "Ice Beam"
+        ]
+      },
+      {
+        "item": "Choice Specs",
+        "ability": "Good as Gold",
+        "moves": [
+          "Lumina Crash",
+          "Shadow Ball",
+          "Flamethrower",
+          "Ice Beam"
+        ]
+      },
+      {
+        "item": "Leftovers",
+        "ability": "Good as Gold",
+        "moves": [
+          "Lumina Crash",
+          "Flamethrower",
+          "Encore",
+          "Calm Mind"
+        ]
+      }
+    ]
+  },
+  "strollinstu": {
+    "name": "Strollin' Stu",
+    "level": 97,
+    "sets": [
+      {
+        "item": "Leftovers",
+        "ability": "Unaware",
+        "moves": [
+          "Surf",
+          "Heat Wave",
+          "Calm Mind",
+          "Slack Off"
+        ]
+      }
+    ]
+  },
+  "sumobro": {
+    "name": "Sumo Bro",
+    "level": 93,
+    "sets": [
+      {
+        "item": "Leftovers",
+        "ability": "Thick Fat",
+        "moves": [
+          "Drain Punch",
+          "Sucker Punch",
+          "Bullet Punch",
+          "Work Up"
+        ]
+      },
+      {
+        "item": "Choice Band",
+        "ability": "Thick Fat",
+        "moves": [
+          "Thunderous Kick",
+          "Wicked Blow",
+          "Ice Spinner",
+          "Headlong Rush"
+        ]
+      },
+      {
+        "item": "Assault Vest",
+        "ability": "Thick Fat",
+        "moves": [
+          "Drain Punch",
+          "Sucker Punch",
+          "Thunder Punch",
+          "Circle Throw"
+        ]
+      }
+    ]
+  },
+  "superfly": {
+    "name": "Super Fly",
+    "level": 88,
+    "sets": [
+      {
+        "item": "Flame Orb",
+        "ability": "Guts",
+        "moves": [
+          "Drain Punch",
+          "Facade",
+          "Play Rough",
+          "Bulk Up"
+        ]
+      }
+    ]
+  },
+  "swoop": {
+    "name": "Swoop",
+    "level": 97,
+    "sets": [
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Inner Focus",
+        "moves": [
+          "Brave Bird",
+          "Cross Poison",
+          "Fire Fang",
+          "Swords Dance"
+        ]
+      }
+    ]
+  },
+  "trex": {
+    "name": "T-Rex",
+    "level": 89,
+    "sets": [
+      {
+        "item": "Choice Band",
+        "ability": "Intimidate",
+        "moves": [
+          "Outrage",
+          "Earthquake",
+          "Iron Head",
+          "Dragon Claw"
+        ]
+      },
+      {
+        "item": "Choice Band",
+        "ability": "Mold Breaker",
+        "moves": [
+          "Outrage",
+          "Earthquake",
+          "Iron Head",
+          "Dragon Claw"
+        ]
+      },
+      {
+        "item": "Loaded Dice",
+        "ability": "Intimidate",
+        "moves": [
+          "Scale Shot",
+          "Earthquake",
+          "Iron Head",
+          "Swords Dance"
+        ]
+      },
+      {
+        "item": "Loaded Dice",
+        "ability": "Mold Breaker",
+        "moves": [
+          "Scale Shot",
+          "Earthquake",
+          "Iron Head",
+          "Swords Dance"
+        ]
+      },
+      {
+        "item": "Life Orb",
+        "ability": "Intimidate",
+        "moves": [
+          "Dragon Claw",
+          "Earthquake",
+          "Iron Head",
+          "Dragon Dance"
+        ]
+      }
+    ]
+  },
+  "tarantox": {
+    "name": "Tarantox",
+    "level": 89,
+    "sets": [
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Corrosion",
+        "moves": [
+          "Sludge Bomb",
+          "U-turn",
+          "Sticky Web",
+          "Toxic Spikes"
+        ]
+      }
+    ]
+  },
+  "thwomp": {
+    "name": "Thwomp",
+    "level": 90,
+    "sets": [
+      {
+        "item": "Chesto Berry",
+        "ability": "Levitate",
+        "moves": [
+          "Body Press",
+          "Stone Edge",
+          "Barrier",
+          "Rest"
+        ]
+      },
+      {
+        "item": "Sitrus Berry",
+        "ability": "Levitate",
+        "moves": [
+          "Head Smash",
+          "Explosion",
+          "Stealth Rock",
+          "Spikes"
+        ]
+      },
+      {
+        "item": "Life Orb",
+        "ability": "Sheer Force",
+        "moves": [
+          "Rock Slide",
+          "Iron Head",
+          "Zen Headbutt",
+          "Earthquake"
+        ]
+      },
+      {
+        "item": "Choice Band",
+        "ability": "Levitate",
+        "moves": [
+          "Head Smash",
+          "Superpower",
+          "Earthquake",
+          "Explosion"
+        ]
+      }
+    ]
+  },
+  "tiptron": {
+    "name": "Tiptron",
+    "level": 76,
+    "sets": [
+      {
+        "item": "Choice Specs",
+        "ability": "Download",
+        "moves": [
+          "Fleur Cannon",
+          "Moonblast",
+          "Flash Cannon",
+          "Flamethrower"
+        ]
+      },
+      {
+        "item": "Life Orb",
+        "ability": "Download",
+        "moves": [
+          "Play Rough",
+          "Flash Cannon",
+          "Earthquake",
+          "Recover"
+        ]
+      },
+      {
+        "item": "Leftovers",
+        "ability": "Adaptability",
+        "moves": [
+          "Play Rough",
+          "Flash Cannon",
+          "Stealth Rock",
+          "Recover"
+        ]
+      },
+      {
+        "item": "Leftovers",
+        "ability": "Adaptability",
+        "moves": [
+          "Nasty Plot",
+          "Flash Cannon",
+          "Moonblast",
+          "Flamethrower"
+        ]
+      },
+      {
+        "item": "Leftovers",
+        "ability": "Adaptability",
+        "moves": [
+          "Swords Dance",
+          "Play Rough",
+          "Iron Head",
+          "Earthquake"
+        ]
+      }
+    ]
+  },
+  "trunkle": {
+    "name": "Trunkle",
+    "level": 89,
+    "sets": [
+      {
+        "item": "Choice Band",
+        "ability": "Iron Fist",
+        "moves": [
+          "Rock Blast",
+          "Drain Punch",
+          "Ice Punch",
+          "Thunder Punch"
+        ]
+      },
+      {
+        "item": "Leftovers",
+        "ability": "Regenerator",
+        "moves": [
+          "Drain Punch",
+          "Rock Blast",
+          "Bulk Up",
+          "Recover"
+        ]
+      },
+      {
+        "item": "Assault Vest",
+        "ability": "Regenerator",
+        "moves": [
+          "Rock Blast",
+          "Drain Punch",
+          "Leaf Blade",
+          "Power-Up Punch"
+        ]
+      },
+      {
+        "item": "Leftovers",
+        "ability": "Regenerator",
+        "moves": [
+          "Drain Punch",
+          "Rock Blast",
+          "Stealth Rock",
+          "Recover"
+        ]
+      },
+      {
+        "item": "Sitrus Berry",
+        "ability": "Harvest",
+        "moves": [
+          "Rock Blast",
+          "Drain Punch",
+          "Substitute",
+          "Protect"
+        ]
+      }
+    ]
+  },
+  "tweester": {
+    "name": "Tweester",
+    "level": 90,
+    "sets": [
+      {
+        "item": "Choice Specs",
+        "ability": "Sand Stream",
+        "moves": [
+          "Earth Power",
+          "Thunderbolt",
+          "Weather Ball",
+          "U-turn"
+        ]
+      },
+      {
+        "item": "Life Orb",
+        "ability": "Sand Stream",
+        "moves": [
+          "Earth Power",
+          "Heat Wave",
+          "Weather Ball",
+          "U-turn"
+        ]
+      },
+      {
+        "item": "Leftovers",
+        "ability": "Sand Stream",
+        "moves": [
+          "Earth Power",
+          "Rapid Spin",
+          "U-turn",
+          "Stealth Rock"
+        ]
+      }
+    ]
+  },
+  "twirler": {
+    "name": "Twirler",
+    "level": 90,
+    "sets": [
+      {
+        "item": "Leftovers",
+        "ability": "Cursed Body",
+        "moves": [
+          "Poltergeist",
+          "Focus Punch",
+          "Shadow Sneak",
+          "Substitute"
+        ]
+      },
+      {
+        "item": "Leftovers",
+        "ability": "Cursed Body",
+        "moves": [
+          "Poltergeist",
+          "Will-o-Wisp",
+          "Stealth Rock",
+          "U-turn"
+        ]
+      },
+      {
+        "item": "Sitrus Berry",
+        "ability": "Unburden",
+        "moves": [
+          "Poltergeist",
+          "Drain Punch",
+          "Substitute",
+          "Swords Dance"
+        ]
+      },
+      {
+        "item": "Red Card",
+        "ability": "Unburden",
+        "moves": [
+          "Poltergeist",
+          "Acrobatics",
+          "Drain Punch",
+          "Swords Dance"
+        ]
+      }
+    ]
+  },
+  "tyfoo": {
+    "name": "Ty-Foo",
+    "level": 91,
+    "sets": [
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Serene Grace",
+        "moves": [
+          "Moonblast",
+          "Nature's Madness",
+          "Air Slash",
+          "Thunder Wave"
+        ]
+      },
+      {
+        "item": "Heavy-Duty Boots",
+        "ability": "Serene Grace",
+        "moves": [
+          "Moonblast",
+          "Ice Beam",
+          "Charge Beam",
+          "Air Slash"
+        ]
+      },
+      {
+        "item": "Choice Scarf",
+        "ability": "Serene Grace",
+        "moves": [
+          "Moonblast",
+          "Ice Beam",
+          "Thunderbolt",
+          "Air Slash"
+        ]
+      }
+    ]
+  },
+  "ukiki": {
+    "name": "Ukiki",
+    "level": 89,
+    "sets": [
+      {
+        "item": "Choice Scarf",
+        "ability": "Defiant",
+        "moves": [
+          "Return",
+          "Earthquake",
+          "Triple Axel",
+          "U-turn"
+        ]
+      },
+      {
+        "item": "Life Orb",
+        "ability": "Defiant",
+        "moves": [
+          "Earthquake",
+          "Brick Break",
+          "Triple Axel",
+          "Swords Dance"
+        ]
+      },
+      {
+        "item": "Choice Band",
+        "ability": "Defiant",
+        "moves": [
+          "Return",
+          "Earthquake",
+          "Triple Axel",
+          "U-turn"
+        ]
+      }
+    ]
+  },
+  "uproot": {
+    "name": "Uproot",
+    "level": 89,
+    "sets": [
+      {
+        "item": "Life Orb",
+        "ability": "Disguise",
+        "moves": [
+          "Power Whip",
+          "Knock Off",
+          "Sucker Punch",
+          "Swords Dance"
+        ]
+      }
+    ]
+  },
+  "weirdvirus": {
+    "name": "Weird Virus",
+    "level": 94,
+    "sets": [
+      {
+        "item": "Life Orb",
+        "ability": "Lightning Rod",
+        "moves": [
+          "Thunderbolt",
+          "Sludge Bomb",
+          "Draining Kiss",
+          "Nasty Plot"
+        ]
+      },
+      {
+        "item": "Life Orb",
+        "ability": "Lightning Rod",
+        "moves": [
+          "Thunder Punch",
+          "Poison Jab",
+          "Drain Punch",
+          "Swords Dance"
+        ]
+      },
+      {
+        "item": "Rocky Helmet",
+        "ability": "Static",
+        "moves": [
+          "Thunderbolt",
+          "Will-o-Wisp",
+          "Taunt",
+          "Recover"
+        ]
+      }
+    ]
+  },
+  "whomp": {
+    "name": "Whomp",
+    "level": 93,
+    "sets": [
+      {
+        "item": "Leftovers",
+        "ability": "Solid Rock",
+        "moves": [
+          "Earthquake",
+          "Stone Edge",
+          "Stealth Rock",
+          "Body Press"
+        ]
+      },
+      {
+        "item": "Leftovers",
+        "ability": "Solid Rock",
+        "moves": [
+          "Earthquake",
+          "Stone Edge",
+          "Temper Flare",
+          "Swords Dance"
+        ]
+      },
+      {
+        "item": "Chesto Berry",
+        "ability": "Solid Rock",
+        "moves": [
+          "Earthquake",
+          "Body Press",
+          "Iron Defense",
+          "Rest"
+        ]
+      }
+    ]
+  },
+  "wiggler": {
+    "name": "Wiggler",
+    "level": 90,
+    "sets": [
+      {
+        "item": "Punching Glove",
+        "ability": "Anger Point",
+        "moves": [
+          "Megahorn",
+          "Drain Punch",
+          "Rage Fist",
+          "Swords Dance"
+        ]
+      },
+      {
+        "item": "Choice Scarf",
+        "ability": "Anger Point",
+        "moves": [
+          "Close Combat",
+          "U-turn",
+          "Earthquake",
+          "Rage Fist"
+        ]
+      },
+      {
+        "item": "Choice Band",
+        "ability": "Anger Point",
+        "moves": [
+          "Close Combat",
+          "U-turn",
+          "Play Rough",
+          "Rage Fist"
+        ]
+      }
+    ]
+  },
+  "yellowyoshi": {
+    "name": "Yellow Yoshi",
+    "level": 89,
+    "sets": [
+      {
+        "item": "Weakness Policy",
+        "ability": "Earth Eater",
+        "moves": [
+          "Earthquake",
+          "Stone Edge",
+          "Knock Off",
+          "Agility"
+        ]
+      },
+      {
+        "item": "Rocky Helmet",
+        "ability": "Earth Eater",
+        "moves": [
+          "Earthquake",
+          "Knock Off",
+          "Stealth Rock",
+          "Soft-Boiled"
+        ]
+      },
+      {
+        "item": "Life Orb",
+        "ability": "Earth Eater",
+        "moves": [
+          "Headlong Rush",
+          "Stone Edge",
+          "Trailblaze",
+          "Work Up"
+        ]
+      },
+      {
+        "item": "Life Orb",
+        "ability": "Earth Eater",
+        "moves": [
+          "Earthquake",
+          "Stone Edge",
+          "Sucker Punch",
+          "Soft-Boiled"
+        ]
+      }
+    ]
+  },
+  "yoob": {
+    "name": "Yoob",
+    "level": 88,
+    "sets": [
+      {
+        "item": "Weakness Policy",
+        "ability": "Mold Breaker",
+        "moves": [
+          "Dragon Hammer",
+          "Heavy Slam",
+          "Earthquake",
+          "Agility"
+        ]
+      },
+      {
+        "item": "Leftovers",
+        "ability": "Thick Fat",
+        "moves": [
+          "Body Slam",
+          "Dragon Tail",
+          "Curse",
+          "Rest"
+        ]
+      },
+      {
+        "item": "Leftovers",
+        "ability": "Thick Fat",
+        "moves": [
+          "Body Slam",
+          "Dragon Tail",
+          "Focus Punch",
+          "Substitute"
+        ]
+      }
+    ]
+  },
+  "yux": {
+    "name": "Yux",
+    "level": 91,
+    "sets": [
+      {
+        "item": "Leftovers",
+        "ability": "Magic Bounce",
+        "moves": [
+          "Psyshield Bash",
+          "Fire Blast",
+          "Thunder Wave",
+          "Recover"
+        ]
+      },
+      {
+        "item": "Leftovers",
+        "ability": "Magic Bounce",
+        "moves": [
+          "Moonblast",
+          "Giga Drain",
+          "Thunder Wave",
+          "Recover"
+        ]
+      },
+      {
+        "item": "Weakness Policy",
+        "ability": "Magic Bounce",
+        "moves": [
+          "Psyshield Bash",
+          "Fire Blast",
+          "Moonblast",
+          "Trick Room"
+        ]
+      },
+      {
+        "item": "Light Clay",
+        "ability": "Magic Bounce",
+        "moves": [
+          "Psyshield Bash",
+          "Recover",
+          "Reflect",
+          "Light Screen"
+        ]
+      }
+    ]
+  }
+}

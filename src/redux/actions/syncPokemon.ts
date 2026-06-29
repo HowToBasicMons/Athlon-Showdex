@@ -82,6 +82,7 @@ export const syncPokemon = (
   ([
     'name',
     'speciesForme',
+    'fusion', // Pokéathlon Infinite Fusion: the Body species (fusion partner)
     'hp',
     'maxhp',
     'terastallized', // must be before 'volatiles' (in terms of array indices) !!!

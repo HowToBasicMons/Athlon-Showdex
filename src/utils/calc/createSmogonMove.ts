@@ -103,7 +103,7 @@ export const createSmogonMove = (
   const forceTypeless = moveName === 'Beat Up' as MoveName && gen < 5;
 
   if (forceTypeless || typeOverride) {
-    overrides.type = forceTypeless ? '???' : typeOverride;
+    overrides.type = (forceTypeless ? '???' : typeOverride) as SmogonMoveOverrides['type'];
   }
 
   if (categoryOverride) {

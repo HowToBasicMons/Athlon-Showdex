@@ -1,5 +1,5 @@
 import { type GenerationNum } from '@smogon/calc';
-import { PokemonSpeedReductionItems } from '@showdex/consts/dex';
+import { getPokeathlonItemStatMods, PokemonSpeedReductionItems } from '@showdex/consts/dex';
 import { type CalcdexBattleField, type CalcdexPlayer, type CalcdexPokemon } from '@showdex/interfaces/calc';
 import { countRuinAbilities, ruinAbilitiesActive } from '@showdex/utils/battle';
 import { env, formatId as id, nonEmptyObject } from '@showdex/utils/core';
@@ -268,6 +268,17 @@ export const calcPokemonFinalStats = (
     if (speedReductionItems.includes(item)) {
       record.apply('spe', 0.5, 'items', dex.items.get(item)?.name || item);
     }
+
+    // Pokéathlon custom items: apply their base-stat multipliers (e.g. Goomba Boots 2x Spe,
+    // Sturdy Shell 2x Def, the Orion orbs, Anchor, Assault/Muscle Armor, Wise Vest, ...).
+    // (matched against the Head &/or Body for fusions)
+    const poaItemMods = getPokeathlonItemStatMods(item, pokemon.speciesForme, pokemon.fusion);
+
+    (Object.entries(poaItemMods) as [Showdown.StatName, number][]).forEach(([stat, mult]) => {
+      if (mult && mult !== 1) {
+        record.apply(stat, mult, 'items', dex.items.get(item)?.name || item);
+      }
+    });
   }
 
   // 100% ATK boost if ability is "Pure Power" or "Huge Power"

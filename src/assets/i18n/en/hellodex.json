@@ -16,8 +16,9 @@
   },
 
   "header": {
-    "title": "<keith /> <and>&amp;</and> <cameron />",
-    "subtitle": "present"
+    "title": "<author />",
+    "subtitle": "presents",
+    "forkedFrom": "forked from <keith /> <and>&amp;</and> <cameron />"
   },
 
   "instances": {

@@ -1,16 +1,16 @@
 {
   "name": "showdex",
-  "version": "1.3.0",
+  "version": "1.0.3",
   "description": "Pokémon Showdown extension that harnesses the power of parabolic calculus to strategically extract your opponents' Elo.",
   "author": "Keith Choison <keith@tize.io>",
   "license": "AGPL-3.0",
-  "homepage": "https://github.com/doshidak/showdex",
+  "homepage": "https://github.com/HowToBasicMons/Athlon-Showdex",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/doshidak/showdex.git"
+    "url": "git+https://github.com/HowToBasicMons/Athlon-Showdex.git"
   },
   "bugs": {
-    "url": "https://github.com/doshidak/showdex/issues"
+    "url": "https://github.com/HowToBasicMons/Athlon-Showdex/issues"
   },
   "private": true,
   "engines": {
@@ -35,12 +35,12 @@
     "clean": "pnpm clean:dev; pnpm clean:prod; pnpm cache:purge",
     "clean:dev": "pnpm clean:dev:chrome; pnpm clean:dev:firefox; pnpm clean:dev:standalone",
     "clean:dev:chrome": "rimraf ./build/chrome",
-    "clean:dev:firefox": "rimraf ./build/firefox ./build/*.firefox.xpi",
+    "clean:dev:firefox": "rimraf --glob ./build/firefox ./build/*.firefox.xpi",
     "clean:dev:standalone": "rimraf ./build/standalone",
     "clean:prod": "pnpm clean:prod:chrome; pnpm clean:prod:firefox; pnpm clean:prod:standalone",
-    "clean:prod:chrome": "rimraf ./dist/chrome ./dist/*.chrome.zip ./dist/*.chrome.html",
-    "clean:prod:firefox": "rimraf ./dist/firefox ./dist/*.firefox.xpi ./dist/*.firefox.html",
-    "clean:prod:standalone": "rimraf ./dist/standalone ./dist/*.standalone.html",
+    "clean:prod:chrome": "rimraf --glob ./dist/chrome ./dist/*.chrome.zip ./dist/*.chrome.html",
+    "clean:prod:firefox": "rimraf --glob ./dist/firefox ./dist/*.firefox.xpi ./dist/*.firefox.html",
+    "clean:prod:standalone": "rimraf --glob ./dist/standalone ./dist/*.standalone.html",
     "dev": "pnpm dev:chrome",
     "dev:nc": "pnpm cache:purge && cross-env DEV_WEBPACK_CACHE_ENABLED=false pnpm dev",
     "dev:sc": "cross-env DEV_SPRING_CLEANING=true pnpm dev",
@@ -77,6 +77,7 @@
     "@dnd-kit/modifiers": "^7.0.0",
     "@dnd-kit/sortable": "^8.0.0",
     "@dnd-kit/utilities": "^3.2.2",
+    "@lexical/code": "^0.42.0",
     "@lexical/react": "^0.42.0",
     "@react-hook/size": "^2.1.2",
     "@react-spring/web": "^10.0.3",
@@ -151,6 +152,7 @@
     "glob": "^13.0.6",
     "html-loader": "^5.1.0",
     "html-webpack-plugin": "^5.5.3",
+    "jimp": "0.22.12",
     "postcss": "^8.4.26",
     "postcss-loader": "^8.2.1",
     "rimraf": "^6.1.3",

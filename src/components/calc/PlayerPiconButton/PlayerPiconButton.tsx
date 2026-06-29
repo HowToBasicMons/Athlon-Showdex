@@ -97,6 +97,7 @@ export const PlayerPiconButton = React.forwardRef<ButtonElement, PlayerPiconButt
       pokemon={pokemon?.speciesForme ? {
         // don't show transformedForme here, as requested by camdawgboi
         speciesForme: (pokemon.cosmeticForme || pokemon.speciesForme)?.replace(pokemon.useMax ? '' : '-Gmax', ''),
+        fusion: pokemon.fusion, // Pokéathlon Infinite Fusion: Body species, for the fusion sprite
         item,
       } : 'pokeball-none'}
       tooltip={pokemon?.speciesForme ? (
