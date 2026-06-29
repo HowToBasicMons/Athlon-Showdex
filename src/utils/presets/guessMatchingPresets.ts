@@ -37,6 +37,7 @@ export const guessMatchingPresets = (
   const { format, formatOnly, usages } = { ...config };
   const gen = detectGenFromFormat(format);
   const legacy = detectLegacyGen(gen);
+  const randoms = !!format?.includes('random');
 
   if (!gen || !presets?.length || !pokemon?.speciesForme) {
     return [];
@@ -102,7 +103,13 @@ export const guessMatchingPresets = (
       || (currentForme.startsWith('Terapagos') && preset.speciesForme === 'Terapagos' && preset.ability === 'Tera Shift' as AbilityName)
       || [preset.ability, ...flattenAlts(preset.altAbilities)].includes(revealedAbility);
 
-    const itemsMatch = !revealedItem || [preset.item, ...flattenAlts(preset.altItems)].includes(revealedItem);
+    // in Randoms the item is sampled per-mon (NOT role-discriminative) & a role's altItems[] is often a single
+    // entry that won't include what was actually revealed — so a mismatched item must NOT reject an otherwise
+    // move-matching role (e.g. Samurott reveals Aqua Jet -> only "Setup Sweeper" has it, but it also rolled a
+    // Life Orb that neither role lists). let the revealed MOVES discriminate; items only gate non-Randoms.
+    const itemsMatch = randoms
+      || !revealedItem
+      || [preset.item, ...flattenAlts(preset.altItems)].includes(revealedItem);
 
     l.debug(
       'Result for preset', preset.calcdexId, preset.name, 'for', preset.speciesForme,
