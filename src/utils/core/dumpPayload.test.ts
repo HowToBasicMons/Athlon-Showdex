@@ -1,9 +1,11 @@
-import { describe, expect, it, vi } from 'vitest';
+import {
+ describe, expect, it, vi,
+} from 'vitest';
+import LzString from 'lz-string';
 
 const saveAs = vi.fn();
 vi.mock('file-saver', () => ({ default: { saveAs } }));
 const { dumpPayloadToFile } = await import('./dumpPayload');
-import LzString from 'lz-string';
 
 describe('dumpPayloadToFile()', () => {
   it('LzString-compresses the JSON and names the file <parts>.bin.lz', () => {
