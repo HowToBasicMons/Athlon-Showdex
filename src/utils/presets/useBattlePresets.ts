@@ -424,7 +424,6 @@ export const useBattlePresets = (
 
   // (teledex) pool diagnostics — surfaces which source a forme leaks in from (e.g. a champions Honkdex
   // still showing Great Tusk). debug-level: dev-console-gated + captured by teledex when developerMode is on
-  // eslint-disable-next-line react-hooks/exhaustive-deps -- diagnostic snapshot; pool arrays are render-derived
   React.useEffect(() => {
     if (!ready) {
       return;
@@ -448,12 +447,21 @@ export const useBattlePresets = (
       '\n', 'formeUsages', formeUsages,
     );
   }, [
+    bundledPresets,
     champions,
     format,
+    formatPresets,
+    formatStats,
     formeUsages,
     genlessFormat,
+    presets,
     randoms,
     ready,
+    shouldSkipBundles,
+    shouldSkipFormatStats,
+    shouldSkipFormats,
+    teambuilderPresets,
+    usages,
   ]);
 
   return {
