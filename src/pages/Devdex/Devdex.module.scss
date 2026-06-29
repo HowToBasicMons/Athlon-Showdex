@@ -72,6 +72,15 @@
   font-family: monospace;
   font-size: 11px;
   line-height: 16px;
+  // query the log's own width (not the viewport) so a narrow panel drops the msg onto its own line below
+  container-type: inline-size;
+}
+
+// narrow panel: the ts/level/scope no longer fit beside the msg, so wrap the msg onto its own full line
+@container (max-width: 480px) {
+  .msg {
+    flex-basis: 100%;
+  }
 }
 
 .row {

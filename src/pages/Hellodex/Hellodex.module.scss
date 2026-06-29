@@ -309,9 +309,11 @@
 
     // individually-sticky +new buttons overlap & stretch tall in the narrow layout (they each stick to the
     // same bottom). drop the stickiness here and let the grid stack them normally: Honk+Note share row one
-    // (via smolSplit), a full-width Devdex on row two.
+    // (via smolSplit), a full-width Devdex on row two. NOTE: position: relative (not static!) — the buttons
+    // must stay a positioning context, else GradientButton's absolute hover-gradient ::before escapes & lights
+    // up a big ancestor instead of the button.
     &.newInstanceButton {
-      position: static;
+      position: relative;
     }
   }
 }

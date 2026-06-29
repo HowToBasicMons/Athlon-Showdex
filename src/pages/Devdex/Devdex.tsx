@@ -143,7 +143,7 @@ export const Devdex = ({
     // set stick SYNCHRONOUSLY (before the async 'scroll' event updates it) so a streaming log's
     // auto-scroll-to-bottom effect doesn't instantly undo a scroll-to-top
     stick.current = to === 'bottom';
-    el.scrollTop = to === 'top' ? 0 : el.scrollHeight;
+    el.scrollTo({ top: to === 'top' ? 0 : el.scrollHeight, behavior: 'smooth' });
   };
 
   const toggleExpand = (id: string) => setExpanded((prev) => {
