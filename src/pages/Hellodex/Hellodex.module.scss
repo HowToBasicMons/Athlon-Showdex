@@ -318,12 +318,6 @@
   }
 }
 
-// transparent wrapper around the "+ new" buttons (Honk/Note/Devdex) — keeps them as direct grid items so the
-// 3-col (thicc) / 2-col (smol) grid layout is untouched. It exists only as a JSX grouping hook.
-.newInstanceButtons {
-  display: contents;
-}
-
 .battleRecordSpacer {
   grid-area: span 1 / span 3;
   height: 20px;

@@ -77,7 +77,7 @@
 }
 
 // narrow panel: the ts/level/scope no longer fit beside the msg, so wrap the msg onto its own full line
-@container (max-width: 480px) {
+@container (max-width: 600px) {
   .msg {
     flex-basis: 100%;
   }
@@ -89,7 +89,12 @@
   align-items: baseline;
   column-gap: 8px;
   @include spacing.py(2px);
+  // scheme-aware separators/hover (the panel bg flips with the Showdown color scheme)
   border-bottom: 1px solid rgba(colors.$white, 0.04);
+
+  [data-showdex-scheme='light'] & {
+    border-bottom-color: rgba(colors.$black, 0.06);
+  }
 
   &:last-child {
     border-bottom: none;
@@ -100,6 +105,10 @@
 
     &:hover {
       background-color: rgba(colors.$white, 0.03);
+
+      [data-showdex-scheme='light'] & {
+        background-color: rgba(colors.$black, 0.03);
+      }
     }
   }
 }
@@ -108,6 +117,10 @@
   color: colors.$gray;
   flex-shrink: 0;
   user-select: none;
+
+  [data-showdex-scheme='light'] & {
+    color: color.shade(colors.$gray, 18%);
+  }
 }
 
 .level {
@@ -126,6 +139,10 @@
   white-space: nowrap;
   color: colors.$gray;
   cursor: help;
+
+  [data-showdex-scheme='light'] & {
+    color: color.shade(colors.$gray, 18%);
+  }
 }
 
 .msg {
@@ -134,6 +151,11 @@
   white-space: pre-wrap;
   word-break: break-word;
   color: colors.$gray-lighter;
+
+  // gray-lighter is near-white -> unreadable on a light-scheme panel; use a dark gray instead
+  [data-showdex-scheme='light'] & {
+    color: color.shade(colors.$gray, 32%);
+  }
 }
 
 // collapsed-but-long: keep it to a single truncated line until expanded

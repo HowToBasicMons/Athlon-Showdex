@@ -9,7 +9,7 @@ import cx from 'classnames';
 import { BuildInfo } from '@showdex/components/debug';
 import { TextField } from '@showdex/components/form';
 import { Card, PageContainer } from '@showdex/components/layout';
-import { ToggleButton, Tooltip } from '@showdex/components/ui';
+import { BaseButton, ToggleButton, Tooltip } from '@showdex/components/ui';
 import { boundedStringify } from '@showdex/utils/core/safeStringify';
 import { type LoggerLevel, LoggerLevelValues, teledex } from '@showdex/utils/debug';
 import styles from './Devdex.module.scss';
@@ -168,25 +168,27 @@ export const Devdex = ({
       suffix={(
         <div className={styles.fabs}>
           {!atTop && (
-            <button
-              type="button"
+            // display="block" -> renders a <div role="button">, NOT a real <button> (PS's client intercepts
+            // <button> clicks via dispatchClickButton() + stopImmediatePropagation(), which would eat onPress)
+            <BaseButton
+              display="block"
               className={styles.fab}
               aria-label="Scroll to top"
-              onClick={() => scrollTo('top')}
+              onPress={() => scrollTo('top')}
             >
               <i className="fa fa-chevron-up" />
-            </button>
+            </BaseButton>
           )}
 
           {!atBottom && (
-            <button
-              type="button"
+            <BaseButton
+              display="block"
               className={styles.fab}
               aria-label="Scroll to bottom"
-              onClick={() => scrollTo('bottom')}
+              onPress={() => scrollTo('bottom')}
             >
               <i className="fa fa-chevron-down" />
-            </button>
+            </BaseButton>
           )}
         </div>
       )}
