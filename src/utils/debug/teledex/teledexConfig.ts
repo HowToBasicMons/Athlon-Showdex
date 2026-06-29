@@ -1,5 +1,5 @@
 import { type Duration } from 'date-fns';
-import { env } from '@showdex/utils/core';
+import { env } from '@showdex/utils/core/getEnv';
 
 export interface TeledexConfig {
   enabled: boolean;

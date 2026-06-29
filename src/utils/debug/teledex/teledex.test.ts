@@ -8,7 +8,8 @@ import {
 } from 'vitest';
 
 const dumpToFile = vi.fn();
-vi.mock('@showdex/utils/core', async (orig) => ({
+// flush() lazy-imports the deep dumpPayload module (cycle-break), so mock that path
+vi.mock('@showdex/utils/core/dumpPayload', async (orig) => ({
   ...(await orig()),
   dumpPayloadToFile: (...a: unknown[]) => dumpToFile(...a),
 }));

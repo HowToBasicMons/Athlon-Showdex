@@ -1,6 +1,6 @@
 // src/utils/debug/teledex/teledex.ts
 import { add, sub } from 'date-fns';
-import { dumpPayloadToClipboard, dumpPayloadToFile, env } from '@showdex/utils/core';
+import { env } from '@showdex/utils/core/getEnv';
 import { type LoggerLevel } from '../logger';
 import { devOnlyLevels } from '../levelMap';
 import { TeledexBuffer } from './teledexBuffer';
@@ -109,6 +109,11 @@ export const teledex = {
       count: tail.length,
       records: tail,
     };
+
+    // lazy import: @showdex/utils/core/dumpPayload reaches the clipboard chain, which
+    // transitively pulls the debug barrel (→ logger) -- importing it eagerly here would
+    // re-introduce the module-init cycle, so we only pull it inside this async fn.
+    const { dumpPayloadToClipboard, dumpPayloadToFile } = await import('@showdex/utils/core/dumpPayload');
 
     if (opts?.to === 'clipboard') {
       return void await dumpPayloadToClipboard(payload);
