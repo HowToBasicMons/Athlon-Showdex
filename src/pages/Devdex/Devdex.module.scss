@@ -36,6 +36,7 @@
   column-gap: 16px;
   row-gap: 8px;
   @include spacing.mx(12px);
+  @include spacing.mt(12px);
   @include spacing.p($x: 16px, $y: 12px);
   z-index: 5;
 }
@@ -65,9 +66,9 @@
   @include flex.col-stretch;
   flex: 1;
   min-height: 0;
+  // full-bleed so the scrollbar hugs the panel's right edge; insets come from padding (not margins)
   overflow-y: auto;
-  @include spacing.mx(12px);
-  @include spacing.mb(12px);
+  padding: 8px 8px 12px 12px;
   font-family: monospace;
   font-size: 11px;
   line-height: 16px;

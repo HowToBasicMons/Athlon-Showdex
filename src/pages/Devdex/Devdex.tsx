@@ -9,7 +9,7 @@ import cx from 'classnames';
 import { BuildInfo } from '@showdex/components/debug';
 import { TextField } from '@showdex/components/form';
 import { Card, PageContainer } from '@showdex/components/layout';
-import { ToggleButton } from '@showdex/components/ui';
+import { ToggleButton, Tooltip } from '@showdex/components/ui';
 import { type LoggerLevel, LoggerLevelValues, teledex } from '@showdex/utils/debug';
 import styles from './Devdex.module.scss';
 
@@ -134,6 +134,8 @@ export const Devdex = ({
     <PageContainer
       name="devdex"
       className={styles.container}
+      contentClassName={styles.content}
+      contentStyle={{ padding: 0 }}
       prefix={<BuildInfo className={styles.buildInfo} position="top-right" />}
       suffix={(
         <div className={styles.fabs}>
@@ -160,7 +162,6 @@ export const Devdex = ({
           )}
         </div>
       )}
-      contentClassName={styles.content}
     >
       <Card className={styles.toolbar}>
         <div className={styles.filters}>
@@ -227,6 +228,7 @@ export const Devdex = ({
           const msg = r.args.map((a) => (typeof a === 'string' ? a : JSON.stringify(a))).join(' ');
           const expandable = msg.length > ExpandThreshold;
           const open = expanded.has(r.id);
+          const shortScope = truncateStart(r.scope, ScopeMaxChars);
 
           return (
             // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
@@ -242,7 +244,13 @@ export const Devdex = ({
             >
               <span className={styles.ts}>{new Date(r.ts).toLocaleTimeString()}</span>
               <span className={styles.level}>{LevelLabels[r.level] || r.level}</span>
-              <span className={styles.scope} title={r.scope}>{truncateStart(r.scope, ScopeMaxChars)}</span>
+              {shortScope === r.scope ? (
+                <span className={styles.scope}>{shortScope}</span>
+              ) : (
+                <Tooltip content={r.scope}>
+                  <span className={styles.scope}>{shortScope}</span>
+                </Tooltip>
+              )}
               <span className={styles.msg}>{msg}</span>
             </div>
           );
