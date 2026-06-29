@@ -6,16 +6,16 @@
 
 import { type TeledexRecord } from '@showdex/utils/debug';
 import { env } from '@showdex/utils/core';
-import { logger, runtimer } from '@showdex/utils/debug';
 import { showdexedDb } from './openIndexedDb';
 
 const teledexName = env('indexed-db-teledex-store-name');
-const l = logger('@showdex/utils/storage/readTeledexDb()');
 
 /**
  * Reads from Showdex's IndexedDB teledex store & returns all stored records, oldest-first.
  *
  * * Guaranteed to return an empty array.
+ * * Intentionally does NOT log (no `runtimer`/`logger`) — this is the teledex capture *backend* (see
+ *   `writeTeledexDb`).
  *
  * @since 1.3.1
  */
@@ -26,12 +26,10 @@ export const readTeledexDb = (
 ): Promise<TeledexRecord[]> => new Promise((
   resolve,
 ) => {
-  const endTimer = runtimer(l.scope, l);
   const db = config?.db || showdexedDb.value;
   const output: TeledexRecord[] = [];
 
   if (!teledexName || typeof db?.transaction !== 'function') {
-    endTimer('(bad args)');
     resolve(output);
 
     return;
@@ -44,7 +42,6 @@ export const readTeledexDb = (
     const cursor = (event.target as typeof req).result;
 
     if (!cursor) {
-      endTimer('(done)', '\n', '#records', output.length);
       resolve(output);
 
       return;

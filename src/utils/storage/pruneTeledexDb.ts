@@ -5,17 +5,17 @@
  */
 
 import { env } from '@showdex/utils/core';
-import { logger, runtimer } from '@showdex/utils/debug';
 import { showdexedDb } from './openIndexedDb';
 
 const teledexName = env('indexed-db-teledex-store-name');
-const l = logger('@showdex/utils/storage/pruneTeledexDb()');
 
 /**
  * Prunes the teledex IndexedDB store by deleting records older than `before` and/or beyond `max`,
  * walking oldest-first via the `ts` index.
  *
  * * Never rejects; logging must not break the app.
+ * * Intentionally does NOT log (no `runtimer`/`logger`) — this is the teledex capture *backend* (see
+ *   `writeTeledexDb`).
  *
  * @since 1.3.1
  */
@@ -28,13 +28,11 @@ export const pruneTeledexDb = (
 ): Promise<void> => new Promise((
   resolve,
 ) => {
-  const endTimer = runtimer(l.scope, l);
   const db = config?.db || showdexedDb.value;
   const before = config?.before ?? 0;
   const max = config?.max ?? Infinity;
 
   if (!teledexName || typeof db?.transaction !== 'function') {
-    endTimer('(bad args)');
     resolve();
 
     return;
@@ -70,10 +68,6 @@ export const pruneTeledexDb = (
     };
   };
 
-  txn.oncomplete = () => {
-    endTimer('(done)');
-    resolve();
-  };
-
+  txn.oncomplete = () => resolve();
   txn.onerror = () => resolve(); // never reject; logging must not break the app
 });

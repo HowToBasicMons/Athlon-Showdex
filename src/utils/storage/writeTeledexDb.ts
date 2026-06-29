@@ -6,16 +6,16 @@
 
 import { type TeledexRecord } from '@showdex/utils/debug';
 import { env, nonEmptyObject } from '@showdex/utils/core';
-import { logger, runtimer } from '@showdex/utils/debug';
 import { showdexedDb } from './openIndexedDb';
 
 const teledexName = env('indexed-db-teledex-store-name');
-const l = logger('@showdex/utils/storage/writeTeledexDb()');
 
 /**
  * Writes an array of `TeledexRecord`'s to Showdex's IndexedDB teledex store.
  *
  * * Never rejects; logging must not break the app.
+ * * Intentionally does NOT log (no `runtimer`/`logger`) — this is the teledex capture *backend*, so a
+ *   log here would itself be captured + re-mirrored + logged again on every debounce tick (infinite loop).
  *
  * @since 1.3.1
  */
@@ -27,11 +27,9 @@ export const writeTeledexDb = (
 ): Promise<void> => new Promise((
   resolve,
 ) => {
-  const endTimer = runtimer(l.scope, l);
   const db = config?.db || showdexedDb.value;
 
   if (!teledexName || typeof db?.transaction !== 'function' || !records?.length) {
-    endTimer('(bad args)');
     resolve();
 
     return;
@@ -46,10 +44,6 @@ export const writeTeledexDb = (
     }
   });
 
-  txn.oncomplete = () => {
-    endTimer('(done)', '\n', '#records', records.length);
-    resolve();
-  };
-
+  txn.oncomplete = () => resolve();
   txn.onerror = () => resolve(); // never reject; logging must not break the app
 });
