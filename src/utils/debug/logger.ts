@@ -78,20 +78,22 @@ const consoleMethod = (level: LoggerLevel): 'log' | 'info' | 'warn' | 'error' =>
 };
 
 const emit = (scope: string, level: LoggerLevel, data: unknown[]): void => {
-  // route through pino so the level is registered/serialized (write is a no-op)
-  const pinoLevel = level in pinoLogger ? level : 'info';
-  (pinoLogger as Record<string, LoggerLogFunction>)[pinoLevel]?.({ scope }, ...data);
+  try {
+    // route through pino so the level is registered/serialized (write is a no-op)
+    const pinoLevel = level in pinoLogger ? level : 'info';
+    (pinoLogger as Record<string, LoggerLogFunction>)[pinoLevel]?.({ scope }, ...data);
 
-  // 1) console output (existing `__DEV__`/devOnly gating)
-  if (consolePrintable(level)) {
-    const method = consoleMethod(level);
-    // eslint-disable-next-line no-console
-    (console[method] || console.log)(`[${scope || '?'}]`, `(${level})`, ...data);
-  }
+    // 1) console output (existing `__DEV__`/devOnly gating)
+    if (consolePrintable(level)) {
+      const method = consoleMethod(level);
+      // eslint-disable-next-line no-console
+      (console[method] || console.log)(`[${scope || '?'}]`, `(${level})`, ...data);
+    }
 
-  // 2) teledex sink -- synchronous so the in-memory trail is complete at crash time
-  // (further gating, incl. dev-only handling, lives inside teledex.capture())
-  teledex.capture(level, scope, data);
+    // 2) teledex sink -- synchronous so the in-memory trail is complete at crash time
+    // (further gating, incl. dev-only handling, lives inside teledex.capture())
+    teledex.capture(level, scope, data);
+  } catch { /* logging must never break the app */ }
 };
 
 const buildFns = (scope = ''): LoggerLevelFunctions => ALL_LEVELS.reduce((acc, level) => {

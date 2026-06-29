@@ -72,6 +72,7 @@ const forumUrl = env('hellodex-forum-url');
 const repoUrl = env('hellodex-repo-url');
 const communityUrl = env('hellodex-community-url');
 const notedexEnabled = env.bool('notedex-enabled');
+const devdexEnabled = env.bool('teledex-enabled');
 
 const l = logger('@showdex/pages/Hellodex');
 
@@ -476,7 +477,7 @@ export const Hellodex = ({
                   }
 
                   {
-                    showdexSettings?.developerMode &&
+                    devdexEnabled && showdexSettings?.developerMode &&
                     <GradientButton
                       className={cx(styles.instanceButton, styles.newInstanceButton)}
                       display="block"
