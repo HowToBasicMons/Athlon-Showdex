@@ -383,82 +383,82 @@ export const SettingsPane = ({
                     )}
                     label={t(`pane.header.import.${prevSettings ? 'undoLabel' : 'label'}`)}
                     tooltip={(
-                      <div className={cx(styles.tooltipContent, styles.importTooltip)}>
-                        <Badge
-                          ref={importBadgeRef}
-                          className={styles.importBadge}
-                          label={t('pane.header.import.importedBadge', 'Imported')}
-                          color="blue"
-                        />
-
-                        <Badge
-                          ref={importFailedBadgeRef}
-                          className={styles.importBadge}
-                          label={t('pane.header.import.failedBadge', 'Failed')}
-                          color="red"
-                        />
-
+                      <div className={styles.tooltipContent}>
                         {t('pane.header.import.tooltip')}
                       </div>
                     )}
                     tooltipTrigger={['focus', 'mouseenter']}
                     hoverScale={1}
                     onPress={handleSettingsImport}
-                  />
+                  >
+                    <Badge
+                      ref={importBadgeRef}
+                      className={styles.importBadge}
+                      label={t('pane.header.import.importedBadge', 'Imported')}
+                      color="blue"
+                    />
+
+                    <Badge
+                      ref={importFailedBadgeRef}
+                      className={styles.importBadge}
+                      label={t('pane.header.import.failedBadge', 'Failed')}
+                      color="red"
+                    />
+                  </Button>
 
                   <Button
                     className={cx(styles.actionButton, styles.exportButton)}
                     label={t('pane.header.export.label')}
                     tooltip={(
-                      <div className={cx(styles.tooltipContent, styles.importTooltip)}>
-                        <Badge
-                          ref={exportBadgeRef}
-                          className={styles.importBadge}
-                          label={t('pane.header.export.exportedBadge')}
-                          color="green"
-                        />
-
-                        <Badge
-                          ref={exportFailedBadgeRef}
-                          className={styles.importBadge}
-                          label={t('pane.header.export.failedBadge')}
-                          color="red"
-                        />
-
+                      <div className={styles.tooltipContent}>
                         {t('pane.header.export.tooltip')}
                       </div>
                     )}
                     tooltipTrigger={['focus', 'mouseenter']}
                     hoverScale={1}
                     onPress={handleSettingsExport}
-                  />
+                  >
+                    <Badge
+                      ref={exportBadgeRef}
+                      className={styles.importBadge}
+                      label={t('pane.header.export.exportedBadge')}
+                      color="green"
+                    />
+
+                    <Badge
+                      ref={exportFailedBadgeRef}
+                      className={styles.importBadge}
+                      label={t('pane.header.export.failedBadge')}
+                      color="red"
+                    />
+                  </Button>
 
                   <Button
                     className={cx(styles.actionButton, styles.defaultsButton)}
                     label={t('pane.header.defaults.label')}
                     tooltip={(
-                      <div className={cx(styles.tooltipContent, styles.importTooltip)}>
-                        <Badge
-                          ref={defaultsBadgeRef}
-                          className={styles.importBadge}
-                          label={t('pane.header.defaults.exportedBadge')}
-                          color="green"
-                        />
-
-                        <Badge
-                          ref={defaultsFailedBadgeRef}
-                          className={styles.importBadge}
-                          label={t('pane.header.defaults.failedBadge')}
-                          color="red"
-                        />
-
+                      <div className={styles.tooltipContent}>
                         {t('pane.header.defaults.tooltip')}
                       </div>
                     )}
                     tooltipTrigger={['focus', 'mouseenter']}
                     hoverScale={1}
                     onPress={handleSettingsDefaults}
-                  />
+                  >
+                    <Badge
+                      ref={defaultsBadgeRef}
+                      className={styles.importBadge}
+                      label={t('pane.header.defaults.exportedBadge')}
+                      color="green"
+                    />
+
+                    <Badge
+                      ref={defaultsFailedBadgeRef}
+                      className={styles.importBadge}
+                      label={t('pane.header.defaults.failedBadge')}
+                      color="red"
+                    />
+                  </Button>
 
                   <div className={styles.closePlaceholder} />
                 </div>
