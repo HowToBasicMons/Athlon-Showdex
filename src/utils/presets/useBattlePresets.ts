@@ -9,7 +9,7 @@ import {
   usePokemonRandomsStatsQuery,
 } from '@showdex/redux/services';
 import { useCalcdexSettings, useTeamdexPresets } from '@showdex/redux/store';
-// import { logger } from '@showdex/utils/debug';
+import { logger } from '@showdex/utils/debug';
 import {
   detectGenFromFormat,
   getGenfulFormat,
@@ -147,7 +147,7 @@ export interface CalcdexBattlePresetsHookValue {
   formeUsageSorter: CalcdexPokemonUsageAltSorter<string>;
 }
 
-// const l = logger('@showdex/utils/presets/useBattlePresets()');
+const l = logger('@showdex/utils/presets/useBattlePresets()');
 
 /**
  * Conveniently initiates preset fetching via RTK Query & "neatly" parses them for the given `format`.
@@ -421,6 +421,40 @@ export const useBattlePresets = (
     !pending
       && !loading
   );
+
+  // (teledex) pool diagnostics — surfaces which source a forme leaks in from (e.g. a champions Honkdex
+  // still showing Great Tusk). debug-level: dev-console-gated + captured by teledex when developerMode is on
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- diagnostic snapshot; pool arrays are render-derived
+  React.useEffect(() => {
+    if (!ready) {
+      return;
+    }
+
+    const hasForme = (arr: CalcdexPokemonPreset[], forme = 'Great Tusk') => (arr || [])
+      .filter((p) => p?.speciesForme === forme)
+      .map((p) => `${p.source}:${p.format}`);
+
+    l.debug(
+      'pool diagnostics for', format,
+      '\n', 'genlessFormat', genlessFormat, '| randoms', randoms, '| champions', champions,
+      '\n', 'shouldSkip { formats, formatStats, bundles }', shouldSkipFormats, shouldSkipFormatStats, shouldSkipBundles,
+      '\n', 'counts { formatPresets, formatStats, bundled, teambuilder, presets, usages, formeUsages }',
+      formatPresets?.length || 0, formatStats?.length || 0, bundledPresets?.length || 0,
+      teambuilderPresets?.length || 0, presets?.length || 0, usages?.length || 0, formeUsages?.length || 0,
+      '\n', 'Great Tusk via formatPresets', hasForme(formatPresets),
+      '\n', 'Great Tusk via formatStats', hasForme(formatStats),
+      '\n', 'Great Tusk via bundled', hasForme(bundledPresets),
+      '\n', 'Great Tusk via usages', hasForme(usages),
+      '\n', 'formeUsages', formeUsages,
+    );
+  }, [
+    champions,
+    format,
+    formeUsages,
+    genlessFormat,
+    randoms,
+    ready,
+  ]);
 
   return {
     loading,
