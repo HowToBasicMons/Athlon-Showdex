@@ -194,6 +194,10 @@ export const useBattlePresets = (
   const genlessFormat = getGenlessFormat(format);
   const randoms = genlessFormat?.includes('random');
 
+  // Champions (non-Randoms) formats aren't published by the pkmn Format Sets/Stats APIs -- their presets come
+  // from bakedex usage bundles instead -- so don't even try (it'd just 404)
+  const champions = !randoms && !!genlessFormat?.includes('champions');
+
   const teambuilderPresets = React.useMemo(() => (
     includeTeambuilder !== 'never'
       && !!gen
@@ -212,8 +216,8 @@ export const useBattlePresets = (
 
   const shouldSkipAny = disabled || !gen || !genlessFormat;
   const shouldSkipBundles = shouldSkipAny || !includePresetsBundles?.length;
-  const shouldSkipFormats = shouldSkipAny || randoms || !downloadSmogonPresets;
-  const shouldSkipFormatStats = shouldSkipAny || randoms || !downloadUsageStats;
+  const shouldSkipFormats = shouldSkipAny || randoms || champions || !downloadSmogonPresets;
+  const shouldSkipFormatStats = shouldSkipAny || randoms || champions || !downloadUsageStats;
   const shouldSkipRandoms = shouldSkipAny || !randoms || !downloadRandomsPresets;
   const shouldSkipRandomsStats = shouldSkipAny || !randoms || !downloadUsageStats;
 
@@ -333,8 +337,11 @@ export const useBattlePresets = (
   const usages = React.useMemo<CalcdexPokemonPreset[]>(() => (
     randoms
       ? [...(randomsStats || [])]
-      : [...(formatStats || [])]
+      // include bundled usage presets (e.g. the Champions usage bundles) so forme usage %'s & usage matching
+      // work for formats the pkmn Format Stats API doesn't publish
+      : [...(formatStats || []), ...(bundledPresets || []).filter((p) => p?.source === 'usage')]
   ), [
+    bundledPresets,
     formatStats,
     randoms,
     randomsStats,
