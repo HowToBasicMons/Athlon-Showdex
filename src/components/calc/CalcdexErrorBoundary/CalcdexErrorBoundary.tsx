@@ -20,7 +20,9 @@ import {
   getResourceUrl,
   nonEmptyObject,
 } from '@showdex/utils/core';
-import { logger, sanitizeStackTrace, wtf } from '@showdex/utils/debug';
+import {
+ logger, sanitizeStackTrace, teledex, wtf,
+} from '@showdex/utils/debug';
 // import { dehydrateCalcdex } from '@showdex/utils/hydro';
 import styles from './CalcdexErrorBoundary.module.scss';
 
@@ -79,6 +81,7 @@ export const CalcdexErrorBoundary = ({
 
     state,
     dumper: l.scope,
+    teledex: teledex.tail(200),
     created: new Date().toISOString(),
   })) || null, [
     error,
