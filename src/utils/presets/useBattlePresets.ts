@@ -338,11 +338,16 @@ export const useBattlePresets = (
     randoms
       ? [...(randomsStats || [])]
       // include bundled usage presets (e.g. the Champions usage bundles) so forme usage %'s & usage matching
-      // work for formats the pkmn Format Stats API doesn't publish
-      : [...(formatStats || []), ...(bundledPresets || []).filter((p) => p?.source === 'usage')]
+      // work for formats the pkmn Format Stats API doesn't publish -- but scoped to the CURRENT format only,
+      // else a forme with a usage set in each Champions bundle (OU/BSS/VGC) shows up multiple times
+      : [...(formatStats || []), ...(bundledPresets || []).filter((p) => (
+        p?.source === 'usage'
+          && (!p.format || !genlessFormat || genlessFormat === p.format || genlessFormat.startsWith(p.format))
+      ))]
   ), [
     bundledPresets,
     formatStats,
+    genlessFormat,
     randoms,
     randomsStats,
   ]);
