@@ -35,7 +35,7 @@ const LevelLabels: Record<LoggerLevel, string> = {
 };
 
 // scopes are all `@showdex/…`, so truncate the *start* (keep the meaningful tail) to a fixed monospace width
-const ScopeMaxChars = 32;
+const ScopeMaxChars = 24;
 
 // msgs longer than this get a click-to-expand toggle (collapsed = single truncated line)
 const ExpandThreshold = 120;
@@ -58,9 +58,33 @@ export const Devdex = ({
   const scrollRef = React.useRef<HTMLDivElement>(null);
   const stick = React.useRef(true); // pinned to the bottom (tail-follow)
 
-  React.useEffect(() => teledex.subscribe(() => force()), []);
+  // throttle re-renders: a live battle fires hundreds of logs/sec — re-rendering per capture freezes the
+  // panel, so coalesce a burst into at most one render per ~250ms (plenty for a human-readable tail)
+  React.useEffect(() => {
+    let timer: ReturnType<typeof setTimeout> = null;
 
-  const rows = teledex.filter({ level: LoggerLevelValues[minLevel], scope, text }).slice(-500);
+    const unsubscribe = teledex.subscribe(() => {
+      if (timer) {
+        return;
+      }
+
+      timer = setTimeout(() => {
+        timer = null;
+        force();
+      }, 250);
+    });
+
+    return () => {
+      if (timer) {
+        clearTimeout(timer);
+      }
+
+      unsubscribe();
+    };
+  }, []);
+
+  // only render the live tail (the full history is always in a flush) — keeps the DOM + reconciliation cheap
+  const rows = teledex.filter({ level: LoggerLevelValues[minLevel], scope, text }).slice(-200);
 
   // attach a scroll listener to the (SimpleBar) scroll element once it's mounted
   React.useEffect(() => {
@@ -115,6 +139,9 @@ export const Devdex = ({
       return;
     }
 
+    // set stick SYNCHRONOUSLY (before the async 'scroll' event updates it) so a streaming log's
+    // auto-scroll-to-bottom effect doesn't instantly undo a scroll-to-top
+    stick.current = to === 'bottom';
     el.scrollTop = to === 'top' ? 0 : el.scrollHeight;
   };
 

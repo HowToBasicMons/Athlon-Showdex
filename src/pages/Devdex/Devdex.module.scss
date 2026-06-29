@@ -112,7 +112,7 @@
 // fixed-width scope column; truncated at the start (in JS) since they're all `@showdex/…`
 .scope {
   flex-shrink: 0;
-  width: 32ch;
+  width: 24ch;
   overflow: hidden;
   white-space: nowrap;
   color: colors.$gray;
