@@ -1,6 +1,7 @@
 // src/utils/debug/teledex/teledex.ts
 import { add, sub } from 'date-fns';
 import { env } from '@showdex/utils/core/getEnv';
+import { boundedStringify } from '@showdex/utils/core/safeStringify';
 import { type LoggerLevel } from '../logger';
 import { devOnlyLevels } from '../levelMap';
 import { TeledexBuffer } from './teledexBuffer';
@@ -127,12 +128,18 @@ export const teledex = {
       ? await sink.readRecords()
       : buf().all();
     const tail = opts?.tail ? records.slice(-opts.tail) : records;
+    // bound each arg before serializing the whole payload — battle logs hold huge/circular Showdown objects
+    // that would OOM the tab if JSON.stringify'd in full; cap each object arg to ~8KB (strings pass through)
+    const safeRecords = tail.map((r) => ({
+      ...r,
+      args: (r.args || []).map((a) => (typeof a === 'string' ? a : boundedStringify(a, 8_000, 10))),
+    }));
     const payload = {
       build: env('build-name'),
       session: teledexSession,
       created: new Date().toISOString(),
-      count: tail.length,
-      records: tail,
+      count: safeRecords.length,
+      records: safeRecords,
     };
 
     if (opts?.to === 'clipboard') {

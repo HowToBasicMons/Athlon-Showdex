@@ -10,7 +10,7 @@ import { BuildInfo } from '@showdex/components/debug';
 import { TextField } from '@showdex/components/form';
 import { Card, PageContainer } from '@showdex/components/layout';
 import { ToggleButton, Tooltip } from '@showdex/components/ui';
-import { safeStringify } from '@showdex/utils/core/safeStringify';
+import { boundedStringify } from '@showdex/utils/core/safeStringify';
 import { type LoggerLevel, LoggerLevelValues, teledex } from '@showdex/utils/debug';
 import styles from './Devdex.module.scss';
 
@@ -253,7 +253,9 @@ export const Devdex = ({
 
       <div ref={scrollRef} className={styles.log}>
         {rows.map((r) => {
-          const msg = r.args.map((a) => (typeof a === 'string' ? a : safeStringify(a))).join(' ');
+          // bounded preview per arg — a live battle logs huge/circular Showdown objects; serializing them
+          // unbounded OOM-crashes the tab, so cap each to ~2KB / depth 8
+          const msg = r.args.map((a) => (typeof a === 'string' ? a : boundedStringify(a, 2_000, 8))).join(' ');
           const expandable = msg.length > ExpandThreshold;
           const open = expanded.has(r.id);
           const shortScope = truncateStart(r.scope, ScopeMaxChars);

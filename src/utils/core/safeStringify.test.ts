@@ -1,24 +1,45 @@
 import { describe, expect, it } from 'vitest';
-import { safeStringify } from './safeStringify';
+import { boundedStringify, safeStringify } from './safeStringify';
 
-describe('safeStringify()', () => {
+describe('boundedStringify()', () => {
   it('stringifies plain values like JSON.stringify', () => {
-    expect(safeStringify({ a: 1, b: 'x' })).toBe('{"a":1,"b":"x"}');
-    expect(safeStringify([1, 2, 3])).toBe('[1,2,3]');
-    expect(safeStringify('hi')).toBe('"hi"');
+    expect(boundedStringify({ a: 1, b: 'x' })).toBe('{"a":1,"b":"x"}');
+    expect(boundedStringify([1, 2, 3])).toBe('[1,2,3]');
+    expect(boundedStringify('hi')).toBe('"hi"');
   });
 
   it('does NOT throw on circular references (the live-battle Showdown object case)', () => {
     const circular: Record<string, unknown> = { name: 'battle' };
-    circular.self = circular; // a cycle that plain JSON.stringify would throw on
+    circular.self = circular;
 
-    expect(() => safeStringify(circular)).not.toThrow();
-    expect(safeStringify(circular)).toContain('[Circular]');
-    expect(safeStringify(circular)).toContain('battle');
+    expect(() => boundedStringify(circular)).not.toThrow();
+    expect(boundedStringify(circular)).toContain('[Circular]');
+    expect(boundedStringify(circular)).toContain('battle');
   });
 
-  it('never returns undefined (falls back to String())', () => {
-    expect(safeStringify(undefined)).toBe('undefined');
-    expect(typeof safeStringify(() => {})).toBe('string');
+  it('bails at maxLength (so a huge graph cannot OOM)', () => {
+    const huge = { blob: 'x'.repeat(100_000) };
+    const out = boundedStringify(huge, 200);
+
+    expect(out.length).toBeLessThanOrEqual(201); // 200 + the trailing '…'
+    expect(out.endsWith('…')).toBe(true);
+  });
+
+  it('stops descending past maxDepth', () => {
+    const deep = { a: { b: { c: { d: { e: 'too deep' } } } } };
+    const out = boundedStringify(deep, 10_000, 2);
+
+    expect(out).toContain('[…]');
+    expect(out).not.toContain('too deep');
+  });
+
+  it('never throws on functions/symbols/bigints', () => {
+    expect(() => boundedStringify({ fn: () => {}, sym: Symbol('s'), big: 10n })).not.toThrow();
+  });
+});
+
+describe('safeStringify()', () => {
+  it('round-trips normal payloads', () => {
+    expect(JSON.parse(safeStringify({ a: 1, list: [1, 2] }))).toEqual({ a: 1, list: [1, 2] });
   });
 });

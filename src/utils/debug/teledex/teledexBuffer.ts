@@ -1,4 +1,4 @@
-import { safeStringify } from '@showdex/utils/core/safeStringify';
+import { boundedStringify } from '@showdex/utils/core/safeStringify';
 import { type TeledexRecord } from './teledexRecord';
 
 /**
@@ -63,7 +63,7 @@ export class TeledexBuffer {
     return this.capped().filter((r) => (
       (predicate.level == null || r.value >= predicate.level)
         && (!scope || r.scope.toLowerCase().includes(scope))
-        && (!text || safeStringify(r.args).toLowerCase().includes(text))
+        && (!text || boundedStringify(r.args, 4_000, 8).toLowerCase().includes(text))
     ));
   }
 

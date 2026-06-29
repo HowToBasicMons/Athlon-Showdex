@@ -306,33 +306,20 @@
     &.smolSplit {
       grid-column: span 1;
     }
+
+    // individually-sticky +new buttons overlap & stretch tall in the narrow layout (they each stick to the
+    // same bottom). drop the stickiness here and let the grid stack them normally: Honk+Note share row one
+    // (via smolSplit), a full-width Devdex on row two.
+    &.newInstanceButton {
+      position: static;
+    }
   }
 }
 
-// wrapper around the "+ new" buttons (Honk/Note/Devdex). At full width it's transparent (display: contents)
-// so the buttons stay direct grid items & the 3-col grid layout is untouched. In the narrow .smol layout it
-// becomes ONE sticky flex container, so the individually-sticky buttons stop fighting/overlapping: Honk+Note
-// share the first row, and a lone last button (e.g. Devdex when enabled) wraps onto its own row.
+// transparent wrapper around the "+ new" buttons (Honk/Note/Devdex) — keeps them as direct grid items so the
+// 3-col (thicc) / 2-col (smol) grid layout is untouched. It exists only as a JSX grouping hook.
 .newInstanceButtons {
   display: contents;
-
-  .smol & {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    grid-column: span 2;
-    @include position.sticky($b: 10px);
-
-    .newInstanceButton {
-      position: static;
-      grid-column: auto;
-      flex: 1 1 calc(50% - 5px);
-
-      &:last-child:nth-child(odd) {
-        flex-basis: 100%;
-      }
-    }
-  }
 }
 
 .battleRecordSpacer {
