@@ -296,8 +296,13 @@ export const useBattlePresets = (
       // scope bundle presets the same way — prevents a vgc2025 or championsbss bundle from supplying
       // mons (and sets) that are illegal in the current format (e.g. Great Tusk in championsou)
       ...(bundledPresets || []).filter((p) => presetFormatMatches(genlessFormat, p)),
-      ...(formatPresets || []),
-      ...(formatStats || []),
+      // shouldSkip{Formats,FormatStats} only skips the FETCH — the RTK query hooks still return cached
+      // gen-wide data (e.g. gen9ou presets/usage cached by another Calcdex instance). A Champions Honkdex
+      // skips both (the pkmn APIs don't publish champs), so it must also IGNORE that cached data here, else
+      // cross-format mons (e.g. Great Tusk's gen9ou sets/usage) leak into the pool. Non-skipped formats are
+      // unaffected (shouldSkip* is false -> the sources flow through exactly as before).
+      ...((!shouldSkipFormats && formatPresets) || []),
+      ...((!shouldSkipFormatStats && formatStats) || []),
     ];
 
     if (!legalFormat || includeOtherMetaPresets) {
@@ -315,6 +320,8 @@ export const useBattlePresets = (
     legalFormat,
     randoms,
     randomsPresets,
+    shouldSkipFormats,
+    shouldSkipFormatStats,
     teambuilderPresets,
   ]);
 
@@ -348,11 +355,14 @@ export const useBattlePresets = (
       // work for formats the pkmn Format Stats API doesn't publish; scoped to the CURRENT format via
       // presetFormatMatches() — the canonical shared predicate — so cross-format bundles (e.g. vgc2025,
       // championsbss) are excluded when the Honkdex is set to championsou
-      : [...(formatStats || []), ...(bundledPresets || []).filter((p) => (
+      // see the presets memo: a Champions Honkdex skips formatStats, but the RTK hook still returns cached
+      // gen9ou usage — drop it when skipped so Great Tusk's gen9ou usage doesn't leak into formeUsages
+      : [...((!shouldSkipFormatStats && formatStats) || []), ...(bundledPresets || []).filter((p) => (
         p?.source === 'usage' && presetFormatMatches(genlessFormat, p)
       ))]
   ), [
     bundledPresets,
+    shouldSkipFormatStats,
     formatStats,
     genlessFormat,
     randoms,
@@ -444,7 +454,7 @@ export const useBattlePresets = (
       '\n', 'Great Tusk via formatStats', hasForme(formatStats),
       '\n', 'Great Tusk via bundled', hasForme(bundledPresets),
       '\n', 'Great Tusk via usages', hasForme(usages),
-      '\n', 'formeUsages', formeUsages,
+      '\n', 'Great Tusk in formeUsages?', formeUsages.some((u) => u?.[0] === 'Great Tusk'),
     );
   }, [
     bundledPresets,
