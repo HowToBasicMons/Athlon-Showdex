@@ -314,6 +314,9 @@
     // up a big ancestor instead of the button.
     &.newInstanceButton {
       position: relative;
+      // reset the sticky mixin's `bottom: 10px` — on a position:relative box it offsets the button UP by
+      // 10px, which ate the grid row-gap above the +new button group
+      bottom: auto;
     }
   }
 }
