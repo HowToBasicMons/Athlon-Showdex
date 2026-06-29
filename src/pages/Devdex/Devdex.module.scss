@@ -1,0 +1,107 @@
+///
+/// @group Devdex
+/// @access private
+/// @author Keith Choison <keith@tize.io>
+/// @since 1.2.5
+///
+
+@use 'config/colors';
+@use 'functions/color';
+@use 'mixins/flex';
+@use 'mixins/font';
+@use 'mixins/spacing';
+
+.container {
+  // inherits PageContainer layout
+}
+
+.buildInfo {
+  z-index: 6;
+}
+
+.toolbar {
+  @include flex.row-start;
+  column-gap: 8px;
+  flex-wrap: wrap;
+  @include spacing.mx(12px);
+  @include spacing.py(8px);
+}
+
+.log {
+  @include flex.col-stretch;
+  @include spacing.mx(12px);
+  @include spacing.mb(12px);
+  font-family: monospace;
+  font-size: 11px;
+  line-height: 16px;
+  overflow-x: auto;
+}
+
+.row {
+  @include flex.row-start;
+  column-gap: 8px;
+  @include spacing.py(2px);
+  border-bottom: 1px solid rgba(colors.$white, 0.04);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.ts {
+  color: colors.$gray;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.level {
+  flex-shrink: 0;
+  width: 52px;
+  font-weight: 600;
+  user-select: none;
+}
+
+.scope {
+  flex-shrink: 0;
+  max-width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: colors.$gray;
+}
+
+.msg {
+  flex: 1;
+  white-space: pre-wrap;
+  word-break: break-all;
+  color: colors.$gray-lighter;
+}
+
+// per-level color classes
+.silly {
+  .level { color: colors.$gray; }
+}
+
+.debug {
+  .level { color: colors.$cyan; }
+}
+
+.verbose {
+  .level { color: color.shade(colors.$cyan, 30%); }
+}
+
+.info {
+  .level { color: colors.$blue; }
+}
+
+.success {
+  .level { color: colors.$green; }
+}
+
+.warn {
+  .level { color: colors.$orange; }
+}
+
+.error {
+  .level { color: colors.$red; }
+}
