@@ -424,6 +424,7 @@ export const Hellodex = ({
                     />
                   ))}
 
+                  <div className={styles.newInstanceButtons}>
                   {
                     honkdexSettings?.visuallyEnabled &&
                     <GradientButton
@@ -493,6 +494,7 @@ export const Hellodex = ({
                       />
                     </GradientButton>
                   }
+                  </div>
 
                   {
                     settings?.showBattleRecord &&

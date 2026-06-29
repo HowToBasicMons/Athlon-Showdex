@@ -309,6 +309,32 @@
   }
 }
 
+// wrapper around the "+ new" buttons (Honk/Note/Devdex). At full width it's transparent (display: contents)
+// so the buttons stay direct grid items & the 3-col grid layout is untouched. In the narrow .smol layout it
+// becomes ONE sticky flex container, so the individually-sticky buttons stop fighting/overlapping: Honk+Note
+// share the first row, and a lone last button (e.g. Devdex when enabled) wraps onto its own row.
+.newInstanceButtons {
+  display: contents;
+
+  .smol & {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    grid-column: span 2;
+    @include position.sticky($b: 10px);
+
+    .newInstanceButton {
+      position: static;
+      grid-column: auto;
+      flex: 1 1 calc(50% - 5px);
+
+      &:last-child:nth-child(odd) {
+        flex-basis: 100%;
+      }
+    }
+  }
+}
+
 .battleRecordSpacer {
   grid-area: span 1 / span 3;
   height: 20px;
