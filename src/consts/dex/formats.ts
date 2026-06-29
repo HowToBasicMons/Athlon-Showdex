@@ -65,6 +65,7 @@ export const FormatLabels: Record<string, string> = {
   championsvgc2026: 'Champions VGC 2026',
   championsdraft: 'Champions Draft',
   championscustomgame: 'Champions Customs',
+  championsrandombattle: 'Champions Randoms',
   categoryswap: 'Category Swap',
   challengecup: 'Challenge Cup',
   challengecup1v1: 'Challenge Cup 1v1',
@@ -475,6 +476,8 @@ export const LegalLockedFormats: (string | RegExp)[] = [
  */
 export const FormatSortPriorities: string[] = [
   'ou',
+  'champions', // note: ranked right under OU per request; sortPresetsByFormat() special-cases the match so a
+  // "Champions OU" label doesn't get swallowed by the 'ou' entry above (see its priorityIndex())
   'uu',
   'ubers',
   'ru',
