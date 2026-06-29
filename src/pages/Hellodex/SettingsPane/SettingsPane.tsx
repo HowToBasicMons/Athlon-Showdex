@@ -38,7 +38,7 @@ import {
   readClipboardText,
   writeClipboardText,
 } from '@showdex/utils/core';
-import { logger } from '@showdex/utils/debug';
+import { logger, teledex } from '@showdex/utils/debug';
 import { dehydrateSettings, hydrateSettings, possiblyDehydrated } from '@showdex/utils/hydro';
 import { clearPresetsDb } from '@showdex/utils/storage';
 import { AutoFeaturesSettingsPane } from './AutoFeaturesSettingsPane';
@@ -294,6 +294,7 @@ export const SettingsPane = ({
     }
 
     updateSettings(values);
+    teledex.setDeveloperMode(!!values?.developerMode);
   };
 
   return (
