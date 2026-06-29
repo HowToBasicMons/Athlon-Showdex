@@ -18,6 +18,7 @@ import {
   parseBattleFormat,
 } from '@showdex/utils/dex';
 import { type CalcdexPokemonUsageAltSorter, usageAltPercentFinder, usageAltPercentSorter } from '@showdex/utils/presets';
+import { presetFormatMatches } from './presetFormatMatches';
 
 /**
  * Options for the `useBattlePresets()` hook.
@@ -288,8 +289,13 @@ export const useBattlePresets = (
     }
 
     const output = [
-      ...(teambuilderPresets || []),
-      ...(bundledPresets || []),
+      // scope storage (Teambuilder) presets to the current format so cross-format Teambuilder entries
+      // (e.g. a saved gen9ou set) don't appear in a gen9championsou Honkdex; presets without a format
+      // tag pass through presetFormatMatches() unchanged (they're treated as format-agnostic)
+      ...(teambuilderPresets || []).filter((p) => presetFormatMatches(genlessFormat, p)),
+      // scope bundle presets the same way — prevents a vgc2025 or championsbss bundle from supplying
+      // mons (and sets) that are illegal in the current format (e.g. Great Tusk in championsou)
+      ...(bundledPresets || []).filter((p) => presetFormatMatches(genlessFormat, p)),
       ...(formatPresets || []),
       ...(formatStats || []),
     ];
@@ -304,6 +310,7 @@ export const useBattlePresets = (
     bundledPresets,
     formatPresets,
     formatStats,
+    genlessFormat,
     includeOtherMetaPresets,
     legalFormat,
     randoms,
@@ -337,12 +344,12 @@ export const useBattlePresets = (
   const usages = React.useMemo<CalcdexPokemonPreset[]>(() => (
     randoms
       ? [...(randomsStats || [])]
-      // include bundled usage presets (e.g. the Champions usage bundles) so forme usage %'s & usage matching
-      // work for formats the pkmn Format Stats API doesn't publish -- but scoped to the CURRENT format only,
-      // else a forme with a usage set in each Champions bundle (OU/BSS/VGC) shows up multiple times
+      // include bundled usage presets (e.g. Champions usage bundles) so forme usage %'s & usage matching
+      // work for formats the pkmn Format Stats API doesn't publish; scoped to the CURRENT format via
+      // presetFormatMatches() — the canonical shared predicate — so cross-format bundles (e.g. vgc2025,
+      // championsbss) are excluded when the Honkdex is set to championsou
       : [...(formatStats || []), ...(bundledPresets || []).filter((p) => (
-        p?.source === 'usage'
-          && (!p.format || !genlessFormat || genlessFormat === p.format || genlessFormat.startsWith(p.format))
+        p?.source === 'usage' && presetFormatMatches(genlessFormat, p)
       ))]
   ), [
     bundledPresets,
@@ -354,11 +361,26 @@ export const useBattlePresets = (
 
   // build the usage alts, if provided from usages[]
   // e.g., [['Great Tusk', 0.3739], ['Kingambit', 0.3585], ['Dragapult', 0.0746], ...]
-  const formeUsages = React.useMemo<CalcdexPokemonUsageAlt<string>[]>(() => (
-    usages
-      .filter((u) => !!u?.speciesForme && !!u.formeUsage)
-      .map((u) => [u.speciesForme, u.formeUsage])
-  ), [
+  // dedup by speciesForme (keeping the highest usage % when a forme appears in multiple matching bundles,
+  // e.g. both a generic 'champions' parent bundle and a 'championsou' specific bundle include Kingambit —
+  // without dedup Kingambit would appear twice in the forme dropdown's Usage group)
+  const formeUsages = React.useMemo<CalcdexPokemonUsageAlt<string>[]>(() => {
+    const deduped = new Map<string, number>();
+
+    for (const u of usages) {
+      if (!u?.speciesForme || !u.formeUsage) {
+        continue;
+      }
+
+      const existing = deduped.get(u.speciesForme);
+
+      if (existing === undefined || u.formeUsage > existing) {
+        deduped.set(u.speciesForme, u.formeUsage);
+      }
+    }
+
+    return [...deduped.entries()].map(([speciesForme, formeUsage]) => [speciesForme, formeUsage]);
+  }, [
     usages,
   ]);
 
