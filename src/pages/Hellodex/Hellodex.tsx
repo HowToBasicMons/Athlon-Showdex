@@ -31,6 +31,7 @@ import {
   useHonkdexSettings,
   useNotedexDuplicator,
   useNotedexState,
+  useShowdexSettings,
   useUpdateSettings,
 } from '@showdex/redux/store';
 import { usePlayerTitle } from '@showdex/utils/app';
@@ -56,6 +57,7 @@ export interface HellodexProps {
   onRequestCalcdex?: (battleId: string) => void;
   onRequestHonkdex?: (instanceId?: string) => void;
   onRequestNotedex?: (instanceId?: string) => void;
+  onRequestDevdex?: () => void;
   onCloseCalcdex?: (battleId: string) => void;
   onRemoveHonkdex?: (instanceId: string) => void;
   onRemoveNotedex?: (instanceId: string) => void;
@@ -79,6 +81,7 @@ export const Hellodex = ({
   onRequestCalcdex,
   onRequestHonkdex,
   onRequestNotedex,
+  onRequestDevdex,
   onCloseCalcdex,
   onRemoveHonkdex,
   onRemoveNotedex,
@@ -96,6 +99,7 @@ export const Hellodex = ({
 
   const rand = React.useRef(Math.random());
   const colorTheme = useColorTheme();
+  const showdexSettings = useShowdexSettings();
   const settings = useHellodexSettings();
   const calcdexSettings = useCalcdexSettings();
   const honkdexSettings = useHonkdexSettings();
@@ -466,6 +470,28 @@ export const Hellodex = ({
                       <Trans
                         t={t}
                         i18nKey="instances.notedex.newLabel"
+                        shouldUnescape
+                      />
+                    </GradientButton>
+                  }
+
+                  {
+                    showdexSettings?.developerMode &&
+                    <GradientButton
+                      className={cx(styles.instanceButton, styles.newInstanceButton)}
+                      display="block"
+                      aria-label={t('instances.devdex.newAria')}
+                      hoverScale={1}
+                      onPress={() => void onRequestDevdex?.()}
+                    >
+                      <i
+                        className="fa fa-plus"
+                        style={{ fontSize: 10, lineHeight: 11 }}
+                      />
+                      <i className="fa fa-terminal" />
+                      <Trans
+                        t={t}
+                        i18nKey="instances.devdex.newLabel"
                         shouldUnescape
                       />
                     </GradientButton>
