@@ -6,18 +6,18 @@ import {
   it,
   vi,
 } from 'vitest';
+import { configureTeledex, teledex } from './teledex';
 
+// flush() calls the injected sink (dependency injection — no dynamic import / no cycle), so inject a mock
 const dumpToFile = vi.fn();
-// flush() lazy-imports the deep dumpPayload module (cycle-break), so mock that path
-vi.mock('@showdex/utils/core/dumpPayload', async (orig) => ({
-  ...(await orig()),
-  dumpPayloadToFile: (...a: unknown[]) => dumpToFile(...a),
-}));
-
-const { teledex } = await import('./teledex');
 
 describe('teledex', () => {
-  beforeEach(() => { void teledex.clear(); teledex.setDeveloperMode(false); dumpToFile.mockClear(); });
+  beforeEach(() => {
+    void teledex.clear();
+    teledex.setDeveloperMode(false);
+    dumpToFile.mockClear();
+    configureTeledex({ dumpToFile });
+  });
 
   it('captures into the in-memory buffer when enabled', () => {
     teledex.capture('warn', '@showdex/x', ['leak', { mon: 'Great Tusk' }]);
@@ -31,7 +31,7 @@ describe('teledex', () => {
     expect(teledex.shouldCapture('debug')).toBe(true); // true here only because vitest sets __DEV__
   });
 
-  it('flush(to:file) serializes the tail through dumpPayloadToFile', async () => {
+  it('flush(to:file) serializes the tail through the injected dumpToFile sink', async () => {
     teledex.capture('info', 's', ['hi']);
     await teledex.flush({ to: 'file' });
     expect(dumpToFile).toHaveBeenCalledOnce();

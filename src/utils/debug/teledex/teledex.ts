@@ -9,12 +9,38 @@ import { resolveTeledexConfig } from './teledexConfig';
 
 declare const __DEV__: boolean;
 
-// Lazy init: teledex.ts is re-exported from @showdex/utils/debug (the debug barrel), which is
-// transitively imported by @showdex/utils/core utilities (runtimeFetch, safeJsonParse → debug →
-// this file).  teledexConfig.ts also imports env() from @showdex/utils/core, so calling
-// resolveTeledexConfig() at module-evaluation time would hit a circular TDZ.
-// Storage helpers (pruneTeledexDb etc.) likewise import @showdex/utils/debug, so they use
-// dynamic import()s inside the async/callback functions that actually need them.
+/**
+ * Injected backend for the parts of Teledex that would otherwise form a module-init import cycle:
+ * the storage helpers + the clipboard chain transitively import the logger, and the logger imports
+ * `teledex` (for the capture sink). So `teledex` imports NEITHER directly — `wireTeledexSink()`
+ * (in `./teledexSink`, which lives OUTSIDE the logger→teledex path) injects them once at boot.
+ *
+ * This keeps `teledex` cycle-free AND avoids dynamic `import()`s — a content-script-injected
+ * extension can't load webpack's code-split async chunks (they aren't `web_accessible_resources`),
+ * so everything must stay in the single bundle.
+ *
+ * Every member is optional + guarded, so until wired (or with `TELEDEX_ENABLED=false`) Teledex
+ * degrades cleanly to in-memory-only capture.
+ *
+ * @since 1.2.5
+ */
+export interface TeledexSink {
+  writeRecords?: (records: TeledexRecord[]) => Promise<void>;
+  readRecords?: () => Promise<TeledexRecord[]>;
+  pruneRecords?: (opts: { before?: number; max?: number }) => Promise<void>;
+  dumpToFile?: (payload: unknown, nameParts: (string | number)[]) => void;
+  dumpToClipboard?: (payload: unknown) => Promise<void>;
+}
+
+let sink: TeledexSink = {};
+
+/** Injects the IndexedDB + flush backend (called once at boot by `wireTeledexSink()`). */
+export const configureTeledex = (impl: TeledexSink): void => {
+  sink = { ...sink, ...impl };
+};
+
+// resolveTeledexConfig()/the buffer are still created lazily (cheap defensive deferral); harmless now
+// that the cycle is gone via injection.
 let _config: ReturnType<typeof resolveTeledexConfig> | undefined;
 let _buffer: TeledexBuffer | undefined;
 
@@ -36,7 +62,7 @@ let flushTimer: ReturnType<typeof setTimeout> = null;
 const notify = () => subscribers.forEach((fn) => { try { fn(); } catch { /* noop */ } });
 
 const mirrorSoon = () => {
-  if (!developerMode || flushTimer) {
+  if (!developerMode || flushTimer || !sink.writeRecords) {
     return;
   }
 
@@ -47,13 +73,12 @@ const mirrorSoon = () => {
 
     void (async () => {
       try {
-        const [{ writeTeledexDb }, { pruneTeledexDb }] = await Promise.all([
-          import('@showdex/utils/storage/writeTeledexDb'),
-          import('@showdex/utils/storage/pruneTeledexDb'),
-        ]);
-        await writeTeledexDb(batch);
-        const before = sub(new Date(), cfg().maxAge).valueOf();
-        await pruneTeledexDb({ before, max: cfg().maxRecords });
+        await sink.writeRecords(batch);
+
+        if (sink.pruneRecords) {
+          const before = sub(new Date(), cfg().maxAge).valueOf();
+          await sink.pruneRecords({ before, max: cfg().maxRecords });
+        }
       } catch { /* noop */ }
     })();
   }, 1000);
@@ -98,8 +123,8 @@ export const teledex = {
   },
 
   async flush(opts?: { to?: 'file' | 'clipboard'; tail?: number }): Promise<void> {
-    const records = developerMode
-      ? await (await import('@showdex/utils/storage/readTeledexDb')).readTeledexDb()
+    const records = developerMode && sink.readRecords
+      ? await sink.readRecords()
       : buf().all();
     const tail = opts?.tail ? records.slice(-opts.tail) : records;
     const payload = {
@@ -110,16 +135,11 @@ export const teledex = {
       records: tail,
     };
 
-    // lazy import: @showdex/utils/core/dumpPayload reaches the clipboard chain, which
-    // transitively pulls the debug barrel (→ logger) -- importing it eagerly here would
-    // re-introduce the module-init cycle, so we only pull it inside this async fn.
-    const { dumpPayloadToClipboard, dumpPayloadToFile } = await import('@showdex/utils/core/dumpPayload');
-
     if (opts?.to === 'clipboard') {
-      return void await dumpPayloadToClipboard(payload);
+      return void (await sink.dumpToClipboard?.(payload));
     }
 
-    dumpPayloadToFile(payload, [
+    sink.dumpToFile?.(payload, [
       env('build-name'),
       'teledex',
       `t${Date.now().toString(16).toUpperCase()}`,
@@ -130,10 +150,10 @@ export const teledex = {
     buf().clear();
     pending = [];
     notify();
-    if (developerMode) {
+
+    if (developerMode && sink.pruneRecords) {
       try {
-        const { pruneTeledexDb } = await import('@showdex/utils/storage/pruneTeledexDb');
-        await pruneTeledexDb({ before: add(new Date(), { years: 100 }).valueOf() });
+        await sink.pruneRecords({ before: add(new Date(), { years: 100 }).valueOf() });
       } catch { /* noop */ }
     }
   },

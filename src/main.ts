@@ -23,6 +23,8 @@ import {
 } from '@showdex/pages';
 import { env } from '@showdex/utils/core';
 import { logger, wtf } from '@showdex/utils/debug';
+// note: deep import (NOT the debug barrel) on purpose — wiring lives outside the logger->teledex path
+import { wireTeledexSink } from '@showdex/utils/debug/teledex/teledexSink';
 import { detectClassicHost, detectPreactHost } from '@showdex/utils/host';
 import '@showdex/styles/global.scss';
 
@@ -69,6 +71,9 @@ window.__SHOWDEX_INIT = env('build-name', 'showdex');
 window.__SHOWDEX_HOST = (detectPreactHost(window) && 'preact')
   || (detectClassicHost(window) && 'classic')
   || null;
+
+// inject the teledex IndexedDB/flush backend once, up-front (statically, so it stays in the single bundle)
+wireTeledexSink();
 
 // note: don't inline await, otherwise, there'll be a race condition with the login
 // (also makes the Hellodex not appear immediately when Showdown first opens)
