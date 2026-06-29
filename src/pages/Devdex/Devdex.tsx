@@ -160,8 +160,7 @@ export const Devdex = ({
           )}
         </div>
       )}
-      scrollRef={scrollRef}
-      contentScrollable
+      contentClassName={styles.content}
     >
       <Card className={styles.toolbar}>
         <div className={styles.filters}>
@@ -223,7 +222,7 @@ export const Devdex = ({
         </div>
       </Card>
 
-      <div className={styles.log}>
+      <div ref={scrollRef} className={styles.log}>
         {rows.map((r) => {
           const msg = r.args.map((a) => (typeof a === 'string' ? a : JSON.stringify(a))).join(' ');
           const expandable = msg.length > ExpandThreshold;
