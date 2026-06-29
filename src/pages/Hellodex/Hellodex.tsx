@@ -485,10 +485,6 @@ export const Hellodex = ({
                       hoverScale={1}
                       onPress={() => void onRequestDevdex?.()}
                     >
-                      <i
-                        className="fa fa-plus"
-                        style={{ fontSize: 10, lineHeight: 11 }}
-                      />
                       <i className="fa fa-terminal" />
                       <Trans
                         t={t}

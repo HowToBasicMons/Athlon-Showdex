@@ -10,6 +10,7 @@ import {
   BootdexPreactAdapter,
   CalcdexClassicBootstrapper,
   CalcdexPreactBootstrapper,
+  DevdexClassicBootstrapper,
   DevdexPreactBootstrapper,
   HellodexClassicBootstrapper,
   HellodexPreactBootstrapper,
@@ -101,6 +102,7 @@ void (async () => {
 
     case 'classic': {
       BootdexManager.register('calcdex', CalcdexClassicBootstrapper);
+      BootdexManager.register('devdex', DevdexClassicBootstrapper);
       BootdexManager.register('hellodex', HellodexClassicBootstrapper);
       BootdexManager.register('honkdex', HonkdexClassicBootstrapper);
       BootdexManager.register('notedex', NotedexClassicBootstrapper);
@@ -111,6 +113,7 @@ void (async () => {
       new HellodexClassicBootstrapper().run();
       new HonkdexClassicBootstrapper().run();
       new NotedexClassicBootstrapper().run();
+      new DevdexClassicBootstrapper().run();
 
       break;
     }
