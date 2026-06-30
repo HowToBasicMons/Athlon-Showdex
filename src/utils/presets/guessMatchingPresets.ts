@@ -14,6 +14,12 @@ import { findMatchingUsage } from './findMatchingUsage';
 
 const l = logger('@showdex/utils/presets/guessMatchingPresets()');
 
+// throttle: remember each mon's last guess OUTCOME (its matched preset ids) so the info summary only fires when
+// the outcome actually CHANGES -- a live battle re-guesses constantly as state syncs, & we don't want to spam the
+// same result every time. bounded so a long multi-battle session can't grow it without limit (on overflow we just
+// reset; worst case is re-logging each mon's current outcome once).
+const lastGuessOutcomes = new Map<string, string>();
+
 /**
  * Attempts to find matching presets based on what's been revealed for the `pokemon` in battle.
  *
@@ -148,14 +154,22 @@ export const guessMatchingPresets = (
   });
 
   // concise, object-free info summary so a prod bug report (info+ only, no debug firehose) can still reconstruct
-  // the guess: who, what was revealed, the pool size, & what (if anything) it resolved to. the per-preset gate
-  // breakdown above stays at debug (developerMode/__DEV__ only).
-  l.info(
-    'Guessed', pokemon?.ident || pokemon?.speciesForme || '???', 'in', format,
-    '|', 'revealed item', revealedItem || '—', 'moves', revealedSourceMoves.join('/') || '—',
-    '|', `${matched.length}/${presets.length} matched`,
-    ...(matched.length ? ['->', matched.map((p) => `${p.name} (${p.speciesForme})`).join(', ')] : []),
-  );
+  // the guess: who, what was revealed, the pool size, & what (if anything) it resolved to. emitted ONLY when the
+  // outcome changes for this mon (see throttle above). the per-preset gate breakdown stays at debug.
+  const outcomeId = pokemon?.calcdexId || pokemon?.ident || pokemon?.speciesForme || '';
+  const outcomeSig = matched.map((p) => p.calcdexId).join(',');
+
+  if (outcomeId && lastGuessOutcomes.get(outcomeId) !== outcomeSig) {
+    if (lastGuessOutcomes.size > 1000) { lastGuessOutcomes.clear(); }
+    lastGuessOutcomes.set(outcomeId, outcomeSig);
+
+    l.info(
+      'Guessed', pokemon?.ident || pokemon?.speciesForme || '???', 'in', format,
+      '|', 'revealed item', revealedItem || '—', 'moves', revealedSourceMoves.join('/') || '—',
+      '|', `${matched.length}/${presets.length} matched`,
+      ...(matched.length ? ['->', matched.map((p) => `${p.name} (${p.speciesForme})`).join(', ')] : []),
+    );
+  }
 
   return matched;
 };

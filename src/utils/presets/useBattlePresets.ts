@@ -443,6 +443,14 @@ export const useBattlePresets = (
       .filter((p) => p?.speciesForme === forme)
       .map((p) => `${p.source}:${p.format}`);
 
+    // concise, object-free info summary (prod-captured) so a bug report shows the pool the mon had to work with
+    // -- e.g. "0 presets" instantly explains a no-preset mon. the full leak breakdown below stays at debug.
+    l.info(
+      'Preset pool for', format,
+      '|', `${presets?.length || 0} presets, ${usages?.length || 0} usages`,
+      randoms ? '(randoms)' : (champions ? '(champions)' : ''),
+    );
+
     l.debug(
       'pool diagnostics for', format,
       '\n', 'genlessFormat', genlessFormat, '| randoms', randoms, '| champions', champions,
