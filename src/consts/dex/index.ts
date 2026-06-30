@@ -5,6 +5,7 @@ export * from './gens';
 export * from './items';
 export * from './moves';
 export * from './natures';
+export * from './pokeathlonAbilities';
 export * from './pokeathlonItems';
 export * from './side';
 export * from './stats';

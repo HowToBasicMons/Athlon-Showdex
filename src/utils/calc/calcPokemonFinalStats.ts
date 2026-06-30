@@ -1,5 +1,5 @@
 import { type GenerationNum } from '@smogon/calc';
-import { getPokeathlonItemStatMods, PokemonSpeedReductionItems } from '@showdex/consts/dex';
+import { getPokeathlonAbilityStatMods, getPokeathlonItemStatMods, PokemonSpeedReductionItems } from '@showdex/consts/dex';
 import { type CalcdexBattleField, type CalcdexPlayer, type CalcdexPokemon } from '@showdex/interfaces/calc';
 import { countRuinAbilities, ruinAbilitiesActive } from '@showdex/utils/battle';
 import { env, formatId as id, nonEmptyObject } from '@showdex/utils/core';
@@ -510,6 +510,21 @@ export const calcPokemonFinalStats = (
       );
     }
   }
+
+  // Pokéathlon custom abilities (Insurgence/Uranium/etc.): @smogon/calc doesn't know these fangame
+  // abilities, so apply their stat multipliers here using the resolved battle context. Vanilla
+  // weather/terrain abilities (Chlorophyll, Solar Power, …) are handled in the blocks above.
+  const poaAbilityMods = getPokeathlonAbilityStatMods(ability, {
+    weather,
+    terrain,
+    status: !!status,
+  });
+
+  (Object.entries(poaAbilityMods) as [Showdown.StatName, number][]).forEach(([stat, mult]) => {
+    if (mult && mult !== 1) {
+      record.apply(stat, mult, 'abilities', dex.abilities.get(ability)?.name || ability);
+    }
+  });
 
   return record.export();
 };

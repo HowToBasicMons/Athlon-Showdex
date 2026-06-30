@@ -55,6 +55,46 @@ This is currently distributed to beta testers as an unpacked Chrome/Edge extensi
 
 On updates: hit the **reload** icon on the extension card, then refresh the battle tab.
 
+## Mechanics accuracy & known limitations
+
+Athlon Showdex mirrors Pokéathlon's own client logic as closely as possible, but it's a fan tool — some
+things are exact, some are approximations. Here's the honest state of it.
+
+### Working / verified
+- **Fused base stats & typing** — head/body bias matches the server; typing is read straight from the Infinite
+  Fusion mod data (can't drift).
+- **Custom type chart** — read live from the client, so Sound / Light / Cosmic / Nuclear / Crystal and any server
+  matchup tweaks are always current.
+- **Custom item stat effects** — all 12 stat-multiplier items are wired (Goomba Boots, Sturdy Shell, the Orion orbs,
+  Anchor, Assault/Muscle Armor, Wise Vest, Arcane Spellbook, …), in both the shown stats and the damage calc.
+- **Aegislash Stance Change on fusions** — Shield ↔ Blade. Blade keeps the Shield fusion and **swaps the fused
+  Atk↔Def & SpA↔SpD** (the real PIF mechanic), auto-switches from the last move used, persists across battle
+  updates, and keeps the fusion name + sprite. Works whether Aegislash is the head or the body.
+- **Eviolite** — applies when *either* half is not-fully-evolved.
+- **Custom abilities (always-on)** — fangame abilities like Athenian / Pure Focus / Genius (×2 SpA), Sharp Coral,
+  Tormented are applied to both the display and the calc.
+
+### Known limitations (not yet 100%)
+- **Body-half Aegislash manual toggle** — you can only manually click Shield/Blade when Aegislash is the *head*
+  (the forme switcher is head-based). If it's the *body*, only the auto-switch (from the last move) works.
+- **Conditional custom abilities in the damage calc** — weather/terrain/status-gated fangame abilities (e.g.
+  Sandy Defense, Forest King, Ice Cleats) are reflected in the **displayed** stats, but not yet baked into the
+  damage numbers (the calc path has no field context). Newmoon-weather abilities aren't tracked yet.
+- **Expert (signature) moves** — matched by head/body species, not full evolution-line expansion, so a few rare
+  cases may be missing or over-eager.
+- **Presets** — usage-based predictions + sample sets currently cover Mariomon best; other mods (Insurgence,
+  Uranium, Infinity, Chaos, Soulstones) lean on usage data only.
+- **Browser** — only a **Chrome/Edge** (unpacked) build is shipped right now; no Firefox `.xpi` yet.
+
+### Pros / cons at a glance
+- **Pros:** real fusion stats/typing/abilities/items, live custom type chart, Pokéathlon-only injection, fast
+  in-battle calc, no manual data upkeep (reads the live client).
+- **Cons:** beta/unpacked (manual install + updates), a few fangame abilities not in the damage number yet,
+  Chrome-only, preset depth varies by mod.
+
+Found something wrong? File it at [Issues](https://github.com/HowToBasicMons/Athlon-Showdex/issues) with the
+fusion (which half is which), item/ability/nature, and the stat shown vs expected.
+
 ## Credits
 
 - **Maintained by** [HowToBasicMons](https://github.com/HowToBasicMons).

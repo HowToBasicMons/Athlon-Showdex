@@ -9,6 +9,7 @@ import {
   PokemonPseudoToggleAbilities,
   PokemonRuinAbilities,
   PokemonSturdyAbilities,
+  getPokeathlonAbilityStatMods,
   getPokeathlonItemStatMods,
 } from '@showdex/consts/dex';
 import { type CalcdexPokemon } from '@showdex/interfaces/calc';
@@ -227,6 +228,20 @@ export const createSmogonPokemon = (
     const poaItemMods = getPokeathlonItemStatMods(item, pokemon.speciesForme, pokemon.fusion);
 
     (Object.entries(poaItemMods) as [keyof typeof options.rawStats, number][]).forEach(([stat, mult]) => {
+      if (mult && mult !== 1 && typeof options.rawStats[stat] === 'number') {
+        options.rawStats[stat] = Math.floor(options.rawStats[stat] * mult);
+      }
+    });
+  }
+
+  // Pokéathlon custom abilities: pre-apply the always-on stat multipliers (e.g. Athenian/Pure Focus
+  // 2x SpA, Sharp Coral's swap-ish boosts) to the rawStats fed into the calc, since @smogon/calc
+  // doesn't know these fangame abilities. Conditional (weather/terrain/status) ones are NOT applied
+  // here — this path has no battle-field context — but are reflected in the displayed final stats.
+  if (ability) {
+    const poaAbilityMods = getPokeathlonAbilityStatMods(ability, {}, true);
+
+    (Object.entries(poaAbilityMods) as [keyof typeof options.rawStats, number][]).forEach(([stat, mult]) => {
       if (mult && mult !== 1 && typeof options.rawStats[stat] === 'number') {
         options.rawStats[stat] = Math.floor(options.rawStats[stat] * mult);
       }

@@ -2,6 +2,29 @@
 
 All notable changes to **Athlon Showdex** (a fork of [doshidak/showdex](https://github.com/doshidak/showdex) for [Pokéathlon](https://play.pokeathlon.com)).
 
+## v1.0.5
+
+Official release consolidating the v1.0.4-hotfix.1 fixes plus custom-ability support, an item/type-chart audit, and the first unit tests.
+
+**Aegislash Stance Change (fusions) — matches Pokémon Infinite Fusion**
+- Blade forme keeps the **Shield** fusion and **swaps the fused base Atk↔Def and Sp.Atk↔Sp.Def** (the real PIF mechanic), instead of re-fusing with Aegislash-Blade's own base stats.
+- Blade forme **persists across battle updates** (no longer reverts to Shield), the manual Shield ⟷ Blade toggle sticks, and it works whether Aegislash is the **head or the body**.
+- A fused Aegislash in Blade forme keeps its **fusion name and sprite**.
+
+**Custom abilities**
+- Fangame abilities now apply their stat effects. Always-on ones (Athenian / Pure Focus / Genius ×2 SpA, Sharp Coral, Tormented) affect both the displayed stats *and* the damage calc; weather/terrain/status-gated ones (Sandy Defense, Ice Cleats, Forest King, Psycho Slider, Attunement) are reflected in the displayed stats.
+
+**Other fixes**
+- **Eviolite** applies when *either* the head or the body is not-fully-evolved.
+
+**Audited (confirmed correct)**
+- All 12 custom stat-multiplier items are wired; the client's old dragonfang/dragonscale stat code is a client bug (type-power / evo items) and is correctly excluded.
+- The custom type chart is read live from the client, so custom types & server matchup tweaks can't drift.
+
+**Internal**
+- First unit tests (`vitest`) locking down the fusion engine (`fuseStat`, `fuseBaseStats`, `fuseTypes`, `orderFusionTypes`, Aegislash Blade swap) — `pnpm test`.
+- README rewritten with a mechanics-accuracy / known-limitations / pros-cons section.
+
 ## v1.0.4-hotfix.1
 
 **Stance Change (fusions) — rebuilt to match Pokémon Infinite Fusion**
