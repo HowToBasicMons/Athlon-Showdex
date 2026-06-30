@@ -99,7 +99,12 @@ export const guessMatchingPresets = (
       || !preset.teraTypes?.length
       || preset.teraTypes.includes(revealedTeraType);
 
-    const abilitiesMatch = !revealedAbility
+    // like itemsMatch (below), the ability isn't reliably role-discriminative in Randoms — and mega formes
+    // guarantee a mismatch: the preset lists the POST-mega ability (e.g. Venusaur-Mega "Thick Fat") while the
+    // battle still reveals the BASE ability (Chlorophyll/Overgrow), so a mismatched ability must NOT reject an
+    // otherwise move-matching role. let the revealed MOVES discriminate; abilities only gate non-Randoms.
+    const abilitiesMatch = randoms
+      || !revealedAbility
       || (currentForme.startsWith('Terapagos') && preset.speciesForme === 'Terapagos' && preset.ability === 'Tera Shift' as AbilityName)
       || [preset.ability, ...flattenAlts(preset.altAbilities)].includes(revealedAbility);
 
