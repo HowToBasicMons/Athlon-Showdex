@@ -15,8 +15,16 @@ Merged **upstream Showdex v1.4.0** into the Pokéathlon fork — all of our work
 **Fork integrity**
 - Verified every Pokéathlon system survived the merge unchanged: fusion engine, custom abilities & items, New Moon, Expert Moves, presets, sprites, types, and the rebrand. The `@smogon/calc` ShowdexCalcMods patch is confirmed applied.
 
+**Full per-mod mechanics support**
+- **Per-mod dex routing** — the calc now reads each fangame's own dex, so custom move types resolve everywhere (e.g. Soulstones' Aura Sphere → Light, Hyper Voice/Boomburst → Sound), along with per-mod base stats, learnsets, abilities & items.
+- **Custom-type damage abilities** — Soulstones (Virtuoso, Light Bulb, Affection, Maestro, …) & Insurgence (Shadow Synergy/Call, Spirit Call, Psycho Call) boost their type's damage; HP-gated ones included.
+- **Type-resist / immunity abilities** — Light Bulb/Terrorize (halve incoming Dark/Bug), Crystalline (halve Ground/Water), and full immunities Disenchant (Fairy), Lead Skin (Nuclear), Windy Wall (Flying).
+- **Mod-scoped redefined abilities** — Soulstones' Battle Armor/Shell Armor/Snow Cloak/Sand Veil/Overcoat/Attunement only apply in Soulstones (no leaking into other formats).
+- **Custom items** — Soulstones Orion orbs corrected to ×2, Insurgence Delta items (Dragon Fang/Scale, Light Ball → Pikachu-Delta).
+- Covers **Soulstones, Insurgence, Uranium, Chaos, Mariomon, Infinity** & Infinite Fusion. (Custom type charts were already read live from the client.)
+
 **Internal**
-- Added regression tests for the custom item/ability stat-mod resolvers (now **110** tests total).
+- Added regression tests for the custom item/ability stat-mod resolvers (now **132** tests total).
 - Consolidated on the upstream Vitest config; fixed an incomplete teledex test mock.
 
 ## v1.0.5
