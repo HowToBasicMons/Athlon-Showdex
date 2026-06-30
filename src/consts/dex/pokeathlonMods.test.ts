@@ -172,3 +172,27 @@ describe('getPokeathlonAbilityIncomingMoveMod (Soulstones defender type-resist)'
     expect(getPokeathlonAbilityIncomingMoveMod('Levitate', 'Ground', ss)).toBe(1);
   });
 });
+
+describe('Insurgence custom-type "call" abilities + Delta items', () => {
+  const ins = (extra = {}) => ({ modId: 'gen9insurgence', ...extra });
+
+  it('Shadow Synergy boosts Dark unconditionally; the "call" abilities require <= 1/3 HP', () => {
+    expect(getPokeathlonAbilityMoveBoost('Shadow Synergy', 'Dark', ins())).toBe(1.5);
+    expect(getPokeathlonAbilityMoveBoost('Shadow Call', 'Dark', ins({ lowHp: true }))).toBe(1.5);
+    expect(getPokeathlonAbilityMoveBoost('Shadow Call', 'Dark', ins({ lowHp: false }))).toBe(1);
+    expect(getPokeathlonAbilityMoveBoost('Spirit Call', 'Ghost', ins({ lowHp: true }))).toBe(1.5);
+    expect(getPokeathlonAbilityMoveBoost('Psycho Call', 'Psychic', ins({ lowHp: true }))).toBe(1.5);
+  });
+
+  it('does not apply in other mods', () => {
+    expect(getPokeathlonAbilityMoveBoost('Shadow Synergy', 'Dark', { modId: 'gen9soulstones' })).toBe(1);
+  });
+
+  it('Insurgence Delta items double the right stat for Delta holders', () => {
+    expect(getPokeathlonItemStatMods('Dragon Fang', 'Clamperl-Delta')).toEqual({ atk: 2 });
+    expect(getPokeathlonItemStatMods('Dragon Scale', 'Clamperl-Delta')).toEqual({ def: 2 });
+    expect(getPokeathlonItemStatMods('Light Ball', 'Pikachu-Delta')).toEqual({ atk: 2, spa: 2 });
+    // vanilla Pikachu Light Ball is left to @smogon/calc (not in our table)
+    expect(getPokeathlonItemStatMods('Light Ball', 'Pikachu')).toEqual({});
+  });
+});

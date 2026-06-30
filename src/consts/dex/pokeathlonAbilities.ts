@@ -222,6 +222,12 @@ export const PokeathlonAbilityMoveBoosts: PokeathlonAbilityMoveBoostRule[] = [
   { abilities: ['spellcaster'], moveTypes: ['Psychic'], multiplier: 1.5, requiresLowHp: true, scope: ['soulstones'] },
   { abilities: ['starstruck'], moveTypes: ['Cosmic'], multiplier: 1.5, requiresLowHp: true, scope: ['soulstones'] },
   { abilities: ['irradiate'], moveTypes: ['Light'], multiplier: 1.5, requiresLowHp: true, scope: ['soulstones'] },
+
+  // Insurgence custom-type offensive boosters
+  { abilities: ['shadowsynergy'], moveTypes: ['Dark'], multiplier: 1.5, scope: ['insurgence'] },
+  { abilities: ['shadowcall'], moveTypes: ['Dark'], multiplier: 1.5, requiresLowHp: true, scope: ['insurgence'] },
+  { abilities: ['spiritcall'], moveTypes: ['Ghost'], multiplier: 1.5, requiresLowHp: true, scope: ['insurgence'] },
+  { abilities: ['psychocall'], moveTypes: ['Psychic'], multiplier: 1.5, requiresLowHp: true, scope: ['insurgence'] },
 ];
 
 /**
