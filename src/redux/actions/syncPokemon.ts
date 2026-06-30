@@ -123,6 +123,24 @@ export const syncPokemon = (
         break;
       }
 
+      case 'fusion': {
+        // Pokéathlon Stance Change (Body = Aegislash): same as the Head case below — preserve our
+        // emulated/manual Blade/Shield Body forme instead of letting a client re-sync reset it back
+        // to the base Aegislash. (No-op if the client doesn't report a `fusion`, since undefined
+        // values are skipped above.)
+        if (
+          formatId(syncedPokemon.dirtyAbility || syncedPokemon.ability) === 'stancechange'
+            && !!syncedPokemon.fusion
+            && formatId(syncedPokemon.fusion).replace(/blade$/, '') === 'aegislash'
+            && !!value
+            && formatId(value as string).replace(/blade$/, '') === 'aegislash'
+        ) {
+          return;
+        }
+
+        break;
+      }
+
       case 'speciesForme': {
         if (clientIllusion) {
           return;
@@ -130,6 +148,19 @@ export const syncPokemon = (
 
         // e.g., 'Urshifu-*' -> 'Urshifu' (to fix forme switching, which is prevented due to the wildcard forme)
         value = (value as string).replace('-*', '');
+
+        // Pokéathlon Stance Change (Head = Aegislash): the IF client doesn't track Blade/Shield for a
+        // fused Aegislash, so it always reports the base 'Aegislash'. Without this, every re-sync would
+        // clobber our current forme (whether set by the user's manual forme toggle or emulated below
+        // from the last move) back to Shield. So if Stance Change is active & both our current forme &
+        // the client-reported forme are an Aegislash forme, preserve whatever we currently have.
+        if (
+          formatId(syncedPokemon.dirtyAbility || syncedPokemon.ability) === 'stancechange'
+            && formatId(syncedPokemon.speciesForme).replace(/blade$/, '') === 'aegislash'
+            && formatId(value as string).replace(/blade$/, '') === 'aegislash'
+        ) {
+          return;
+        }
 
         // retain any switched Gmax formes if it still equals its forme in-battle with the Gmax suffix removed
         // (e.g., syncedPokemon.speciesForme = 'Cinderace-Gmax' & value = 'Cinderace' would equal)
@@ -475,24 +506,40 @@ export const syncPokemon = (
 
         // Pokéathlon: emulate Aegislash's Stance Change for fusions — the IF client doesn't emit a
         // `formechange` volatile for a fused Aegislash, so derive Shield <-> Blade from the last
-        // move used (damaging -> Blade, King's Shield -> Shield). Base stats re-fuse via the
-        // re-sanitize at the end of this function, so the correct forme's stats are reflected.
+        // move used (damaging -> Blade, King's Shield -> Shield). This works whether Aegislash is the
+        // Head (`speciesForme`) OR the Body (`fusion`); the relevant forme is toggled & the fused base
+        // stats re-fuse via the re-sanitize at the end of this function, reflecting the correct stats.
         const stanceAbility = formatId(syncedPokemon.dirtyAbility || syncedPokemon.ability);
+        const headIsAegislash = formatId(syncedPokemon.speciesForme).replace(/blade$/, '') === 'aegislash';
+        const bodyIsAegislash = !!syncedPokemon.fusion
+          && formatId(syncedPokemon.fusion).replace(/blade$/, '') === 'aegislash';
 
         if (
           !transformedForme
             && stanceAbility === 'stancechange'
-            && formatId(syncedPokemon.speciesForme).replace(/blade$/, '') === 'aegislash'
+            && (headIsAegislash || bodyIsAegislash)
         ) {
           const lastMoveId = formatId(syncedPokemon.lastMove);
 
+          // resolve the target forme: King's Shield -> Shield, any damaging move -> Blade
+          let targetForme: string = null;
+
           if (lastMoveId === 'kingsshield') {
-            syncedPokemon.speciesForme = 'Aegislash';
+            targetForme = 'Aegislash';
           } else if (lastMoveId) {
             const lastMoveData = dex.moves.get(syncedPokemon.lastMove);
 
             if (lastMoveData?.exists && lastMoveData.category && lastMoveData.category !== 'Status') {
-              syncedPokemon.speciesForme = 'Aegislash-Blade';
+              targetForme = 'Aegislash-Blade';
+            }
+          }
+
+          if (targetForme) {
+            // apply the forme change to whichever half is Aegislash (Head takes precedence)
+            if (headIsAegislash) {
+              syncedPokemon.speciesForme = targetForme;
+            } else if (bodyIsAegislash) {
+              syncedPokemon.fusion = targetForme;
             }
           }
         }

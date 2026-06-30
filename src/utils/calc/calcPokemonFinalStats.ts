@@ -413,7 +413,12 @@ export const calcPokemonFinalStats = (
   }
 
   // apply NFE (not fully evolved) effects
-  const nfe = notFullyEvolved(species);
+  // Pokéathlon Eviolite: the IF client grants the boost if EITHER the Head OR the Body is NFE, so
+  // OR in the Body species' (`fusion`) NFE state here too (notFullyEvolved() only knows the Head).
+  const fusionSpeciesNfe = !!pokemon.fusion
+    && dex.species.get(pokemon.fusion)?.exists
+    && notFullyEvolved(pokemon.fusion);
+  const nfe = notFullyEvolved(species) || fusionSpeciesNfe;
 
   if (nfe) {
     // 50% DEF/SPD boost if "Eviolite" is held by an NFE Pokemon

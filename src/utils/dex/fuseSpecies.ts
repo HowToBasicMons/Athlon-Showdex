@@ -264,9 +264,23 @@ export const getFusionName = (
   }
 
   try {
-    return (Dex as unknown as {
+    const getData = (Dex as unknown as {
       getFusionData?: (p: { species: string; fusion: string }) => { nickname?: string };
-    })?.getFusionData?.({ species: headForme, fusion: bodyForme })?.nickname || null;
+    })?.getFusionData;
+
+    if (typeof getData !== 'function') {
+      return null;
+    }
+
+    // try the exact formes first, then fall back to the base species for each half (e.g. battle
+    // formes like 'Aegislash-Blade' have no fusion data of their own — the fusion identity lives on
+    // the base 'Aegislash'), so the proper fusion name survives an Aegislash stance change.
+    const headBase = Dex.species?.get?.(headForme)?.baseSpecies || headForme;
+    const bodyBase = Dex.species?.get?.(bodyForme)?.baseSpecies || bodyForme;
+
+    return getData({ species: headForme, fusion: bodyForme })?.nickname
+      || getData({ species: headBase, fusion: bodyBase })?.nickname
+      || null;
   } catch {
     return null;
   }
@@ -298,12 +312,23 @@ export const getFusionSpriteUrl = (
   // client-exact: use the live client's own getFusionData() to compute the sprite "extension"
   // (handles head/body ordering + alt-sprite variants exactly like the battle view)
   try {
-    const ext = (Dex as unknown as {
+    const getData = (Dex as unknown as {
       getFusionData?: (p: { species: string; fusion: string }) => { extension?: string };
-    })?.getFusionData?.({ species: headForme, fusion: bodyForme })?.extension;
+    })?.getFusionData;
 
-    if (ext) {
-      return `https://play.pokeathlon.com/sprites/fusion-sprites/${ext}.png`;
+    if (typeof getData === 'function') {
+      // try the exact formes, then fall back to each half's base species — battle formes like
+      // 'Aegislash-Blade' return an empty extension (the fusion sprite lives on the base 'Aegislash'),
+      // so this keeps the fused sprite intact through an Aegislash stance change.
+      const headBase = Dex.species?.get?.(headForme)?.baseSpecies || headForme;
+      const bodyBase = Dex.species?.get?.(bodyForme)?.baseSpecies || bodyForme;
+
+      const ext = getData({ species: headForme, fusion: bodyForme })?.extension
+        || getData({ species: headBase, fusion: bodyBase })?.extension;
+
+      if (ext) {
+        return `https://play.pokeathlon.com/sprites/fusion-sprites/${ext}.png`;
+      }
     }
   } catch {
     // fall through to the number-based computation below

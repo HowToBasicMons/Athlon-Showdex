@@ -258,13 +258,25 @@ export const sanitizePokemon = <
   // (the actual numbers the damage calc uses). Head-biased for HP/SpA/SpD, body-biased for Atk/Def/Spe.
   // (Skipped while transformed, which copies the target's stats instead.)
   if (!sanitizedPokemon.transformedForme && sanitizedPokemon.fusion && nonEmptyObject(species?.baseStats)) {
-    const fusionSpecies = dex.species.get(sanitizedPokemon.fusion);
+    // Pokéathlon Stance Change (PIF mechanic): a fused Aegislash in its Blade forme does NOT fuse using
+    // Aegislash-Blade's own base stats — instead PIF fuses the *Shield* (base) stats, then swaps the
+    // resulting fused Atk<->Def & SpA<->SpD. So detect the Blade stance on either half (Head or Body),
+    // fuse from each half's Shield base ('Aegislash'), then swap those two stat pairs on the fused table.
+    const headIsBlade = formatId(sanitizedPokemon.speciesForme) === 'aegislashblade';
+    const bodyIsBlade = formatId(sanitizedPokemon.fusion) === 'aegislashblade';
 
-    if (fusionSpecies?.exists && nonEmptyObject(fusionSpecies.baseStats)) {
-      sanitizedPokemon.baseStats = fuseBaseStats(
-        species.baseStats as Showdown.StatsTable,
+    const headStatsSpecies = headIsBlade ? dex.species.get('Aegislash') : species;
+    const fusionSpecies = bodyIsBlade ? dex.species.get('Aegislash') : dex.species.get(sanitizedPokemon.fusion);
+
+    if (headStatsSpecies?.exists && fusionSpecies?.exists && nonEmptyObject(headStatsSpecies.baseStats) && nonEmptyObject(fusionSpecies.baseStats)) {
+      const fused = fuseBaseStats(
+        headStatsSpecies.baseStats as Showdown.StatsTable,
         fusionSpecies.baseStats as Showdown.StatsTable,
       );
+
+      sanitizedPokemon.baseStats = (headIsBlade || bodyIsBlade)
+        ? { ...fused, atk: fused.def, def: fused.atk, spa: fused.spd, spd: fused.spa }
+        : fused;
     }
   }
 

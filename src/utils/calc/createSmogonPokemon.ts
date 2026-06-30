@@ -309,7 +309,11 @@ export const createSmogonPokemon = (
     options,
   );
 
-  if (typeof smogonPokemon?.species?.nfe !== 'boolean') {
+  // Pokéathlon Eviolite: the client grants Eviolite's Def/SpD boost if EITHER the Head OR the Body is
+  // not-fully-evolved (NFE). @smogon/calc only knows the Head species, so it may set nfe=false when the
+  // Head is fully-evolved even though the Body is NFE — clobbering the boost. So we always re-derive nfe
+  // by OR'ing the Head & Body NFE states (regardless of what @smogon/calc decided).
+  if (smogonPokemon?.species) {
     (smogonPokemon.species as Writable<Specie>).nfe = notFullyEvolved(pokemon.speciesForme, format)
       || (!!fusionSpecies?.exists && notFullyEvolved(pokemon.fusion, format));
   }
