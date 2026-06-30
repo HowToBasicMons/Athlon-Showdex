@@ -74,6 +74,21 @@ describe('getPokeathlonAbilityStatMods', () => {
     expect(getPokeathlonAbilityStatMods('Levitate')).toEqual({});
   });
 
+  it('mod-scoped rules only apply in their mod (Soulstones redefines Battle Armor / Shell Armor)', () => {
+    // wrong / no mod context -> vanilla behavior (no stat change)
+    expect(getPokeathlonAbilityStatMods('Battle Armor')).toEqual({});
+    expect(getPokeathlonAbilityStatMods('Battle Armor', { modId: 'gen9ou' })).toEqual({});
+    expect(getPokeathlonAbilityStatMods('Shell Armor', { modId: 'gen9insurgence' })).toEqual({});
+    // correct mod -> the redefined stat boost applies
+    expect(getPokeathlonAbilityStatMods('Battle Armor', { modId: 'gen9soulstones' })).toEqual({ spd: 1.2 });
+    expect(getPokeathlonAbilityStatMods('Shell Armor', { modId: 'gen9soulstones' })).toEqual({ def: 1.2 });
+  });
+
+  it('un-scoped custom abilities apply regardless of mod', () => {
+    expect(getPokeathlonAbilityStatMods('athenian', { modId: 'gen9ou' })).toEqual({ spa: 2 });
+    expect(getPokeathlonAbilityStatMods('athenian', {})).toEqual({ spa: 2 });
+  });
+
   it('isPokeathlonStatAbility flags only known custom stat abilities', () => {
     expect(isPokeathlonStatAbility('athenian')).toBe(true);
     expect(isPokeathlonStatAbility('Sharp Coral')).toBe(true);

@@ -8,6 +8,7 @@ import {
   detectGenFromFormat,
   detectLegacyGen,
   getDexForFormat,
+  getPokeathlonModId,
   notFullyEvolved,
   shouldIgnoreItem,
 } from '@showdex/utils/dex';
@@ -518,6 +519,7 @@ export const calcPokemonFinalStats = (
     weather,
     terrain,
     status: !!status,
+    modId: getPokeathlonModId(typeof format === 'string' ? format : ''),
   });
 
   (Object.entries(poaAbilityMods) as [Showdown.StatName, number][]).forEach(([stat, mult]) => {

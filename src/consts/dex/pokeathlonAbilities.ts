@@ -17,6 +17,14 @@ export interface PokeathlonAbilityContext {
   terrain?: string;
   /** Whether the holder currently has a non-volatile status condition. */
   status?: boolean;
+  /**
+   * Active Pokéathlon **server mod id** (e.g. `'gen9soulstones'`), from `getPokeathlonModId()`.
+   *
+   * * Required to apply any **mod-scoped** rule (see `PokeathlonAbilityStatModRule.scope`) — e.g. an
+   *   ability a specific mod *redefines* from its vanilla behavior (Soulstones' Battle Armor →
+   *   SpD ×1.2). Un-scoped (custom-name) rules apply regardless.
+   */
+  modId?: string;
 }
 
 /**
@@ -40,6 +48,14 @@ export interface PokeathlonAbilityStatModRule {
     terrain?: string[];
     status?: boolean;
   };
+  /**
+   * Optional mod scope — a list of mod slugs (e.g. `['soulstones']`, the part after `gen<#>`).
+   *
+   * * **Required** for any ability a mod *redefines* from a vanilla ability (e.g. Battle Armor),
+   *   so the rule doesn't wrongly fire in other formats. Omit for custom-name abilities that only
+   *   exist in Pokéathlon mods (safe to apply universally).
+   */
+  scope?: string[];
 }
 
 /**
@@ -74,6 +90,10 @@ export const PokeathlonAbilityStatMods: PokeathlonAbilityStatModRule[] = [
   // terrain-gated
   { abilities: ['forestking'], mods: { atk: 1.3333, spa: 1.3333 }, condition: { terrain: ['grassy'] } },
   { abilities: ['psychoslider'], mods: { spe: 2 }, condition: { terrain: ['psychic'] } },
+
+  // --- Soulstones: vanilla abilities the mod redefines (must be mod-scoped!) ---
+  { abilities: ['battlearmor'], mods: { spd: 1.2 }, scope: ['soulstones'] },
+  { abilities: ['shellarmor'], mods: { def: 1.2 }, scope: ['soulstones'] },
 ];
 
 /**
@@ -112,8 +132,16 @@ export const getPokeathlonAbilityStatMods = (
 
   const output: Partial<Record<Showdown.StatName, number>> = {};
 
+  // active mod slug (e.g. 'soulstones') derived from the modId, for mod-scoped rules
+  const activeModSlug = context.modId ? context.modId.replace(/^gen\d+/, '') : null;
+
   PokeathlonAbilityStatMods.forEach((rule) => {
     if (!rule.abilities.includes(id)) {
+      return;
+    }
+
+    // mod-scoped rules (e.g. a vanilla ability a mod redefines) only apply in their mod
+    if (rule.scope?.length && (!activeModSlug || !rule.scope.includes(activeModSlug))) {
       return;
     }
 

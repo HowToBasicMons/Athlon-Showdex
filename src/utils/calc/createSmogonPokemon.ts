@@ -19,6 +19,7 @@ import {
   detectGenFromFormat,
   detectLegacyGen,
   getGenDexForFormat,
+  getPokeathlonModId,
   notFullyEvolved,
 } from '@showdex/utils/dex';
 import { calcPokemonHpPercentage } from './calcPokemonHp';
@@ -246,7 +247,12 @@ export const createSmogonPokemon = (
 
     const poaAbilityMods = getPokeathlonAbilityStatMods(
       ability,
-      { weather: weatherId, terrain: terrainId, status: !!status },
+      {
+        weather: weatherId,
+        terrain: terrainId,
+        status: !!status,
+        modId: getPokeathlonModId(format),
+      },
       !field, // unconditionalOnly when there's no field context
     );
 
