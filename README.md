@@ -34,7 +34,7 @@ the server's custom data.
 - **Fusion sprites** — pulls Pokéathlon's custom fusion art, with fallbacks to the head's fangame/vanilla sprite (so
   Chaos fusions & artless pairs still render).
 - **Custom types** — Sound, Light, Cosmic, Nuclear & Crystal are wired through typing, move types, the type chart and
-  damage effectiveness.
+  damage effectiveness, with immunities/resistances read from the **server's own per-mod type charts**.
 - **Custom-mod formats** — Soulstones, Insurgence, Uranium, Infinity, Mariomon & Chaos are recognized; their custom
   rosters/moves/items/types resolve in the calc.
 - **Pokéathlon presets** — opponent sets are predicted from Pokéathlon's own usage data (incl. fusion sets, matched by
@@ -65,13 +65,17 @@ things are exact, some are approximations. Here's the honest state of it.
 ### Working / verified
 - **Fused base stats & typing** — head/body bias matches the server; typing is read straight from the Infinite
   Fusion mod data (can't drift).
-- **Custom type chart** — read live from the client, so Sound / Light / Cosmic / Nuclear / Crystal and any server
-  matchup tweaks are always current.
+- **Custom type chart** — the five custom types (Sound / Light / Cosmic / Nuclear / Crystal) resolve their
+  immunities & resistances from the **server's own per-mod type charts** (bundled into the extension), so they match
+  the server rather than a stale/incomplete live chart.
 - **Custom item stat effects** — all 12 stat-multiplier items are wired (Goomba Boots, Sturdy Shell, the Orion orbs,
   Anchor, Assault/Muscle Armor, Wise Vest, Arcane Spellbook, …), in both the shown stats and the damage calc.
-- **Aegislash Stance Change on fusions** — Shield ↔ Blade. Blade keeps the Shield fusion and **swaps the fused
-  Atk↔Def & SpA↔SpD** (the real PIF mechanic), auto-switches from the last move used, persists across battle
-  updates, and keeps the fusion name + sprite. Works whether Aegislash is the head or the body.
+- **Aegislash Stance Change on fusions** — Shield ↔ Blade. Blade keeps the Shield fusion and **swaps the FINAL
+  on-screen stats** Atk↔Def & SpA↔SpD (the real PIF mechanic — your Defense investment effectively becomes Attack),
+  auto-switches from the last move used, persists across battle updates, and keeps the fusion name + sprite. The
+  manual Shield ⟷ Blade toggle works whether Aegislash is the **head or the body**.
+- **Frostburn (`frb`)** — the special analog of Burn; halves Special-move damage (skipped with Guts), matching the
+  server (which remaps Freeze to it).
 - **Eviolite** — applies when *either* half is not-fully-evolved.
 - **Custom abilities** — fangame abilities like Athenian / Pure Focus / Genius (×2 SpA), Sharp Coral, Tormented
   (always-on), plus the weather/terrain/status-gated ones (Sandy Defense, Forest King, Ice Cleats, Psycho Slider,
@@ -82,17 +86,15 @@ things are exact, some are approximations. Here's the honest state of it.
   typing), matching the client.
 
 ### Known limitations (not yet 100%)
-- **Body-half Aegislash manual toggle** — you can only manually click Shield/Blade when Aegislash is the *head*
-  (the forme switcher is head-based). If it's the *body*, only the auto-switch (from the last move) works.
 - **New Moon damage** — applied as a base-power approximation (a roll may be off by ~1 HP vs. the exact in-game
   damage chain).
 - **Presets** — usage-based predictions + sample sets currently cover Mariomon best; other mods (Insurgence,
   Uranium, Infinity, Chaos, Soulstones) lean on usage data only.
 
 ### Pros / cons at a glance
-- **Pros:** real fusion stats/typing/abilities/items, live custom type chart, custom abilities & New Moon in the
-  damage number, full Expert-Move coverage, Chrome/Edge + Firefox builds, Pokéathlon-only injection, fast in-battle
-  calc, no manual data upkeep (reads the live client).
+- **Pros:** real fusion stats/typing/abilities/items, server-accurate custom type chart, custom abilities & New Moon
+  in the damage number, full Expert-Move coverage, Chrome/Edge + Firefox builds, Pokéathlon-only injection, fast
+  in-battle calc, no manual data upkeep (reads the live client).
 - **Cons:** beta/unpacked (manual install + updates), New Moon damage is a close approximation, preset depth varies
   by mod.
 
@@ -102,10 +104,17 @@ fusion (which half is which), item/ability/nature, and the stat shown vs expecte
 ## Credits
 
 - **Maintained by** [HowToBasicMons](https://github.com/HowToBasicMons).
-- **Beta testing** — Psychoplasm, Aevilok, I Like Porygon2, Jaykio, NiaDoesDumbStuff & Rowlet. Thank you for the bug
-  reports and matchups. 💜
-- **Stance Change** — special thanks to **Jaykio** and **I Like Porygon2** for testing the Aegislash fusion stance
-  mechanic and helping get the Blade/Shield stat swap right.
+- **Dunscy** — for announcing the project, helping with a few ideas, and pointing me to the Pokéathlon client &
+  server source (which made the server-accurate type charts, abilities and move types possible).
+- **HUGE thanks to the testers** — **Jaykio, Tauros Sweep, I Like Porygon2 & Aevilok**:
+  - **Jaykio** and **I Like Porygon2** — for the Aegislash Stance Change work (getting the Blade/Shield final-stat
+    swap right).
+  - **Tauros Sweep** — for confirming and testing the Soulstones abilities, typings & moves.
+  - **Aevilok** — for the initial workaround that got a lot of this going.
+- Thanks also to **Psychoplasm, NiaDoesDumbStuff & Rowlet** for the bug reports and matchups. 💜
+
+> A few more updates will be pushed out tomorrow. After that I'll likely be quiet for a few months until I come back
+> or get a window of free time. Until then — enjoy fusing, battling, and keep on climbing the ladder, Athlonians! 🐢
 
 ### Built on Showdex — go show the original devs some love
 

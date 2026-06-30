@@ -43,15 +43,20 @@ Some mechanics can't be modeled exactly in a static calc:
 - **New Moon weather damage** is applied as a **base-power approximation** rather than the server's exact damage step, so a roll can be **off by ~1 HP**. (The server boosts Ghost/Dark ×1.35 and weakens Fairy ×0.75 late in the damage formula; we apply it earlier, which rounds slightly differently. The exact fix means patching the shared damage engine, so it's deferred to keep every other format rock-solid.)
 - Intentionally skipped: turn-order abilities (Bushido "moves first", Stakeout), the frostbite-specific Superconductive, Chaos' conditional Natural Anomaly, and Light Ball on Pikachu *fusion bodies*.
 
-## 💜 Thank you, testers
-**Psychoplasm, Aevilok, I Like Porygon2, Jaykio, NiaDoesDumbStuff & Rowlet.**
+## 💜 Thank you
+**Dunscy** — for announcing the project, a few ideas, and pointing me to the Pokéathlon client & server source (which made this release's server-accurate type charts, abilities and move types possible).
 
-Special thanks to:
-- **Tauros Sweep** — for testing Soulstones' abilities, typings & moves (this release's custom-type matchups, abilities and move types lean heavily on that).
-- **Jaykio** and **I Like Porygon2** — for the Aegislash Stance Change work.
+**HUGE thanks to the testers — Jaykio, Tauros Sweep, I Like Porygon2 & Aevilok:**
+- **Jaykio** and **I Like Porygon2** — the Aegislash Stance Change work (the Blade/Shield final-stat swap).
+- **Tauros Sweep** — confirming & testing the Soulstones abilities, typings & moves.
+- **Aevilok** — the initial workaround that got a lot of this going.
+
+Thanks also to **Psychoplasm, NiaDoesDumbStuff & Rowlet** for the bug reports and matchups.
 
 ## 🗓️ Heads up
-College is starting, so updates come **every few months** when I get a window. Bug reports (now easier with the Dump Bug Report tool) are always welcome on the [Issues](https://github.com/HowToBasicMons/Athlon-Showdex/issues) page.
+A few more updates ship **tomorrow**. After that I'll likely be quiet for a few months until I come back or get a window of free time (college). Bug reports (now easier with the Dump Bug Report tool) are always welcome on the [Issues](https://github.com/HowToBasicMons/Athlon-Showdex/issues) page.
+
+Until then — **enjoy fusing, battling, and keep on climbing the ladder, Athlonians!** 🐢
 
 ## ❤️ Built on Showdex
 A fork of [doshidak/showdex](https://github.com/doshidak/showdex) by **Bot Keith & analogcam** — please support them: [Patreon](https://patreon.com/showdex) · [PayPal](https://paypal.com/donate/?hosted_button_id=ZUYJAGAVX6MBN). Licensed under AGPL-3.0.
