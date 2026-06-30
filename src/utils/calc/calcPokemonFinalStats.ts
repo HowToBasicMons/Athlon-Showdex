@@ -102,6 +102,16 @@ export const calcPokemonFinalStats = (
     record.swap('def', 'spd', 'moves', 'Wonder Room');
   }
 
+  // Pokéathlon Stance Change (PIF): a fused Aegislash in Blade forme swaps the FINAL Atk<->Def &
+  // SpA<->SpD stats (not the base stats) — IF copy-pastes the on-screen raw numbers & trades places,
+  // so e.g. a Def investment effectively becomes an Atk investment. record was seeded from spreadStats
+  // (final EV/IV/nature stats), so swapping here (before boosts) matches the in-game behavior.
+  // (Non-fusion Aegislash-Blade uses the dex's Blade base stats directly, so no swap needed there.)
+  if (!!pokemon.fusion && (id(pokemon.speciesForme) === 'aegislashblade' || id(pokemon.fusion) === 'aegislashblade')) {
+    record.swap('atk', 'def', 'abilities', 'Stance Change');
+    record.swap('spa', 'spd', 'abilities', 'Stance Change');
+  }
+
   // apply stat boosts
   // note: calcBoostedStats() writes directly to our existing record via record.apply()
   void calcBoostedStats(format, pokemon, record);

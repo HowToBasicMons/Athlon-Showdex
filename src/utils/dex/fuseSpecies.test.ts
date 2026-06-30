@@ -44,10 +44,15 @@ describe('fuseBaseStats — Aegislash (Shield) + Doublade', () => {
   });
 });
 
-describe('Stance Change (PIF) — Blade swaps fused Atk<->Def & SpA<->SpD', () => {
-  it('swaps the fused Shield stats to produce Blade-forme stats', () => {
+describe('Stance Change (PIF) — Blade swaps the FINAL Atk<->Def & SpA<->SpD stats', () => {
+  // Note: PIF fuses from the Shield base stats; the Blade swap is applied to the FINAL computed stats
+  // (post EV/IV/nature) in calcPokemonFinalStats (display) & createSmogonPokemon (calc), NOT to the base
+  // stats. This illustrates the swap operation (here on the fused Shield table for brevity).
+  it('trades the two stat pairs (Def investment effectively becomes Atk)', () => {
     const shield = fuseBaseStats(AEGISLASH, DOUBLADE);
-    const blade = { ...shield, atk: shield.def, def: shield.atk, spa: shield.spd, spd: shield.spa };
+    const blade = {
+      ...shield, atk: shield.def, def: shield.atk, spa: shield.spd, spd: shield.spa,
+    };
 
     expect(blade).toEqual({
       hp: 59,
