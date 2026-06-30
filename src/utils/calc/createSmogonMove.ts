@@ -1,6 +1,6 @@
 import { type AbilityName, type MoveName, Move as SmogonMove } from '@smogon/calc';
 import { MOVES } from '@smogon/calc/dist/data/moves';
-import { getPokeathlonAbilityMoveBoost } from '@showdex/consts/dex';
+import { getPokeathlonAbilityIncomingMoveMod, getPokeathlonAbilityMoveBoost } from '@showdex/consts/dex';
 import { type CalcdexBattleField, type CalcdexMoveOverride, type CalcdexPokemon } from '@showdex/interfaces/calc';
 import { clamp, formatId } from '@showdex/utils/core';
 import {
@@ -243,7 +243,21 @@ export const createSmogonMove = (
     });
   })();
 
-  const bpFactor = newMoonFactor * abilityMoveBoost;
+  // Pokéathlon defender type-resist abilities (Soulstones): e.g. Light Bulb takes 0.5x from Dark,
+  // Terrorize takes 0.5x from Bug — keyed off the OPPONENT (defender) ability + this move's type.
+  const abilityIncomingMod = (() => {
+    const defenderAbility = opponentPokemon?.dirtyAbility || opponentPokemon?.ability;
+
+    if (!defenderAbility || !resolvedMoveType) {
+      return 1;
+    }
+
+    return getPokeathlonAbilityIncomingMoveMod(defenderAbility, resolvedMoveType, {
+      modId: getPokeathlonModId(format),
+    });
+  })();
+
+  const bpFactor = newMoonFactor * abilityMoveBoost * abilityIncomingMod;
 
   // applies all our post-construction `bp` mods (calculate() rebuilds the move via clone(), so this
   // must run on both the original & the clone)

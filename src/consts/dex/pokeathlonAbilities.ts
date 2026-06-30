@@ -77,8 +77,8 @@ export const PokeathlonAbilityStatMods: PokeathlonAbilityStatModRule[] = [
   { abilities: ['sharpcoral'], mods: { atk: 2, spa: 2, def: 0.5, spd: 0.5 } },
   { abilities: ['tormented'], mods: { spa: 1.5 } },
 
-  // status-gated (Guts-style)
-  { abilities: ['attunement'], mods: { atk: 1.5 }, condition: { status: true } },
+  // status-gated (Guts-style); Attunement is Soulstones-only & boosts SpA (not Atk), so scope it
+  { abilities: ['attunement'], mods: { spa: 1.5 }, condition: { status: true }, scope: ['soulstones'] },
 
   // weather-gated
   { abilities: ['sandydefense'], mods: { def: 1.5, spd: 1.5 }, condition: { weather: ['sand'] } },
@@ -94,6 +94,9 @@ export const PokeathlonAbilityStatMods: PokeathlonAbilityStatModRule[] = [
   // --- Soulstones: vanilla abilities the mod redefines (must be mod-scoped!) ---
   { abilities: ['battlearmor'], mods: { spd: 1.2 }, scope: ['soulstones'] },
   { abilities: ['shellarmor'], mods: { def: 1.2 }, scope: ['soulstones'] },
+  { abilities: ['snowcloak'], mods: { def: 1.5 }, condition: { weather: ['hail', 'snow'] }, scope: ['soulstones'] },
+  { abilities: ['sandveil'], mods: { spd: 1.5 }, condition: { weather: ['sand'] }, scope: ['soulstones'] },
+  { abilities: ['overcoat'], mods: { def: 1.1, spd: 1.1 }, condition: { weather: ['sand', 'hail', 'snow'] }, scope: ['soulstones'] },
 ];
 
 /**
@@ -252,6 +255,54 @@ export const getPokeathlonAbilityMoveBoost = (
     }
 
     if (rule.requiresLowHp && !context.lowHp) {
+      return mult;
+    }
+
+    return mult * rule.multiplier;
+  }, 1);
+};
+
+/**
+ * Custom **defensive** type-resist abilities — the holder takes reduced damage from a move type
+ * (the `onSourceModifyAtk`/`onSourceModifySpA` halves in the server data).
+ *
+ * * Modeled as a damage multiplier applied off the **defender's** ability in `createSmogonMove()`.
+ * * Note: these are `breakable` on the server (Mold Breaker & co. ignore them); that nuance isn't
+ *   modeled here.
+ *
+ * @since 1.0.7
+ */
+export const PokeathlonAbilityIncomingMoveMods: PokeathlonAbilityMoveBoostRule[] = [
+  // Soulstones: Light Bulb halves incoming Dark; Terrorize halves incoming Bug
+  { abilities: ['lightbulb'], moveTypes: ['Dark'], multiplier: 0.5, scope: ['soulstones'] },
+  { abilities: ['terrorize'], moveTypes: ['Bug'], multiplier: 0.5, scope: ['soulstones'] },
+];
+
+/**
+ * Computes the damage multiplier a **defender's** custom type-resist ability applies to an incoming
+ * move of `moveType` (e.g. Soulstones' Light Bulb taking 0.5x from Dark). Returns `1` if none.
+ *
+ * @since 1.0.7
+ */
+export const getPokeathlonAbilityIncomingMoveMod = (
+  defenderAbility: string,
+  moveType: string,
+  context: { modId?: string } = {},
+): number => {
+  const id = formatId(defenderAbility);
+
+  if (!id || !moveType) {
+    return 1;
+  }
+
+  const activeModSlug = context.modId ? context.modId.replace(/^gen\d+/, '') : null;
+
+  return PokeathlonAbilityIncomingMoveMods.reduce((mult, rule) => {
+    if (!rule.abilities.includes(id) || !rule.moveTypes.includes(moveType)) {
+      return mult;
+    }
+
+    if (rule.scope?.length && (!activeModSlug || !rule.scope.includes(activeModSlug))) {
       return mult;
     }
 

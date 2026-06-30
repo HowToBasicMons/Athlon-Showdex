@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { getPokeathlonAbilityMoveBoost, getPokeathlonAbilityStatMods, isPokeathlonStatAbility } from './pokeathlonAbilities';
+import {
+  getPokeathlonAbilityIncomingMoveMod,
+  getPokeathlonAbilityMoveBoost,
+  getPokeathlonAbilityStatMods,
+  isPokeathlonStatAbility,
+} from './pokeathlonAbilities';
 import { getPokeathlonItemStatMods } from './pokeathlonItems';
 
 describe('getPokeathlonItemStatMods', () => {
@@ -53,8 +58,8 @@ describe('getPokeathlonAbilityStatMods', () => {
   });
 
   it('gates status abilities on a non-volatile status', () => {
-    expect(getPokeathlonAbilityStatMods('attunement', { status: true })).toEqual({ atk: 1.5 });
-    expect(getPokeathlonAbilityStatMods('attunement', { status: false })).toEqual({});
+    expect(getPokeathlonAbilityStatMods('attunement', { status: true, modId: 'gen9soulstones' })).toEqual({ spa: 1.5 });
+    expect(getPokeathlonAbilityStatMods('attunement', { status: false, modId: 'gen9soulstones' })).toEqual({});
   });
 
   it('resolves New Moon weather abilities', () => {
@@ -125,5 +130,40 @@ describe('getPokeathlonAbilityMoveBoost (Soulstones custom-type boosters)', () =
   it('returns 1 for unknown abilities / empty type', () => {
     expect(getPokeathlonAbilityMoveBoost('Levitate', 'Ghost', ss)).toBe(1);
     expect(getPokeathlonAbilityMoveBoost('Virtuoso', '', ss)).toBe(1);
+  });
+});
+
+describe('Soulstones redefined weather abilities', () => {
+  const ss = (extra = {}) => ({ modId: 'gen9soulstones', ...extra });
+
+  it('Attunement is SpA x1.5 when statused (not Atk), Soulstones-only', () => {
+    expect(getPokeathlonAbilityStatMods('Attunement', ss({ status: true }))).toEqual({ spa: 1.5 });
+    expect(getPokeathlonAbilityStatMods('Attunement', { status: true })).toEqual({}); // wrong mod
+  });
+
+  it('Snow Cloak → Def x1.5 in hail/snow (Soulstones)', () => {
+    expect(getPokeathlonAbilityStatMods('Snow Cloak', ss({ weather: 'snow' }))).toEqual({ def: 1.5 });
+    expect(getPokeathlonAbilityStatMods('Snow Cloak', ss({ weather: 'sand' }))).toEqual({});
+    expect(getPokeathlonAbilityStatMods('Snow Cloak', { weather: 'snow' })).toEqual({}); // wrong mod
+  });
+
+  it('Sand Veil → SpD x1.5 in sand; Overcoat → Def/SpD x1.1 in sand/hail/snow (Soulstones)', () => {
+    expect(getPokeathlonAbilityStatMods('Sand Veil', ss({ weather: 'sand' }))).toEqual({ spd: 1.5 });
+    expect(getPokeathlonAbilityStatMods('Overcoat', ss({ weather: 'hail' }))).toEqual({ def: 1.1, spd: 1.1 });
+  });
+});
+
+describe('getPokeathlonAbilityIncomingMoveMod (Soulstones defender type-resist)', () => {
+  const ss = { modId: 'gen9soulstones' };
+
+  it('halves the resisted incoming type', () => {
+    expect(getPokeathlonAbilityIncomingMoveMod('Light Bulb', 'Dark', ss)).toBe(0.5);
+    expect(getPokeathlonAbilityIncomingMoveMod('Terrorize', 'Bug', ss)).toBe(0.5);
+  });
+
+  it('does nothing for other types / mods / unknowns', () => {
+    expect(getPokeathlonAbilityIncomingMoveMod('Light Bulb', 'Fire', ss)).toBe(1);
+    expect(getPokeathlonAbilityIncomingMoveMod('Light Bulb', 'Dark', { modId: 'gen9ou' })).toBe(1);
+    expect(getPokeathlonAbilityIncomingMoveMod('Levitate', 'Ground', ss)).toBe(1);
   });
 });
