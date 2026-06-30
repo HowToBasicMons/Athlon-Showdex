@@ -180,6 +180,13 @@ describe('getPokeathlonAbilityIncomingMoveMod (Soulstones defender type-resist)'
     expect(getPokeathlonAbilityIncomingMoveMod('Lead Skin', 'Normal', { modId: 'gen9uranium' })).toBe(1);
     expect(getPokeathlonAbilityIncomingMoveMod('Disenchant', 'Fairy', { modId: 'gen9soulstones' })).toBe(1);
   });
+
+  it('Infinity Crystalline halves incoming Ground & Water', () => {
+    const inf = { modId: 'gen9infinity' };
+    expect(getPokeathlonAbilityIncomingMoveMod('Crystalline', 'Ground', inf)).toBe(0.5);
+    expect(getPokeathlonAbilityIncomingMoveMod('Crystalline', 'Water', inf)).toBe(0.5);
+    expect(getPokeathlonAbilityIncomingMoveMod('Crystalline', 'Fire', inf)).toBe(1);
+  });
 });
 
 describe('Insurgence custom-type "call" abilities + Delta items', () => {

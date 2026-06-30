@@ -288,6 +288,8 @@ export const PokeathlonAbilityIncomingMoveMods: PokeathlonAbilityMoveBoostRule[]
   { abilities: ['disenchant'], moveTypes: ['Fairy'], multiplier: 0, scope: ['uranium'] }, // Uranium
   { abilities: ['leadskin'], moveTypes: ['Nuclear'], multiplier: 0, scope: ['uranium'] }, // Uranium
   { abilities: ['windywall'], moveTypes: ['Flying'], multiplier: 0, scope: ['chaos'] }, // Chaos
+  // Infinity: Crystalline takes halved damage from Ground & Water (breakable; Mold Breaker nuance not modeled)
+  { abilities: ['crystalline'], moveTypes: ['Ground', 'Water'], multiplier: 0.5, scope: ['infinity'] },
 ];
 
 /**

@@ -93,8 +93,8 @@ grep -nE "onModify(Atk|Def|SpA|SpD|Spe|Damage)|onBasePower" ../pokeathlon-server
 | **Insurgence** | ✅ done | custom-type "call" boosters (Shadow Synergy/Call, Spirit Call, Psycho Call); Delta items (Dragon Fang/Scale, Light Ball→Pikachu-Delta). Shared abilities reuse Soulstones rules. |
 | **Chaos** | ✅ done | sandydefense/psychoslider/anchor reuse existing rules; Windy Wall (Flying immunity) added; onBasePower abilities are vanilla (@smogon/calc). Skipped: Bushido (turn-order), Natural Anomaly (conditional), Light Ball on Pikachu *fusions* (niche). |
 | **Uranium** | ✅ done | Sharp Coral reused; custom type-immunity abilities Disenchant (Fairy) & Lead Skin (Nuclear) added (×0). No custom stat items. |
-| **Mariomon** | ⏳ pending | ~4 stat hooks. |
-| **Infinity** | ⏳ pending | ~3 stat hooks. |
+| **Mariomon** | ✅ done | Goomba Boots / Sturdy Shell already covered; Defeatist is vanilla (@smogon/calc). No new code. |
+| **Infinity** | ✅ done | Pure Focus reused; Crystalline (halves incoming Ground/Water) added. No custom stat items. |
 | **Infinite Fusion** | ✅ engine done | fusion stats/typing/sprites/expert moves; 0 stat-hook abilities. |
 
 **Cross-cutting (works for all mods):** per-mod dex routing (types/stats/learnsets/items), live type chart, mod-scoped ability stat-mods, custom-type offensive boosters, defender type-resists.
