@@ -71,6 +71,10 @@ export const WeatherMap: Record<string, Weather> = {
   deltastream: 'Strong Winds',
   desolateland: 'Harsh Sunshine',
   primordialsea: 'Heavy Rain',
+  // Pokéathlon (Soulstones) custom weather. @smogon/calc doesn't know it, so it's carried as a plain
+  // string purely so Showdex can track it for custom-ability stat mods (Shadow Dance, Absolution,
+  // Supercell) & the displayed stats. It produces no vanilla weather effects in the calc.
+  newmoon: 'New Moon' as Weather,
 };
 
 /**

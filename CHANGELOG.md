@@ -12,7 +12,7 @@ Official release consolidating the v1.0.4-hotfix.1 fixes plus custom-ability sup
 - A fused Aegislash in Blade forme keeps its **fusion name and sprite**.
 
 **Custom abilities**
-- Fangame abilities now apply their stat effects. Always-on ones (Athenian / Pure Focus / Genius ×2 SpA, Sharp Coral, Tormented) affect both the displayed stats *and* the damage calc; weather/terrain/status-gated ones (Sandy Defense, Ice Cleats, Forest King, Psycho Slider, Attunement) are reflected in the displayed stats.
+- Fangame abilities now apply their stat effects to **both** the displayed stats and the damage calc. Covers always-on ones (Athenian / Pure Focus / Genius ×2 SpA, Sharp Coral, Tormented) and weather/terrain/status-gated ones (Sandy Defense, Ice Cleats, Forest King, Psycho Slider, Attunement, Supercell, Shadow Dance, Absolution). The custom **New Moon** weather is now tracked so its abilities resolve.
 
 **Other fixes**
 - **Eviolite** applies when *either* the head or the body is not-fully-evolved.

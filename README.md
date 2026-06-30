@@ -71,15 +71,17 @@ things are exact, some are approximations. Here's the honest state of it.
   Atk↔Def & SpA↔SpD** (the real PIF mechanic), auto-switches from the last move used, persists across battle
   updates, and keeps the fusion name + sprite. Works whether Aegislash is the head or the body.
 - **Eviolite** — applies when *either* half is not-fully-evolved.
-- **Custom abilities (always-on)** — fangame abilities like Athenian / Pure Focus / Genius (×2 SpA), Sharp Coral,
-  Tormented are applied to both the display and the calc.
+- **Custom abilities** — fangame abilities like Athenian / Pure Focus / Genius (×2 SpA), Sharp Coral, Tormented
+  (always-on), plus the weather/terrain/status-gated ones (Sandy Defense, Forest King, Ice Cleats, Psycho Slider,
+  Attunement, Supercell, Shadow Dance, Absolution) are applied to **both** the displayed stats and the damage calc.
+  The custom **New Moon** weather is tracked for these.
 
 ### Known limitations (not yet 100%)
 - **Body-half Aegislash manual toggle** — you can only manually click Shield/Blade when Aegislash is the *head*
   (the forme switcher is head-based). If it's the *body*, only the auto-switch (from the last move) works.
-- **Conditional custom abilities in the damage calc** — weather/terrain/status-gated fangame abilities (e.g.
-  Sandy Defense, Forest King, Ice Cleats) are reflected in the **displayed** stats, but not yet baked into the
-  damage numbers (the calc path has no field context). Newmoon-weather abilities aren't tracked yet.
+- **New Moon's own damage effects** — the weather is tracked for abilities, but its Ghost/Dark ×1.35 & Fairy ×0.75
+  damage modifiers aren't in the calc yet, and it can't be picked manually from the weather dropdown (it auto-syncs
+  from battles).
 - **Expert (signature) moves** — matched by head/body species, not full evolution-line expansion, so a few rare
   cases may be missing or over-eager.
 - **Presets** — usage-based predictions + sample sets currently cover Mariomon best; other mods (Insurgence,
@@ -98,8 +100,10 @@ fusion (which half is which), item/ability/nature, and the stat shown vs expecte
 ## Credits
 
 - **Maintained by** [HowToBasicMons](https://github.com/HowToBasicMons).
-- **Beta testing** — Aevilok, Psychoplasm, Jaykio, Marss (+ 2 more, coming soon). Thank you for the bug reports and
-  matchups. 💜
+- **Beta testing** — Psychoplasm, Aevilok, I Like Porygon2, Jaykio, NiaDoesDumbStuff & Rowlet. Thank you for the bug
+  reports and matchups. 💜
+- **Stance Change** — special thanks to **Jaykio** and **I Like Porygon2** for testing the Aegislash fusion stance
+  mechanic and helping get the Blade/Shield stat swap right.
 
 ### Built on Showdex — go show the original devs some love
 

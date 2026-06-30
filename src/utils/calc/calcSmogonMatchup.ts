@@ -187,8 +187,8 @@ export const calcSmogonMatchup = (
 
   const smogonField = createSmogonField(format, gameType, field, player, opponent, allPlayers);
 
-  matchup.attacker = createSmogonPokemon(format, gameType, playerPokemon, playerMove, opponentPokemon);
-  matchup.defender = createSmogonPokemon(format, gameType, opponentPokemon, null, playerPokemon);
+  matchup.attacker = createSmogonPokemon(format, gameType, playerPokemon, playerMove, opponentPokemon, field);
+  matchup.defender = createSmogonPokemon(format, gameType, opponentPokemon, null, playerPokemon, field);
 
   [matchup.move, {
     hitBasePowers: showdexMods.hitBasePowers,

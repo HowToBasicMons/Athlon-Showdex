@@ -12,7 +12,7 @@ import {
   getPokeathlonAbilityStatMods,
   getPokeathlonItemStatMods,
 } from '@showdex/consts/dex';
-import { type CalcdexPokemon } from '@showdex/interfaces/calc';
+import { type CalcdexBattleField, type CalcdexPokemon } from '@showdex/interfaces/calc';
 import { clamp, formatId, nonEmptyObject } from '@showdex/utils/core';
 import { logger } from '@showdex/utils/debug';
 import {
@@ -43,6 +43,7 @@ export const createSmogonPokemon = (
   pokemon: CalcdexPokemon,
   moveName?: MoveName,
   opponentPokemon?: CalcdexPokemon,
+  field?: CalcdexBattleField,
 ): SmogonPokemon => {
   const dex = getGenDexForFormat(format);
   const gen = detectGenFromFormat(format);
@@ -234,12 +235,20 @@ export const createSmogonPokemon = (
     });
   }
 
-  // Pokéathlon custom abilities: pre-apply the always-on stat multipliers (e.g. Athenian/Pure Focus
-  // 2x SpA, Sharp Coral's swap-ish boosts) to the rawStats fed into the calc, since @smogon/calc
-  // doesn't know these fangame abilities. Conditional (weather/terrain/status) ones are NOT applied
-  // here — this path has no battle-field context — but are reflected in the displayed final stats.
+  // Pokéathlon custom abilities: pre-apply the stat multipliers to the rawStats fed into the calc,
+  // since @smogon/calc doesn't know these fangame abilities. When the battle `field` is provided, the
+  // weather/terrain/status-gated ones (Sandy Defense, Forest King, Ice Cleats, Psycho Slider, Supercell,
+  // Shadow Dance, Absolution, Attunement, …) are resolved against the current conditions too; without a
+  // field, only the always-on ones apply. (Vanilla weather/terrain abilities are handled by @smogon/calc.)
   if (ability) {
-    const poaAbilityMods = getPokeathlonAbilityStatMods(ability, {}, true);
+    const weatherId = field ? formatId(field.dirtyWeather ?? (field.autoWeather || field.weather)) : '';
+    const terrainId = field ? formatId(field.dirtyTerrain ?? (field.autoTerrain || field.terrain)) : '';
+
+    const poaAbilityMods = getPokeathlonAbilityStatMods(
+      ability,
+      { weather: weatherId, terrain: terrainId, status: !!status },
+      !field, // unconditionalOnly when there's no field context
+    );
 
     (Object.entries(poaAbilityMods) as [keyof typeof options.rawStats, number][]).forEach(([stat, mult]) => {
       if (mult && mult !== 1 && typeof options.rawStats[stat] === 'number') {

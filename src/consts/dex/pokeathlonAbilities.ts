@@ -67,6 +67,9 @@ export const PokeathlonAbilityStatMods: PokeathlonAbilityStatModRule[] = [
   // weather-gated
   { abilities: ['sandydefense'], mods: { def: 1.5, spd: 1.5 }, condition: { weather: ['sand'] } },
   { abilities: ['icecleats'], mods: { spe: 2 }, condition: { weather: ['hail', 'snow'] } },
+  { abilities: ['shadowdance'], mods: { spe: 2 }, condition: { weather: ['newmoon'] } },
+  { abilities: ['absolution'], mods: { spa: 1.5 }, condition: { weather: ['newmoon'] } },
+  { abilities: ['supercell'], mods: { spa: 1.5 }, condition: { weather: ['rain', 'heavyrain', 'newmoon'] } },
 
   // terrain-gated
   { abilities: ['forestking'], mods: { atk: 1.3333, spa: 1.3333 }, condition: { terrain: ['grassy'] } },

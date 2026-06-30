@@ -8,7 +8,7 @@ Official release — Aegislash **Stance Change** now matches Pokémon Infinite F
 - Keeps the correct **fusion name and sprite** in Blade forme.
 
 ## ✨ Custom abilities
-- Fangame abilities now apply their stat effects. Always-on (Athenian / Pure Focus / Genius ×2 SpA, Sharp Coral, Tormented) hit both the stat display **and** the damage calc; weather/terrain/status ones (Sandy Defense, Ice Cleats, Forest King, Psycho Slider, Attunement) show in the stat display.
+- Fangame abilities now apply their stat effects to **both** the stat display and the damage calc. Always-on (Athenian / Pure Focus / Genius ×2 SpA, Sharp Coral, Tormented) plus weather/terrain/status ones (Sandy Defense, Ice Cleats, Forest King, Psycho Slider, Attunement, Supercell, Shadow Dance, Absolution). The custom **New Moon** weather is now tracked so its abilities resolve.
 
 ## 🛠️ Fixes
 - **Eviolite** applies when **either** half is not-fully-evolved.
@@ -25,10 +25,10 @@ Official release — Aegislash **Stance Change** now matches Pokémon Infinite F
 
 ## 📋 Known limitations
 - Manual Blade/Shield toggle only when Aegislash is the **head** (body relies on auto-switch).
-- Weather/terrain-gated custom abilities show in the stat display but aren't in the damage number yet.
+- New Moon weather is tracked for abilities, but its own Ghost/Dark & Fairy damage modifiers aren't in the calc yet (and it auto-syncs from battles rather than being manually selectable).
 - Chrome/Edge only (no Firefox build yet).
 
 ## ❤️ Built on Showdex
 A fork of [doshidak/showdex](https://github.com/doshidak/showdex) by **Bot Keith & analogcam** — please support them: [Patreon](https://patreon.com/showdex) · [PayPal](https://paypal.com/donate/?hosted_button_id=ZUYJAGAVX6MBN).
 
-Thanks to beta testers **Aevilok, Psychoplasm, Jaykio, Marss** 💜
+Thanks to beta testers **Psychoplasm, Aevilok, I Like Porygon2, Jaykio, NiaDoesDumbStuff & Rowlet** 💜 — with special thanks to **Jaykio** and **I Like Porygon2** for testing & helping nail down the Aegislash fusion Stance Change.
