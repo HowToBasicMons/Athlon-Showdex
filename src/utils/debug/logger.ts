@@ -1,5 +1,4 @@
-import pino from 'pino/browser';
-import { LoggerLevelValues, devOnlyLevels, pinoCustomLevels } from './levelMap';
+import { LoggerLevelValues, devOnlyLevels } from './levelMap';
 import { teledex } from './teledex';
 
 export type LoggerLevel =
@@ -33,24 +32,6 @@ const ALL_LEVELS: LoggerLevel[] = [
   'error',
 ];
 
-/**
- * Single pino instance acting as the level registry / serializer.
- *
- * We don't let pino write to the console itself (`write` is a no-op) -- the facade
- * fans out to `console` (under the existing `__DEV__`/devOnly gating) & `teledex.capture()`
- * manually below, so the console output & the in-memory trail stay perfectly in sync.
- *
- * @since 1.3.0
- */
-const pinoLogger = pino({
-  level: 'silly',
-  customLevels: pinoCustomLevels,
-  browser: {
-    asObject: true,
-    write: () => {},
-  },
-});
-
 /** Console-printable iff it's not a dev-only level, or we're in a dev build. */
 const consolePrintable = (level: LoggerLevel): boolean => (
   !devOnlyLevels.includes(level) || __DEV__
@@ -82,15 +63,10 @@ const emit = (scope: string, level: LoggerLevel, data: unknown[]): void => {
     const printable = consolePrintable(level);
     const capturable = teledex.shouldCapture(level);
 
-    // prod's dev-only firehose (debug/verbose/silly logs in syncBattle + the update reducers): nothing
-    // prints & nothing gets captured, so bail before the pino object-build, the `...data` spread, & capture()
+    // bail before any work when this log will neither print nor be captured (prod's silly firehose)
     if (!printable && !capturable) {
       return;
     }
-
-    // route through pino so the level is registered/serialized (write is a no-op)
-    const pinoLevel = level in pinoLogger ? level : 'info';
-    (pinoLogger as Record<string, LoggerLogFunction>)[pinoLevel]?.({ scope }, ...data);
 
     // 1) console output (existing `__DEV__`/devOnly gating)
     if (printable) {

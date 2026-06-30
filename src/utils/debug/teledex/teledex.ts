@@ -3,7 +3,7 @@ import { add, sub } from 'date-fns';
 import { env } from '@showdex/utils/core/getEnv';
 import { boundedStringify } from '@showdex/utils/core/safeStringify';
 import { type LoggerLevel } from '../logger';
-import { devOnlyLevels } from '../levelMap';
+import { LoggerLevelValues } from '../levelMap';
 import { TeledexBuffer } from './teledexBuffer';
 import { type TeledexRecord, buildTeledexRecord, teledexSession } from './teledexRecord';
 import { resolveTeledexConfig } from './teledexConfig';
@@ -90,7 +90,15 @@ const mirrorSoon = () => {
 
 export const teledex = {
   shouldCapture(level: LoggerLevel): boolean {
-    return cfg().enabled && (!devOnlyLevels.includes(level) || __DEV__ || developerMode);
+    // always capture debug+ into the in-memory ring so the CalcdexErrorBoundary crash snapshot & the "Dump Bug
+    // Report" flush carry a useful trail even in prod (developerMode/__DEV__ off) -- silly stays the dev-only
+    // firehose. NOTE: console-print gating is separate (stays __DEV__-only in the logger, keeping prod quiet),
+    // & the persistent IndexedDB MIRROR is still developerMode-only (see capture() + mirrorSoon() below).
+    return cfg().enabled && (
+      LoggerLevelValues[level] >= LoggerLevelValues.debug
+        || __DEV__
+        || developerMode
+    );
   },
 
   capture(level: LoggerLevel, scope: string, args: unknown[]): void {
