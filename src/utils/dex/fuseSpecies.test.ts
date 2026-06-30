@@ -3,6 +3,7 @@ import {
   fuseBaseStats,
   fuseStat,
   fuseTypes,
+  getFusionBodyStanceFormes,
   getPokeathlonModId,
   orderFusionTypes,
 } from './fuseSpecies';
@@ -123,5 +124,18 @@ describe('getPokeathlonModId', () => {
     expect(getPokeathlonModId('gen9randombattle')).toBeNull();
     expect(getPokeathlonModId('gen9championsou')).toBeNull();
     expect(getPokeathlonModId('')).toBeNull();
+  });
+});
+
+describe('getFusionBodyStanceFormes', () => {
+  it('returns both Aegislash stance formes when the Body is Aegislash (either stance)', () => {
+    expect(getFusionBodyStanceFormes('Aegislash')).toEqual(['Aegislash', 'Aegislash-Blade']);
+    expect(getFusionBodyStanceFormes('Aegislash-Blade')).toEqual(['Aegislash', 'Aegislash-Blade']);
+  });
+
+  it('returns [] for non-stance Body species or empty input', () => {
+    expect(getFusionBodyStanceFormes('Pikachu')).toEqual([]);
+    expect(getFusionBodyStanceFormes('')).toEqual([]);
+    expect(getFusionBodyStanceFormes(undefined)).toEqual([]);
   });
 });

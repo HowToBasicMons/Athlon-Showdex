@@ -268,6 +268,36 @@ export const fuseBaseStats = (
   }, {} as Showdown.StatsTable);
 
 /**
+ * Aegislash's two Stance Change formes, in toggle order (Shield first).
+ *
+ * @since 1.0.7
+ */
+export const AegislashStanceFormes: readonly string[] = ['Aegislash', 'Aegislash-Blade'];
+
+/**
+ * Returns the Stance Change formes a fusion's **Body** (`fusion`) can toggle between, or `[]` if it
+ * has none.
+ *
+ * * Pokéathlon Infinite Fusion: when Aegislash is the *Head*, its Shield/Blade formes already live in
+ *   `altFormes` (so the PokeInfo forme switcher offers them). But when Aegislash is the *Body*, the
+ *   switcher is Head-based & never sees them — so this exposes the Body's stance formes for a manual
+ *   toggle (which flips the `fusion` field, re-fusing the swapped Atk<->Def & SpA<->SpD stats).
+ * * Currently only Aegislash has a Stance Change forme pair; detection mirrors the `syncPokemon()`
+ *   emulation (any `aegislash` / `aegislash-blade` id).
+ *
+ * @example getFusionBodyStanceFormes('Aegislash') // ['Aegislash', 'Aegislash-Blade']
+ * @example getFusionBodyStanceFormes('Pikachu') // []
+ * @since 1.0.7
+ */
+export const getFusionBodyStanceFormes = (
+  fusion?: string,
+): string[] => (
+  !!fusion && formatId(fusion).replace(/blade$/, '') === 'aegislash'
+    ? [...AegislashStanceFormes]
+    : []
+);
+
+/**
  * Per-fusion-pair preferred sprite "alt" variants, keyed by `{headNum}.{bodyNum}`.
  *
  * * Ported from the Pokéathlon usage-stats generator's `preferred_alts` map.
