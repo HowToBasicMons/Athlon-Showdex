@@ -33,7 +33,7 @@ The special analog of Burn is now modeled — it **halves Special-move damage** 
 
 ## 📦 Install
 
-**Chrome / Edge:** download the `.chrome.zip`, unzip to a permanent folder, go to `chrome://extensions` → **Developer mode** → **Load unpacked** → pick the folder (or **Reload** if you already have it). Then open a battle on [play.pokeathlon.com](https://play.pokeathlon.com) and hard-refresh (Ctrl+Shift+R).
+**Chromium browsers (Chrome, Edge, Brave, Opera / Opera GX, Vivaldi, …):** download the `.chrome.zip`, unzip to a permanent folder, open your browser's extensions page (`chrome://extensions`, `edge://extensions`, `brave://extensions`, `opera://extensions`, …) → enable **Developer mode** → **Load unpacked** → pick the folder (or **Reload** if you already have it). Then open a battle on [play.pokeathlon.com](https://play.pokeathlon.com) and hard-refresh (Ctrl+Shift+R).
 
 **Firefox:** download the `.firefox.xpi`, go to `about:debugging` → **This Firefox** → **Load Temporary Add-on** → pick the `.xpi`.
 

@@ -45,17 +45,38 @@ the server's custom data.
 
 ## Install (beta)
 
-This is currently distributed to beta testers as an unpacked Chrome/Edge extension:
+Athlon Showdex ships as an **unpacked extension** while it's in beta. There are two builds on the
+[Releases](https://github.com/HowToBasicMons/Athlon-Showdex/releases) page:
 
-1. Download the latest `.zip` from [Releases](https://github.com/HowToBasicMons/Athlon-Showdex/releases) and unzip it
-   to a permanent folder.
-2. Go to `chrome://extensions`, enable **Developer mode** (top-right).
-3. Click **Load unpacked** and select the unzipped folder.
-4. Open [`play.pokeathlon.com`](https://play.pokeathlon.com) and start or spectate a battle — the Calcdex appears.
+- **`.zip`** — for **Chromium-based browsers**: Google Chrome, Microsoft Edge, Brave, Opera, Opera GX, Vivaldi, Arc, etc.
+- **`.xpi`** — for **Firefox**.
 
-On updates: hit the **reload** icon on the extension card, then refresh the battle tab.
+### Chromium browsers (Chrome, Edge, Brave, Opera / Opera GX, Vivaldi, …)
 
-**Firefox:** download the `.xpi` instead, then `about:debugging` → **This Firefox** → **Load Temporary Add-on** → pick the `.xpi`.
+1. Download the latest **`.zip`** and unzip it to a **permanent** folder (don't delete it after — the browser loads
+   the extension from this folder).
+2. Open your browser's extensions page:
+   - Chrome → `chrome://extensions`
+   - Edge → `edge://extensions`
+   - Brave → `brave://extensions`
+   - Opera / Opera GX → `opera://extensions`
+   - Vivaldi → `vivaldi://extensions`
+   - (or just find **Manage Extensions** in your browser's menu)
+3. Enable **Developer mode** (usually a toggle in the top-right or left sidebar).
+4. Click **Load unpacked** and select the unzipped folder.
+5. Open [`play.pokeathlon.com`](https://play.pokeathlon.com), start or spectate a battle, and hard-refresh
+   (**Ctrl+Shift+R**) — the Calcdex appears.
+
+### Firefox
+
+1. Download the latest **`.xpi`**.
+2. Go to `about:debugging` → **This Firefox** → **Load Temporary Add-on** and pick the `.xpi`.
+   - Note: temporary add-ons are cleared when Firefox restarts, so you'll need to re-load it next session.
+
+### Updating
+
+Download the new build, replace your unzipped folder's contents, then hit the **reload** icon on the extension card
+(Chromium) or re-load the `.xpi` (Firefox), and hard-refresh your battle tab.
 
 ## Mechanics accuracy & known limitations
 
@@ -93,8 +114,8 @@ things are exact, some are approximations. Here's the honest state of it.
 
 ### Pros / cons at a glance
 - **Pros:** real fusion stats/typing/abilities/items, server-accurate custom type chart, custom abilities & New Moon
-  in the damage number, full Expert-Move coverage, Chrome/Edge + Firefox builds, Pokéathlon-only injection, fast
-  in-battle calc, no manual data upkeep (reads the live client).
+  in the damage number, full Expert-Move coverage, Chromium (Chrome/Edge/Brave/Opera/…) + Firefox builds,
+  Pokéathlon-only injection, fast in-battle calc, no manual data upkeep (reads the live client).
 - **Cons:** beta/unpacked (manual install + updates), New Moon damage is a close approximation, preset depth varies
   by mod.
 
