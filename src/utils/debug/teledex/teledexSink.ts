@@ -12,10 +12,15 @@ import { configureTeledex } from './teledex';
  *
  * @since 1.2.5
  */
+// teledex.flush() already pre-bounds every record arg (8KB) before dumping, so the payload is acyclic +
+// bounded -> plain JSON.stringify keeps the dump COMPLETE + valid. safeStringify's 16MB cap would otherwise
+// truncate a big dev dump (developerMode/__DEV__ captures debug+) into UNparseable JSON.
+const stringify = (value: unknown): string => JSON.stringify(value);
+
 export const wireTeledexSink = (): void => void configureTeledex({
   writeRecords: writeTeledexDb,
   readRecords: readTeledexDb,
   pruneRecords: pruneTeledexDb,
-  dumpToFile: dumpPayloadToFile,
-  dumpToClipboard: dumpPayloadToClipboard,
+  dumpToFile: (payload, nameParts) => dumpPayloadToFile(payload, nameParts, stringify),
+  dumpToClipboard: (payload) => dumpPayloadToClipboard(payload, stringify),
 });
