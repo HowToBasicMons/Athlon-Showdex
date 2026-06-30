@@ -44,4 +44,39 @@ describe('transformBundlePresetResponse()', () => {
     transformBundlePresetResponse({} as never, null, args);
     expect(transformFormatPresetResponse).toHaveBeenCalledOnce();
   });
+
+  it('folds mega/primal/X-Y formes onto their base forme in Randoms (item distinguishes them)', () => {
+    vi.mocked(transformFormatPresetResponse).mockReturnValueOnce([
+      { name: 'Fast Support', speciesForme: 'Glimmora', source: 'bundle' },
+      { name: 'Fast Attacker', speciesForme: 'Glimmora-Mega', source: 'bundle' },
+      { name: 'Bulky', speciesForme: 'Charizard-Mega-X', source: 'bundle' },
+      { name: 'Sun', speciesForme: 'Groudon-Primal', source: 'bundle' },
+      { name: 'Z', speciesForme: 'Necrozma-Ultra', source: 'bundle' }, // NOT a held-stone mega -> stays
+      { name: 'Speed', speciesForme: 'Yanmega', source: 'bundle' }, // 'mega' substring, no '-Mega' -> stays
+    ] as never);
+
+    const out = transformBundlePresetResponse(
+      { Glimmora: { 'Fast Support': {} } } as never,
+      null,
+      { gen: 9, format: 'gen9championsrandombattle' } as never,
+    );
+
+    expect(out.map((p) => p.speciesForme)).toEqual([
+      'Glimmora', 'Glimmora', 'Charizard', 'Groudon', 'Necrozma-Ultra', 'Yanmega',
+    ]);
+  });
+
+  it('leaves mega/primal formes split in non-Randoms formats', () => {
+    vi.mocked(transformFormatPresetResponse).mockReturnValueOnce([
+      { name: 'Fast Attacker', speciesForme: 'Glimmora-Mega', source: 'bundle' },
+    ] as never);
+
+    const out = transformBundlePresetResponse(
+      { 'Glimmora-Mega': { 'Fast Attacker': {} } } as never,
+      null,
+      { gen: 9, format: 'gen9championsou' } as never,
+    );
+
+    expect(out[0].speciesForme).toBe('Glimmora-Mega');
+  });
 });
