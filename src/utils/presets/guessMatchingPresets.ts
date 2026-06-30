@@ -84,15 +84,20 @@ export const guessMatchingPresets = (
     const guessedMoves = replaceBehemothMoves(preset.speciesForme, dedupeArray([...revealedSourceMoves, ...guaranteedMoves]));
     const presetMoves = replaceBehemothMoves(preset.speciesForme, dedupeArray([...preset.moves, ...flattenAlts(preset.altMoves)]));
 
-    const movesMatch = !!revealedSourceMoves.length
+    // with NO moves revealed yet, don't let the move check veto everything -- let the OTHER gates (esp. a
+    // revealed Mega stone, which uniquely pins the forme+role) do the discriminating. the auto-apply only locks
+    // on when a SINGLE preset survives every gate (useCalcdexPresets: `matchedPresets.length === 1`), so a
+    // moveless mon with nothing else distinguishing stays ambiguous, while e.g. Raichu-Mega-Y (revealed
+    // Raichunite Y -> the lone item-matching survivor) gets auto-picked.
+    const movesMatch = !revealedSourceMoves.length
       /**
        * @todo update this when we support more than 4 moves
        */
       // if guessedMoves[].length > 4, then it probably wasn't it chief
       // (e.g., 2 Randoms role presets could share 2 of the same non-guaranteed moves that was revealed,
       // but have 3 unique 100% guaranteed ones)
-      && guessedMoves.length <= 4
-      && revealedSourceMoves.every((m) => presetMoves.includes(m));
+      || (guessedMoves.length <= 4
+        && revealedSourceMoves.every((m) => presetMoves.includes(m)));
 
     if (legacy) {
       return movesMatch;
