@@ -1,5 +1,6 @@
 import { type MoveName } from '@smogon/calc';
 import { formatId } from '@showdex/utils/core';
+import { fuseTypes } from './fuseSpecies';
 import { getDexForFormat } from './getDexForFormat';
 import { getPokemonLearnset } from './getPokemonLearnset';
 
@@ -138,13 +139,16 @@ const PoAFusionMoves: Record<string, ExpertMoveCriterion[]> = {
 };
 
 /**
- * Computes the **Expert Moves** a fusion qualifies for (Head + Body + fused typing), mirroring the
- * live client's tutor-move logic.
+ * Computes the **Expert Moves** a fusion qualifies for, mirroring the live client's tutor-move logic
+ * in `battle-dex-search.ts` — including its **full evolution-line expansion**.
  *
- * * `fusedTypes` should be the fusion's resolved typing (proper-cased `TypeName`s).
+ * * Both the Head & Body are expanded into their evolution lines (current forme + Mega base +
+ *   `changesFrom` + `prevo` + `prevo`'s `prevo`), then every Head-line × Body-line pairing is tested
+ *   in **both** Head/Body orderings. Each pairing recomputes its own fused typing for the `type`
+ *   criterion (matching the client exactly).
+ * * `learns` criteria are checked against the Head's & Body's full learnsets (which already include
+ *   their pre-evolutions).
  * * Returns resolved move **names** (deduped), ready to merge into the move pool.
- * * Uses a simplified Head/Body match (not the client's full evolution-line expansion), which
- *   covers the overwhelming majority of pairs.
  *
  * @since 1.0.5
  */
@@ -152,7 +156,6 @@ export const getFusionExpertMoves = (
   format: string,
   headForme: string,
   bodyForme: string,
-  fusedTypes: readonly string[],
 ): MoveName[] => {
   if (!format || !headForme || !bodyForme) {
     return [];
@@ -164,46 +167,106 @@ export const getFusionExpertMoves = (
     return [];
   }
 
-  const headId = formatId(headForme);
-  const bodyId = formatId(bodyForme);
-  const typeSet = new Set((fusedTypes || []).map((t) => String(t)));
+  // build a species' evolution line, mirroring the client: current forme + Mega base + changesFrom
+  // + prevo + prevo's prevo (deduped, existing species only)
+  const buildLine = (forme: string): string[] => {
+    const species = dex.species.get(forme);
+
+    if (!species?.exists) {
+      return [forme].filter(Boolean);
+    }
+
+    const line = [species.name];
+
+    if (species.isMega && species.baseSpecies) {
+      line.push(species.baseSpecies);
+    }
+
+    if (species.changesFrom) {
+      line.push(species.changesFrom as string);
+    }
+
+    if (species.prevo) {
+      line.push(species.prevo);
+
+      const prevoPrevo = dex.species.get(species.prevo)?.prevo;
+
+      if (prevoPrevo) {
+        line.push(prevoPrevo);
+      }
+    }
+
+    return Array.from(new Set(line.filter(Boolean)));
+  };
+
+  const headLine = buildLine(headForme);
+  const bodyLine = buildLine(bodyForme);
+
+  // every Head-line × Body-line pairing, in both orderings (head/body swapped)
+  const combinations: [string, string][] = [];
+
+  headLine.forEach((a) => {
+    bodyLine.forEach((b) => {
+      combinations.push([a, b], [b, a]);
+    });
+  });
 
   const usePoA = /pokeathlon|chaos/.test(formatId(format));
   const tables = usePoA ? { ...FusionMoves, ...PoAFusionMoves } : FusionMoves;
 
-  // pre-compute learnsets once for the `learns` checks
+  // pre-compute the Head's & Body's full learnsets once (these already walk the prevo chain)
   const headLearnset = new Set(getPokemonLearnset(format, headForme, true).map((m) => formatId(m)));
   const bodyLearnset = new Set(getPokemonLearnset(format, bodyForme, true).map((m) => formatId(m)));
   const canLearn = (moveId: string) => headLearnset.has(moveId) || bodyLearnset.has(moveId);
 
   const output: MoveName[] = [];
 
-  Object.entries(tables).forEach(([moveId, criteria]) => {
-    const qualifies = criteria.some((src) => {
-      if (src.fusion?.length && !src.fusion.includes(headId) && !src.fusion.includes(bodyId)) {
-        return false;
-      }
+  combinations.forEach(([headName, bodyName]) => {
+    const comboHead = dex.species.get(headName);
+    const comboBody = dex.species.get(bodyName);
 
-      if (src.type?.length && !src.type.every((t) => typeSet.has(t))) {
-        return false;
-      }
-
-      if (src.learns?.length && !src.learns.some((m) => canLearn(formatId(m)))) {
-        return false;
-      }
-
-      return true;
-    });
-
-    if (!qualifies) {
+    if (!comboHead?.exists || !comboBody?.exists) {
       return;
     }
 
-    const name = dex.moves.get(moveId)?.name as MoveName;
+    const headId = formatId(comboHead.name);
+    const bodyId = formatId(comboBody.name);
 
-    if (name && !output.includes(name)) {
-      output.push(name);
-    }
+    // recompute this pairing's fused typing for the `type` criterion (raw base-dex types, like the client)
+    const typeSet = new Set(
+      fuseTypes(
+        comboHead.types as never,
+        comboBody.types as never,
+      ).map((t) => String(t)),
+    );
+
+    Object.entries(tables).forEach(([moveId, criteria]) => {
+      const name = dex.moves.get(moveId)?.name as MoveName;
+
+      if (!name || output.includes(name)) {
+        return;
+      }
+
+      const qualifies = criteria.some((src) => {
+        if (src.fusion?.length && !src.fusion.includes(headId) && !src.fusion.includes(bodyId)) {
+          return false;
+        }
+
+        if (src.type?.length && !src.type.every((t) => typeSet.has(t))) {
+          return false;
+        }
+
+        if (src.learns?.length && !src.learns.some((m) => canLearn(formatId(m)))) {
+          return false;
+        }
+
+        return true;
+      });
+
+      if (qualifies) {
+        output.push(name);
+      }
+    });
   });
 
   return output;

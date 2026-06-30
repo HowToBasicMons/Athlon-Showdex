@@ -14,8 +14,17 @@ Official release consolidating the v1.0.4-hotfix.1 fixes plus custom-ability sup
 **Custom abilities**
 - Fangame abilities now apply their stat effects to **both** the displayed stats and the damage calc. Covers always-on ones (Athenian / Pure Focus / Genius ×2 SpA, Sharp Coral, Tormented) and weather/terrain/status-gated ones (Sandy Defense, Ice Cleats, Forest King, Psycho Slider, Attunement, Supercell, Shadow Dance, Absolution). The custom **New Moon** weather is now tracked so its abilities resolve.
 
+**New Moon weather**
+- Now manually selectable in the weather dropdown, and its damage modifiers (Ghost/Dark ×1.35, Fairy ×0.75) are applied in the calc (as a base-power approximation).
+
+**Expert (signature) moves**
+- Now use the client's **full evolution-line expansion** (both Head & Body lines, both orderings, with per-pairing typing) instead of a simplified Head/Body match — fixing missing/over-eager signature moves.
+
 **Other fixes**
 - **Eviolite** applies when *either* the head or the body is not-fully-evolved.
+
+**Builds**
+- A **Firefox** build is now produced alongside Chrome/Edge.
 
 **Audited (confirmed correct)**
 - All 12 custom stat-multiplier items are wired; the client's old dragonfang/dragonscale stat code is a client bug (type-power / evo items) and is correctly excluded.

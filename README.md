@@ -55,6 +55,8 @@ This is currently distributed to beta testers as an unpacked Chrome/Edge extensi
 
 On updates: hit the **reload** icon on the extension card, then refresh the battle tab.
 
+**Firefox:** download the `.xpi` instead, then `about:debugging` → **This Firefox** → **Load Temporary Add-on** → pick the `.xpi`.
+
 ## Mechanics accuracy & known limitations
 
 Athlon Showdex mirrors Pokéathlon's own client logic as closely as possible, but it's a fan tool — some
@@ -74,25 +76,25 @@ things are exact, some are approximations. Here's the honest state of it.
 - **Custom abilities** — fangame abilities like Athenian / Pure Focus / Genius (×2 SpA), Sharp Coral, Tormented
   (always-on), plus the weather/terrain/status-gated ones (Sandy Defense, Forest King, Ice Cleats, Psycho Slider,
   Attunement, Supercell, Shadow Dance, Absolution) are applied to **both** the displayed stats and the damage calc.
-  The custom **New Moon** weather is tracked for these.
+- **New Moon weather** — tracked, manually selectable in the weather dropdown, and its damage modifiers
+  (Ghost/Dark ×1.35, Fairy ×0.75) are applied in the calc.
+- **Expert (signature) moves** — full evolution-line expansion (both Head & Body lines, both orderings, per-pairing
+  typing), matching the client.
 
 ### Known limitations (not yet 100%)
 - **Body-half Aegislash manual toggle** — you can only manually click Shield/Blade when Aegislash is the *head*
   (the forme switcher is head-based). If it's the *body*, only the auto-switch (from the last move) works.
-- **New Moon's own damage effects** — the weather is tracked for abilities, but its Ghost/Dark ×1.35 & Fairy ×0.75
-  damage modifiers aren't in the calc yet, and it can't be picked manually from the weather dropdown (it auto-syncs
-  from battles).
-- **Expert (signature) moves** — matched by head/body species, not full evolution-line expansion, so a few rare
-  cases may be missing or over-eager.
+- **New Moon damage** — applied as a base-power approximation (a roll may be off by ~1 HP vs. the exact in-game
+  damage chain).
 - **Presets** — usage-based predictions + sample sets currently cover Mariomon best; other mods (Insurgence,
   Uranium, Infinity, Chaos, Soulstones) lean on usage data only.
-- **Browser** — only a **Chrome/Edge** (unpacked) build is shipped right now; no Firefox `.xpi` yet.
 
 ### Pros / cons at a glance
-- **Pros:** real fusion stats/typing/abilities/items, live custom type chart, Pokéathlon-only injection, fast
-  in-battle calc, no manual data upkeep (reads the live client).
-- **Cons:** beta/unpacked (manual install + updates), a few fangame abilities not in the damage number yet,
-  Chrome-only, preset depth varies by mod.
+- **Pros:** real fusion stats/typing/abilities/items, live custom type chart, custom abilities & New Moon in the
+  damage number, full Expert-Move coverage, Chrome/Edge + Firefox builds, Pokéathlon-only injection, fast in-battle
+  calc, no manual data upkeep (reads the live client).
+- **Cons:** beta/unpacked (manual install + updates), New Moon damage is a close approximation, preset depth varies
+  by mod.
 
 Found something wrong? File it at [Issues](https://github.com/HowToBasicMons/Athlon-Showdex/issues) with the
 fusion (which half is which), item/ability/nature, and the stat shown vs expected.

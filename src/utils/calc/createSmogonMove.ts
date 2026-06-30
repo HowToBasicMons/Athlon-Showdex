@@ -1,7 +1,7 @@
 import { type AbilityName, type MoveName, Move as SmogonMove } from '@smogon/calc';
 import { MOVES } from '@smogon/calc/dist/data/moves';
 import { type CalcdexBattleField, type CalcdexMoveOverride, type CalcdexPokemon } from '@showdex/interfaces/calc';
-import { clamp } from '@showdex/utils/core';
+import { clamp, formatId } from '@showdex/utils/core';
 import {
   detectGenFromFormat,
   determineCriticalHit,
@@ -182,8 +182,54 @@ export const createSmogonMove = (
     }
   };
 
+  // Pokéathlon (Soulstones) New Moon weather: boosts Ghost/Dark-type damage by 1.35x & reduces
+  // Fairy-type damage to 0.75x. @smogon/calc doesn't know this custom weather, so we approximate the
+  // damage multiplier as a base-power modifier on the move fed into the calc (negated by Air Lock /
+  // Cloud Nine on either side, same as vanilla weather).
+  const newMoonFactor = (() => {
+    if (!field) {
+      return 1;
+    }
+
+    const weatherId = formatId(field.dirtyWeather ?? (field.autoWeather || field.weather));
+
+    if (weatherId !== 'newmoon') {
+      return 1;
+    }
+
+    const negators = ['airlock', 'cloudnine'];
+    const attackerAbility = formatId(pokemon.dirtyAbility || pokemon.ability);
+    const defenderAbility = formatId(opponentPokemon?.dirtyAbility || opponentPokemon?.ability);
+
+    if (negators.includes(attackerAbility) || negators.includes(defenderAbility)) {
+      return 1;
+    }
+
+    const moveType = (overrides.type as string) || dex.moves.get(moveName as Parameters<typeof dex.moves.get>[0])?.type;
+
+    if (moveType === 'Ghost' || moveType === 'Dark') {
+      return 1.35;
+    }
+
+    if (moveType === 'Fairy') {
+      return 0.75;
+    }
+
+    return 1;
+  })();
+
+  // applies all our post-construction `bp` mods (calculate() rebuilds the move via clone(), so this
+  // must run on both the original & the clone)
+  const applyBpMods = (move: SmogonMove) => {
+    overrideUltBp(move);
+
+    if (newMoonFactor !== 1 && move.bp > 0) {
+      move.bp = Math.max(0, Math.floor(move.bp * newMoonFactor));
+    }
+  };
+
   // note: this directly modifies the passed-in smogonMove (hence no return value)
-  overrideUltBp(smogonMove);
+  applyBpMods(smogonMove);
 
   // calculate() from @smogon/calc will clone() the move before it's passed to the mechanics function,
   // which will remove our `bp` overrides since the SmogonMove constructor will recalculate the `bp` value again!
@@ -199,7 +245,7 @@ export const createSmogonMove = (
       overrides,
     });
 
-    overrideUltBp(clonedMove);
+    applyBpMods(clonedMove);
 
     return clonedMove;
   };

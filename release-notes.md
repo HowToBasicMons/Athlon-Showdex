@@ -8,10 +8,19 @@ Official release — Aegislash **Stance Change** now matches Pokémon Infinite F
 - Keeps the correct **fusion name and sprite** in Blade forme.
 
 ## ✨ Custom abilities
-- Fangame abilities now apply their stat effects to **both** the stat display and the damage calc. Always-on (Athenian / Pure Focus / Genius ×2 SpA, Sharp Coral, Tormented) plus weather/terrain/status ones (Sandy Defense, Ice Cleats, Forest King, Psycho Slider, Attunement, Supercell, Shadow Dance, Absolution). The custom **New Moon** weather is now tracked so its abilities resolve.
+- Fangame abilities now apply their stat effects to **both** the stat display and the damage calc. Always-on (Athenian / Pure Focus / Genius ×2 SpA, Sharp Coral, Tormented) plus weather/terrain/status ones (Sandy Defense, Ice Cleats, Forest King, Psycho Slider, Attunement, Supercell, Shadow Dance, Absolution).
+
+## 🌑 New Moon weather
+- Now tracked, **manually selectable** in the weather dropdown, and its damage modifiers (Ghost/Dark ×1.35, Fairy ×0.75) are applied in the calc.
+
+## 🎓 Expert (signature) moves
+- Now use the client's **full evolution-line expansion** (both Head & Body lines, both orderings, per-pairing typing) — fixing missing/over-eager signature moves.
 
 ## 🛠️ Fixes
 - **Eviolite** applies when **either** half is not-fully-evolved.
+
+## 🦊 Builds
+- A **Firefox** build is now produced alongside Chrome/Edge.
 
 ## ✅ Audited / hardened
 - Confirmed all 12 custom stat-multiplier items are correctly wired (and the buggy dragonfang/dragonscale client code is correctly excluded).
@@ -23,10 +32,11 @@ Official release — Aegislash **Stance Change** now matches Pokémon Infinite F
 2. `chrome://extensions` → enable **Developer mode** → **Load unpacked** → pick the folder (or hit **Reload** if you already have it).
 3. Open a battle on [play.pokeathlon.com](https://play.pokeathlon.com) and hard-refresh (Ctrl+Shift+R).
 
+**Firefox:** grab the `.xpi` instead → `about:debugging` → **This Firefox** → **Load Temporary Add-on** → pick the `.xpi`.
+
 ## 📋 Known limitations
 - Manual Blade/Shield toggle only when Aegislash is the **head** (body relies on auto-switch).
-- New Moon weather is tracked for abilities, but its own Ghost/Dark & Fairy damage modifiers aren't in the calc yet (and it auto-syncs from battles rather than being manually selectable).
-- Chrome/Edge only (no Firefox build yet).
+- New Moon damage is a close base-power approximation (a roll may be ~1 HP off the exact in-game chain).
 
 ## ❤️ Built on Showdex
 A fork of [doshidak/showdex](https://github.com/doshidak/showdex) by **Bot Keith & analogcam** — please support them: [Patreon](https://patreon.com/showdex) · [PayPal](https://paypal.com/donate/?hosted_button_id=ZUYJAGAVX6MBN).

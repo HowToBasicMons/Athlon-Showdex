@@ -6,21 +6,17 @@
     "created": "2024-01-05T11:35:50.967Z",
     "updated": "2024-07-30T20:51:27.093Z"
   },
-
   "abilities": {
     "noability_one": "No Ability",
     "noability_other": "No Abilities"
   },
-
   "abilityAliases": {
     "qdrive": "Quark Drive"
   },
-
   "items": {
     "noitem_one": "No Item",
     "noitem_other": "No Items"
   },
-
   "itemAliases": {
     "avest": "Assault Vest",
     "cband": "Choice Band",
@@ -29,12 +25,10 @@
     "lorb": "Life Orb",
     "lovers": "Leftovers"
   },
-
   "moves": {
     "nomove_one": "No Move",
     "nomove_other": "No Moves"
   },
-
   "moveAliases": {
     "ajet": "Aqua Jet",
     "bdrum": "Belly Drum",
@@ -73,13 +67,20 @@
     "tspikes": "Toxic Spikes",
     "vdance": "Victory Dance"
   },
-
   "categories": {
-    "physical": ["Physical", "PHYS"],
-    "special": ["Special", "SPEC"],
-    "status": ["Status", "STAT"]
+    "physical": [
+      "Physical",
+      "PHYS"
+    ],
+    "special": [
+      "Special",
+      "SPEC"
+    ],
+    "status": [
+      "Status",
+      "STAT"
+    ]
   },
-
   "natures": {
     "adamant": "Adamant",
     "bashful": "Bashful",
@@ -106,47 +107,105 @@
     "serious": "Serious",
     "timid": "Timid"
   },
-
   "species": {
     "nopokemon": "No Pokémon",
     "missingno": "MissingNo."
   },
-
   "speciesAliases": {
     "neck": "Raging Bolt",
     "steveneel": "Eelektross",
     "ttar": "Tyranitar",
     "ttarmega": "Tyranitar-Mega"
   },
-
   "stats": {
-    "acc": ["Accuracy", "ACC"],
-    "atk": ["Attack", "ATK"],
-    "bp": ["Base Power", "BP"],
-    "base_one": ["Base Stat", "Base"],
-    "base_other": ["Base Stats", "Base"],
-    "bst_one": ["Base Stat Total", "BST"],
-    "bst_other": ["Base Stat Totals", "BSTs"],
-    "def": ["Defense", "DEF"],
-    "dvs_one": ["Determinant Value", "DV"],
-    "dvs_other": ["Determinant Values", "DVs"],
-    "eva": ["Evasion", "EVA"],
-    "evs_one": ["Effort Value", "EV"],
-    "evs_other": ["Effort Values", "EVs"],
-    "hp": ["Hit Points", "HP"],
-    "ivs_one": ["Individual Value", "IV"],
-    "ivs_other": ["Individual Values", "IVs"],
-    "pri": ["Priority", "PRI"],
-    "spa": ["Special Attack", "SPA"],
-    "spc": ["Special", "SPC"],
-    "spd": ["Special Defense", "SPD"],
-    "spe": ["Speed", "SPE"]
+    "acc": [
+      "Accuracy",
+      "ACC"
+    ],
+    "atk": [
+      "Attack",
+      "ATK"
+    ],
+    "bp": [
+      "Base Power",
+      "BP"
+    ],
+    "base_one": [
+      "Base Stat",
+      "Base"
+    ],
+    "base_other": [
+      "Base Stats",
+      "Base"
+    ],
+    "bst_one": [
+      "Base Stat Total",
+      "BST"
+    ],
+    "bst_other": [
+      "Base Stat Totals",
+      "BSTs"
+    ],
+    "def": [
+      "Defense",
+      "DEF"
+    ],
+    "dvs_one": [
+      "Determinant Value",
+      "DV"
+    ],
+    "dvs_other": [
+      "Determinant Values",
+      "DVs"
+    ],
+    "eva": [
+      "Evasion",
+      "EVA"
+    ],
+    "evs_one": [
+      "Effort Value",
+      "EV"
+    ],
+    "evs_other": [
+      "Effort Values",
+      "EVs"
+    ],
+    "hp": [
+      "Hit Points",
+      "HP"
+    ],
+    "ivs_one": [
+      "Individual Value",
+      "IV"
+    ],
+    "ivs_other": [
+      "Individual Values",
+      "IVs"
+    ],
+    "pri": [
+      "Priority",
+      "PRI"
+    ],
+    "spa": [
+      "Special Attack",
+      "SPA"
+    ],
+    "spc": [
+      "Special",
+      "SPC"
+    ],
+    "spd": [
+      "Special Defense",
+      "SPD"
+    ],
+    "spe": [
+      "Speed",
+      "SPE"
+    ]
   },
-
   "formatAliases": {
     "nd": "natdex"
   },
-
   "headers": {
     "ability_one": "Ability",
     "ability_other": "Abilities",
@@ -241,30 +300,128 @@
     "weather": "Weather",
     "zmoves": "$t(pokedex:ultimates.z.2)"
   },
-
   "types": {
-    "bug": ["Bug", "BUG", "BUG", "BUG"],
-    "dark": ["Dark", "DARK", "DARK", "DRK"],
-    "dragon": ["Dragon", "DRAGON", "DRGN", "DRG"],
-    "electric": ["Electric", "ELECTR", "ELCR", "ELC"],
-    "fairy": ["Fairy", "FAIRY", "FARY", "FRY"],
-    "fighting": ["Fighting", "FIGHT", "FGHT", "FGT"],
-    "fire": ["Fire", "FIRE", "FIRE", "FRE"],
-    "flying": ["Flying", "FLYING", "FLY", "FLY"],
-    "ghost": ["Ghost", "GHOST", "GHST", "GST"],
-    "grass": ["Grass", "GRASS", "GRSS", "GRS"],
-    "ground": ["Ground", "GROUND", "GRND", "GND"],
-    "ice": ["Ice", "ICE", "ICE", "ICE"],
-    "normal": ["Normal", "NORMAL", "NRML", "NRM"],
-    "poison": ["Poison", "POISON", "PSN", "PSN"],
-    "psychic": ["Psychic", "PSYCH", "PSYC", "PSY"],
-    "rock": ["Rock", "ROCK", "ROCK", "RCK"],
-    "steel": ["Steel", "STEEL", "STL", "STL"],
-    "stellar": ["Stellar", "STELLR", "STLR", "SLR"],
-    "unknown": ["Unknown", "???", "???", "???"],
-    "water": ["Water", "WATER", "WATR", "WTR"]
+    "bug": [
+      "Bug",
+      "BUG",
+      "BUG",
+      "BUG"
+    ],
+    "dark": [
+      "Dark",
+      "DARK",
+      "DARK",
+      "DRK"
+    ],
+    "dragon": [
+      "Dragon",
+      "DRAGON",
+      "DRGN",
+      "DRG"
+    ],
+    "electric": [
+      "Electric",
+      "ELECTR",
+      "ELCR",
+      "ELC"
+    ],
+    "fairy": [
+      "Fairy",
+      "FAIRY",
+      "FARY",
+      "FRY"
+    ],
+    "fighting": [
+      "Fighting",
+      "FIGHT",
+      "FGHT",
+      "FGT"
+    ],
+    "fire": [
+      "Fire",
+      "FIRE",
+      "FIRE",
+      "FRE"
+    ],
+    "flying": [
+      "Flying",
+      "FLYING",
+      "FLY",
+      "FLY"
+    ],
+    "ghost": [
+      "Ghost",
+      "GHOST",
+      "GHST",
+      "GST"
+    ],
+    "grass": [
+      "Grass",
+      "GRASS",
+      "GRSS",
+      "GRS"
+    ],
+    "ground": [
+      "Ground",
+      "GROUND",
+      "GRND",
+      "GND"
+    ],
+    "ice": [
+      "Ice",
+      "ICE",
+      "ICE",
+      "ICE"
+    ],
+    "normal": [
+      "Normal",
+      "NORMAL",
+      "NRML",
+      "NRM"
+    ],
+    "poison": [
+      "Poison",
+      "POISON",
+      "PSN",
+      "PSN"
+    ],
+    "psychic": [
+      "Psychic",
+      "PSYCH",
+      "PSYC",
+      "PSY"
+    ],
+    "rock": [
+      "Rock",
+      "ROCK",
+      "ROCK",
+      "RCK"
+    ],
+    "steel": [
+      "Steel",
+      "STEEL",
+      "STL",
+      "STL"
+    ],
+    "stellar": [
+      "Stellar",
+      "STELLR",
+      "STLR",
+      "SLR"
+    ],
+    "unknown": [
+      "Unknown",
+      "???",
+      "???",
+      "???"
+    ],
+    "water": [
+      "Water",
+      "WATER",
+      "WATR",
+      "WTR"
+    ]
   },
-
   "effects": {
     "bestowed": "Bestowed",
     "consumed": "Consumed",
@@ -281,20 +438,49 @@
     "stolen": "Stolen",
     "tricked": "Tricked"
   },
-
   "nonvolatiles": {
-    "ok": ["Healthy", "OK", "OK"],
-    "fnt": ["Fainted", "FAINT", "RIP"],
-    "brn": ["Burned", "BURNED", "BRN"],
-    "frz": ["Frozen", "FROZEN", "FRZ"],
-    "par": ["Paralyzed", "PARLYZ", "PAR"],
-    "psn": ["Poisoned", "POISON", "PSN"],
-    "slp": ["Asleep", "ASLEEP", "SLP"],
-    "tox": ["Badly Poisoned", "TOXIC", "TOX"]
+    "ok": [
+      "Healthy",
+      "OK",
+      "OK"
+    ],
+    "fnt": [
+      "Fainted",
+      "FAINT",
+      "RIP"
+    ],
+    "brn": [
+      "Burned",
+      "BURNED",
+      "BRN"
+    ],
+    "frz": [
+      "Frozen",
+      "FROZEN",
+      "FRZ"
+    ],
+    "par": [
+      "Paralyzed",
+      "PARLYZ",
+      "PAR"
+    ],
+    "psn": [
+      "Poisoned",
+      "POISON",
+      "PSN"
+    ],
+    "slp": [
+      "Asleep",
+      "ASLEEP",
+      "SLP"
+    ],
+    "tox": [
+      "Badly Poisoned",
+      "TOXIC",
+      "TOX"
+    ]
   },
-
   "volatiles": {},
-
   "weather": {
     "hail": {
       "label": "Hail",
@@ -327,9 +513,12 @@
     "sun": {
       "label": "Sun",
       "shortDesc": "For 5 turns (8 w/ Heat Rock), $t(pokedex:types.fire.0) 1.5{{times}}, $t(pokedex:types.water.0) 0.5{{times}}."
+    },
+    "newmoon": {
+      "label": "New Moon",
+      "shortDesc": "Pokéathlon (Soulstones): Ghost/Dark 1.35{{times}}, Fairy 0.75{{times}}; powers Shadow Dance, Absolution & Supercell."
     }
   },
-
   "terrain": {
     "electric": {
       "label": "Electric",
@@ -348,15 +537,33 @@
       "shortDesc": "For 5 turns, $t(pokedex:types.psychic.0) 1.3{{times}} (grounded), no priority."
     }
   },
-
   "ultimates": {
-    "gmax": ["Gigantamax", "Gigantamax", "Gmax"],
-    "dmax": ["Dynamax", "Dynamax", "Max"],
-    "mega": ["Mega-Evolution", "Mega-Evolve", "Mega"],
-    "tera": ["Terastallization", "Terastallize", "Tera"],
-    "z": ["Z-Power", "Z-Power", "Z"]
+    "gmax": [
+      "Gigantamax",
+      "Gigantamax",
+      "Gmax"
+    ],
+    "dmax": [
+      "Dynamax",
+      "Dynamax",
+      "Max"
+    ],
+    "mega": [
+      "Mega-Evolution",
+      "Mega-Evolve",
+      "Mega"
+    ],
+    "tera": [
+      "Terastallization",
+      "Terastallize",
+      "Tera"
+    ],
+    "z": [
+      "Z-Power",
+      "Z-Power",
+      "Z"
+    ]
   },
-
   "gens": {
     "rb": {
       "label": "RBY",

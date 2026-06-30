@@ -90,6 +90,7 @@ export const WeatherNames: Weather[] = [
   'Heavy Rain',
   'Harsh Sunshine',
   'Strong Winds',
+  'New Moon' as Weather, // Pokéathlon (Soulstones) custom weather — see WeatherMap above
 ];
 
 /**
