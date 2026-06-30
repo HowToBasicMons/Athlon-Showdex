@@ -263,6 +263,13 @@ export const createSmogonPokemon = (
     });
   }
 
+  // Pokéathlon frostburn ('frb'): the special analog of burn — it halves Special-move damage (& the
+  // server remaps freeze to it). @smogon/calc doesn't know this status, so halve SpA in the rawStats
+  // (skipped w/ Guts, mirroring burn). Physical moves use Atk & are unaffected, matching the server.
+  if ((status as string) === 'frb' && abilityId !== 'guts' && typeof options.rawStats.spa === 'number') {
+    options.rawStats.spa = Math.floor(options.rawStats.spa * 0.5);
+  }
+
   // in legacy gens, make sure that the SPD DVs match the SPA DVs
   // (even though gen 1 doesn't have SPD [or even SPA, technically], doesn't hurt to set it anyways)
   if (legacy) {

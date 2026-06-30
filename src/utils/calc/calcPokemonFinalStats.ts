@@ -126,6 +126,11 @@ export const calcPokemonFinalStats = (
       record.apply('atk', 0.5, 'nonvolatiles', 'Burn');
     }
 
+    // Pokéathlon frostburn ('frb'): special analog of burn — 50% SpA reduction (skipped w/ Guts)
+    if ((status as string) === 'frb' && ability !== 'guts') {
+      record.apply('spa', 0.5, 'nonvolatiles', 'Frostburn');
+    }
+
     // 50% ATK boost w/ non-volatile status condition due to "Guts" (gen 3+)
     if (!legacy && ability === 'guts') {
       record.apply('atk', 1.5, 'abilities', 'Guts');
