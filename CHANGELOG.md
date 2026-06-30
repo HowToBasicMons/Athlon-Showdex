@@ -2,6 +2,23 @@
 
 All notable changes to **Athlon Showdex** (a fork of [doshidak/showdex](https://github.com/doshidak/showdex) for [Pokéathlon](https://play.pokeathlon.com)).
 
+## v1.0.6
+
+Merged **upstream Showdex v1.4.0** into the Pokéathlon fork — all of our work is preserved, with upstream's latest features and fixes layered in.
+
+**From upstream (v1.4.0)**
+- **Teledex / Devdex** — a "Dump Bug Report" tool + live log viewer (great for sending us reproducible reports).
+- **Preset fixes** — smarter Randoms guessing (don't gate on revealed item, Mega-stone handling), mega/primal forme folding, format-scoped preset pools.
+- **Performance** — log ring-buffer, throttled re-renders, hot-path trims.
+- A **Mega toggle button** in the moves panel, and an `@smogon/calc` patch sync.
+
+**Fork integrity**
+- Verified every Pokéathlon system survived the merge unchanged: fusion engine, custom abilities & items, New Moon, Expert Moves, presets, sprites, types, and the rebrand. The `@smogon/calc` ShowdexCalcMods patch is confirmed applied.
+
+**Internal**
+- Added regression tests for the custom item/ability stat-mod resolvers (now **110** tests total).
+- Consolidated on the upstream Vitest config; fixed an incomplete teledex test mock.
+
 ## v1.0.5
 
 Official release consolidating the v1.0.4-hotfix.1 fixes plus custom-ability support, an item/type-chart audit, and the first unit tests.
