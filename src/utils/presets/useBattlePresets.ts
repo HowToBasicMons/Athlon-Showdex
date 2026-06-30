@@ -21,6 +21,7 @@ import {
 import { type CalcdexPokemonUsageAltSorter, usageAltPercentFinder, usageAltPercentSorter } from '@showdex/utils/presets';
 import { usePokeathlonPresets } from './usePokeathlonPresets';
 import { usePokeathlonRandomsPresets } from './usePokeathlonRandomsPresets';
+import { usePokeathlonSampleSets } from './usePokeathlonSampleSets';
 
 /**
  * Options for the `useBattlePresets()` hook.
@@ -236,6 +237,12 @@ export const useBattlePresets = (
     disabled: shouldSkipAny || !randoms,
   });
 
+  // Pokéathlon: bundled community sample sets (e.g. Mariomon OU/UU/etc.) — named, full sets shown
+  // as selectable 'bundle' presets in non-random formats.
+  const { presets: pokeathlonSampleSets } = usePokeathlonSampleSets(format, {
+    disabled: shouldSkipAny || randoms,
+  });
+
   const {
     data: bundledPresets,
     isUninitialized: bundledPresetsPending,
@@ -311,6 +318,7 @@ export const useBattlePresets = (
       ...(formatPresets || []),
       ...(formatStats || []),
       ...(pokeathlonPresets || []),
+      ...(pokeathlonSampleSets || []),
     ];
 
     if (!legalFormat || includeOtherMetaPresets) {
@@ -327,6 +335,7 @@ export const useBattlePresets = (
     legalFormat,
     pokeathlonPresets,
     pokeathlonRandomsPresets,
+    pokeathlonSampleSets,
     randoms,
     randomsPresets,
     teambuilderPresets,

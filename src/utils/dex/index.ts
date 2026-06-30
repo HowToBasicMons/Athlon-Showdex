@@ -13,6 +13,7 @@ export * from './determineTerrain';
 export * from './determineWeather';
 export * from './formatDexDescription';
 export * from './fuseSpecies';
+export * from './getFusionExpertMoves';
 export * from './getDefaultSpreadValue';
 export * from './getDexForFormat';
 export * from './getDynamicMoveType';

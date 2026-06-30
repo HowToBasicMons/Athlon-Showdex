@@ -27,4 +27,5 @@ export * from './useBattlePresets';
 export * from './usePokemonPresets';
 export * from './usePokeathlonPresets';
 export * from './usePokeathlonRandomsPresets';
+export * from './usePokeathlonSampleSets';
 export * from './useUsageAltSorter';

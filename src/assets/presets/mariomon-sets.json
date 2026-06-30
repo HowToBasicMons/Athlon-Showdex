@@ -1,0 +1,3228 @@
+{
+  "bonetail": {
+    "name": "Bonetail",
+    "sets": [
+      {
+        "name": "Mixed Utility",
+        "item": "Heavy-Duty Boots",
+        "ability": "Multiscale",
+        "nature": "Naive",
+        "teraType": "Fairy",
+        "level": null,
+        "evs": {
+          "atk": 60,
+          "spa": 196,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Draco Meteor",
+          "Shadow Bone",
+          "Flamethrower",
+          "Will-O-Wisp"
+        ]
+      },
+      {
+        "name": "Offensive DD",
+        "item": "Weakness Policy",
+        "ability": "Multiscale",
+        "nature": "Adamant",
+        "teraType": "Ghost",
+        "level": null,
+        "evs": {
+          "hp": 4,
+          "atk": 252,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Dragon Dance",
+          "Shadow Bone",
+          "Play Rough",
+          "Earthquake"
+        ]
+      },
+      {
+        "name": "Bulky DD",
+        "item": "Chesto Berry",
+        "ability": "Multiscale",
+        "nature": "Adamant",
+        "teraType": "Ghost",
+        "level": null,
+        "evs": {
+          "hp": 132,
+          "atk": 156,
+          "def": 28,
+          "spe": 192
+        },
+        "ivs": {},
+        "moves": [
+          "Dragon Dance",
+          "Shadow Bone",
+          "Play Rough",
+          "Rest"
+        ]
+      },
+      {
+        "name": "Hotdog",
+        "item": "Heavy-Duty Boots",
+        "ability": "Multiscale",
+        "nature": "Careful",
+        "teraType": "Ghost",
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "def": 120,
+          "spd": 136
+        },
+        "ivs": {},
+        "moves": [
+          "Will-O-Wisp",
+          "Shadow Bone",
+          "Knock Off",
+          "Rest"
+        ]
+      },
+      {
+        "name": "DD Disruptor",
+        "item": "Heavy-Duty Boots",
+        "ability": "Multiscale",
+        "nature": "Adamant",
+        "teraType": "Ghost",
+        "level": null,
+        "evs": {
+          "hp": 64,
+          "atk": 252,
+          "spe": 192
+        },
+        "ivs": {},
+        "moves": [
+          "Dragon Dance",
+          "Shadow Bone",
+          "Play Rough",
+          "Will-O-Wisp"
+        ]
+      }
+    ]
+  },
+  "mollusquelanceur": {
+    "name": "Mollusque-Lanceur",
+    "sets": [
+      {
+        "name": "Taco",
+        "item": "Heavy-Duty Boots",
+        "ability": "Swift Swim",
+        "nature": "Relaxed",
+        "teraType": "Water",
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "def": 252,
+          "spa": 4
+        },
+        "ivs": {
+          "spe": 0
+        },
+        "moves": [
+          "Recover",
+          "Scald",
+          "Rapid Spin",
+          "Flip Turn"
+        ]
+      },
+      {
+        "name": "Rain Sweeper",
+        "item": "Choice Specs",
+        "ability": "Swift Swim",
+        "nature": "Timid",
+        "teraType": "Water",
+        "level": null,
+        "evs": {
+          "def": 4,
+          "spa": 252,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Water Spout",
+          "Steam Eruption",
+          "Flip Turn",
+          "Trick"
+        ]
+      }
+    ]
+  },
+  "lubba": {
+    "name": "Lubba",
+    "sets": [
+      {
+        "name": "Hamburger",
+        "item": "Heavy-Duty Boots",
+        "ability": "Natural Cure",
+        "nature": "Relaxed",
+        "teraType": "Psychic",
+        "level": null,
+        "evs": {
+          "def": 252,
+          "spa": 4,
+          "spd": 252
+        },
+        "ivs": {
+          "atk": 0,
+          "spe": 0
+        },
+        "moves": [
+          "Wish",
+          "Protect",
+          "Teleport",
+          "Moonblast"
+        ]
+      }
+    ]
+  },
+  "yellowyoshi": {
+    "name": "Yellow Yoshi",
+    "sets": [
+      {
+        "name": "Defensive Wall",
+        "item": "Rocky Helmet",
+        "ability": "Earth Eater",
+        "nature": "Impish",
+        "teraType": "Ground",
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "atk": 4,
+          "def": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Earthquake",
+          "Soft-Boiled",
+          "Stealth Rock",
+          "Knock Off"
+        ]
+      },
+      {
+        "name": "Offensive Lead",
+        "item": "Focus Sash",
+        "ability": "Earth Eater",
+        "nature": "Jolly",
+        "teraType": "Ground",
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Stealth Rock",
+          "Headlong Rush",
+          "Sucker Punch",
+          "Ice Fang"
+        ]
+      }
+    ]
+  },
+  "blargg": {
+    "name": "Blargg",
+    "sets": [
+      {
+        "name": "Stall Rest Talker",
+        "item": "Leftovers",
+        "ability": "Flame Body",
+        "nature": "Bold",
+        "teraType": "Fire",
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "def": 252,
+          "spa": 4
+        },
+        "ivs": {
+          "atk": 0
+        },
+        "moves": [
+          "Scorching Sands",
+          "Magma Storm",
+          "Rest",
+          "Sleep Talk"
+        ]
+      },
+      {
+        "name": "Bulky Attacker",
+        "item": "Heavy-Duty Boots",
+        "ability": "Flame Body",
+        "nature": "Quiet",
+        "teraType": "Fire",
+        "level": null,
+        "evs": {
+          "hp": 248,
+          "def": 204,
+          "spa": 56
+        },
+        "ivs": {},
+        "moves": [
+          "Magma Storm",
+          "Fire Lash",
+          "Draco Meteor",
+          "Will-O-Wisp"
+        ]
+      },
+      {
+        "name": "Fast Offensive",
+        "item": "Life Orb",
+        "ability": "Flame Body",
+        "nature": "Naive",
+        "teraType": "Fire",
+        "level": null,
+        "evs": {
+          "def": 4,
+          "spa": 252,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Magma Storm",
+          "Fire Lash",
+          "Draco Meteor",
+          "Thunderbolt"
+        ]
+      }
+    ]
+  },
+  "gooperblooper": {
+    "name": "Gooper Blooper",
+    "sets": [
+      {
+        "name": "Offensive",
+        "item": "Choice Specs",
+        "ability": "torrentstickyhold",
+        "nature": "Timid",
+        "teraType": "Water",
+        "level": null,
+        "evs": {
+          "hp": 4,
+          "spa": 252,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Hydro Pump",
+          "Sludge Wave",
+          "Ice Beam",
+          "Flip Turn"
+        ]
+      },
+      {
+        "name": "Bulky Spinner",
+        "item": "Heavy-Duty Boots",
+        "ability": "Sticky Hold",
+        "nature": "Calm",
+        "teraType": "Water",
+        "level": null,
+        "evs": {
+          "hp": 248,
+          "spa": 8,
+          "spd": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Toxic",
+          "Flip Turn",
+          "Surf",
+          "Rapid Spin"
+        ]
+      },
+      {
+        "name": "AV",
+        "item": "Assault Vest",
+        "ability": "Sticky Hold",
+        "nature": "Modest",
+        "teraType": "Water",
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "spa": 96,
+          "spd": 160
+        },
+        "ivs": {},
+        "moves": [
+          "Rapid Spin",
+          "Ice Beam",
+          "Surf",
+          "Sludge Bomb"
+        ]
+      },
+      {
+        "name": "Regular spinner",
+        "item": "Black Sludge",
+        "ability": "Sticky Hold",
+        "nature": "Modest",
+        "teraType": null,
+        "level": null,
+        "evs": {
+          "hp": 112,
+          "spa": 252,
+          "spd": 4,
+          "spe": 140
+        },
+        "ivs": {},
+        "moves": [
+          "Surf",
+          "Ice Beam",
+          "Sludge Bomb",
+          "Rapid Spin"
+        ]
+      }
+    ]
+  },
+  "birdo": {
+    "name": "Birdo",
+    "sets": [
+      {
+        "name": "Choiced",
+        "item": "Choice Specs",
+        "ability": "Pixilate",
+        "nature": "Timid",
+        "teraType": "Fairy",
+        "level": null,
+        "evs": {
+          "hp": 4,
+          "spa": 252,
+          "spe": 252
+        },
+        "ivs": {
+          "atk": 0
+        },
+        "moves": [
+          "Trick",
+          "Hyper Voice",
+          "Sludge Bomb",
+          "Burning Jealousy"
+        ]
+      },
+      {
+        "name": "Bulky Attacker",
+        "item": "Heavy-Duty Boots",
+        "ability": "Pixilate",
+        "nature": "Modest",
+        "teraType": "Fairy",
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "def": 104,
+          "spa": 32,
+          "spe": 120
+        },
+        "ivs": {
+          "atk": 0
+        },
+        "moves": [
+          "Hyper Voice",
+          "Soft-Boiled",
+          "Lovely Kiss",
+          "Burning Jealousy"
+        ]
+      },
+      {
+        "name": "Stall",
+        "item": "Heavy-Duty Boots",
+        "ability": "Pixilate",
+        "nature": "Bold",
+        "teraType": null,
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "def": 252,
+          "spa": 4
+        },
+        "ivs": {},
+        "moves": [
+          "Soft-Boiled",
+          "Knock Off",
+          "Hyper Voice",
+          "Lovely Kiss"
+        ]
+      }
+    ]
+  },
+  "yoob": {
+    "name": "Yoob",
+    "sets": [
+      {
+        "name": "Curse Sweeper",
+        "item": "Leftovers",
+        "ability": "Thick Fat",
+        "nature": "Careful",
+        "teraType": "Normal",
+        "level": null,
+        "evs": {
+          "hp": 156,
+          "atk": 96,
+          "def": 4,
+          "spd": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Dragon Tail",
+          "Body Slam",
+          "Curse",
+          "Rest"
+        ]
+      },
+      {
+        "name": "Curse Sweeper",
+        "item": "Leftovers",
+        "ability": "Mold Breaker",
+        "nature": "Adamant",
+        "teraType": "Normal",
+        "level": null,
+        "evs": {
+          "hp": 156,
+          "atk": 252,
+          "spd": 100
+        },
+        "ivs": {},
+        "moves": [
+          "Body Slam",
+          "Earthquake",
+          "Curse",
+          "Rest"
+        ]
+      },
+      {
+        "name": "Stall",
+        "item": "Leftovers",
+        "ability": "Thick Fat",
+        "nature": "Careful",
+        "teraType": null,
+        "level": null,
+        "evs": {
+          "hp": 200,
+          "def": 56,
+          "spd": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Rest",
+          "Sleep Talk",
+          "Body Slam",
+          "Dragon Tail"
+        ]
+      }
+    ]
+  },
+  "scuttlebug": {
+    "name": "Scuttlebug",
+    "sets": [
+      {
+        "name": "Webs Setter",
+        "item": "Focus Sash",
+        "ability": "Magic Bounce",
+        "nature": "Jolly",
+        "teraType": "Bug",
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Flip Turn",
+          "First Impression",
+          "Sticky Web",
+          "Wave Crash"
+        ]
+      }
+    ]
+  },
+  "trunkle": {
+    "name": "Trunkle",
+    "sets": [
+      {
+        "name": "AV",
+        "item": "Assault Vest",
+        "ability": "Regenerator",
+        "nature": "Adamant",
+        "teraType": "Grass",
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "atk": 56,
+          "spe": 200
+        },
+        "ivs": {},
+        "moves": [
+          "Rock Slide",
+          "Hammer Arm",
+          "Ice Punch",
+          "Power-Up Punch"
+        ]
+      },
+      {
+        "name": "The Wall",
+        "item": "Heavy-Duty Boots",
+        "ability": "Regenerator",
+        "nature": "Impish",
+        "teraType": "Grass",
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "def": 56,
+          "spe": 200
+        },
+        "ivs": {},
+        "moves": [
+          "Roar",
+          "Drain Punch",
+          "Thief",
+          "Bulk Up"
+        ]
+      }
+    ]
+  },
+  "spiketop": {
+    "name": "Spike Top",
+    "sets": [
+      {
+        "name": "Special Wall",
+        "item": "Leftovers",
+        "ability": "Levitate",
+        "nature": "Careful",
+        "teraType": "Dark",
+        "level": null,
+        "evs": {
+          "hp": 248,
+          "spd": 252,
+          "spe": 8
+        },
+        "ivs": {},
+        "moves": [
+          "Spikes",
+          "Knock Off",
+          "Rest",
+          "Topsy-Turvy"
+        ]
+      },
+      {
+        "name": "Physicall Wall",
+        "item": "Rocky Helmet",
+        "ability": "Levitate",
+        "nature": "Impish",
+        "teraType": "Dark",
+        "level": null,
+        "evs": {
+          "hp": 248,
+          "def": 252,
+          "spd": 8
+        },
+        "ivs": {
+          "spe": 0
+        },
+        "moves": [
+          "Spikes",
+          "Knock Off",
+          "Gyro Ball",
+          "Topsy-Turvy"
+        ]
+      }
+    ]
+  },
+  "magikoopa": {
+    "name": "Magikoopa",
+    "sets": [
+      {
+        "name": "Screener",
+        "item": "Light Clay",
+        "ability": "Prankster",
+        "nature": "Calm",
+        "teraType": "Psychic",
+        "level": null,
+        "evs": {
+          "hp": 248,
+          "spa": 8,
+          "spd": 252
+        },
+        "ivs": {
+          "atk": 0
+        },
+        "moves": [
+          "Reflect",
+          "Light Screen",
+          "Thunder Wave",
+          "Moonblast"
+        ]
+      },
+      {
+        "name": "Lorb Attacker",
+        "item": "Life Orb",
+        "ability": "Magic Guard",
+        "nature": "Timid",
+        "teraType": "Psychic",
+        "level": null,
+        "evs": {
+          "spa": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {
+          "atk": 0
+        },
+        "moves": [
+          "Substitute",
+          "Fire Blast",
+          "Moonblast",
+          "Psychic"
+        ]
+      },
+      {
+        "name": "Choiced Breaker",
+        "item": "Choice Specs",
+        "ability": "Magic Guard",
+        "nature": "Timid",
+        "teraType": "Psychic",
+        "level": null,
+        "evs": {
+          "spa": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {
+          "atk": 0
+        },
+        "moves": [
+          "Moonblast",
+          "Psychic",
+          "Fire Blast",
+          "Trick"
+        ]
+      },
+      {
+        "name": "Meteor Beam",
+        "item": "Power Herb",
+        "ability": "Magic Guard",
+        "nature": "Timid",
+        "teraType": "Psychic",
+        "level": null,
+        "evs": {
+          "spa": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {
+          "atk": 0
+        },
+        "moves": [
+          "Meteor Beam",
+          "Fire Blast",
+          "Moonblast",
+          "Psychic"
+        ]
+      }
+    ]
+  },
+  "broozer": {
+    "name": "Broozer",
+    "sets": [
+      {
+        "name": "Sub sweeper",
+        "item": "Punching Glove",
+        "ability": "Iron Fist",
+        "nature": "Adamant",
+        "teraType": "Ghost",
+        "level": null,
+        "evs": {
+          "hp": 140,
+          "atk": 252,
+          "spe": 116
+        },
+        "ivs": {},
+        "moves": [
+          "Swords Dance",
+          "Drain Punch",
+          "Rage Fist",
+          "Substitute"
+        ]
+      },
+      {
+        "name": "Mach punch",
+        "item": "Punching Glove",
+        "ability": "Iron Fist",
+        "nature": "Jolly",
+        "teraType": "Ghost",
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Drain Punch",
+          "Rage Fist",
+          "Mach Punch",
+          "Swords Dance"
+        ]
+      },
+      {
+        "name": "Wall Breaker",
+        "item": "Choice Band",
+        "ability": "Iron Fist",
+        "nature": "Jolly",
+        "teraType": "Ghost",
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Close Combat",
+          "Rage Fist",
+          "Mach Punch",
+          "Knock Off"
+        ]
+      }
+    ]
+  },
+  "banzaibill": {
+    "name": "Banzai Bill",
+    "sets": [
+      {
+        "name": "Fast Attacker",
+        "item": "Life Orb",
+        "ability": "Sheer Force",
+        "nature": "Jolly",
+        "teraType": "Steel",
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Iron Head",
+          "High Horsepower",
+          "U-turn",
+          "Flare Blitz"
+        ]
+      },
+      {
+        "name": "Levitate Pivot",
+        "item": "Leftovers",
+        "ability": "Levitate",
+        "nature": "Jolly",
+        "teraType": "Steel",
+        "level": null,
+        "evs": {
+          "hp": 160,
+          "atk": 252,
+          "spe": 96
+        },
+        "ivs": {},
+        "moves": [
+          "Parting Shot",
+          "Iron Head",
+          "Flare Blitz",
+          "High Horsepower"
+        ]
+      }
+    ]
+  },
+  "drybones": {
+    "name": "Dry Bones",
+    "sets": [
+      {
+        "name": "Staller",
+        "item": "Heavy-Duty Boots",
+        "ability": "Wonder Guard",
+        "nature": "Lonely",
+        "teraType": "Dark",
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "spe": 252
+        },
+        "ivs": {
+          "def": 0,
+          "spd": 0
+        },
+        "moves": [
+          "Rapid Spin",
+          "Knock Off",
+          "Bonemerang",
+          "Will-O-Wisp"
+        ]
+      }
+    ]
+  },
+  "happymoon": {
+    "name": "Happy Moon",
+    "sets": [
+      {
+        "name": "Bulky Rocker",
+        "item": "Heavy-Duty Boots",
+        "ability": "Shadow Shield",
+        "nature": "Calm",
+        "teraType": "Fairy",
+        "level": null,
+        "evs": {
+          "hp": 248,
+          "def": 172,
+          "spd": 88
+        },
+        "ivs": {
+          "atk": 0
+        },
+        "moves": [
+          "Stealth Rock",
+          "Moonlight",
+          "Moonblast",
+          "Earth Power"
+        ]
+      },
+      {
+        "name": "Sweeper",
+        "item": "Power Herb",
+        "ability": "Shadow Shield",
+        "nature": "Modest",
+        "teraType": null,
+        "level": null,
+        "evs": {
+          "spa": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {
+          "atk": 0
+        },
+        "moves": [
+          "Meteor Beam",
+          "Moonblast",
+          "Rock Polish",
+          "Dark Pulse"
+        ]
+      }
+    ]
+  },
+  "poisonpokey": {
+    "name": "Poison Pokey",
+    "sets": [
+      {
+        "name": "Defensive Spiker",
+        "item": "Rocky Helmet",
+        "ability": "Toxic Debris",
+        "nature": "Impish",
+        "teraType": "Ground",
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "def": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Spikes",
+          "Knock Off",
+          "Mortal Spin",
+          "Rapid Spin"
+        ]
+      },
+      {
+        "name": "Dedicated Spinner",
+        "item": "Passho Berry",
+        "ability": "Toxic Debris",
+        "nature": "Impish",
+        "teraType": null,
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "def": 252,
+          "spd": 4
+        },
+        "ivs": {},
+        "moves": [
+          "Rapid Spin",
+          "Mortal Spin",
+          "Earthquake",
+          "Knock Off"
+        ]
+      },
+      {
+        "name": "Offensive spikes",
+        "item": "Passho Berry",
+        "ability": "Toxic Debris",
+        "nature": "Adamant",
+        "teraType": null,
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "atk": 172,
+          "spd": 84
+        },
+        "ivs": {},
+        "moves": [
+          "Earthquake",
+          "Knock Off",
+          "Mortal Spin",
+          "Spiky Shield"
+        ]
+      }
+    ]
+  },
+  "shrooboid": {
+    "name": "Shrooboid",
+    "sets": [
+      {
+        "name": "Corrosion Staller",
+        "item": "Black Sludge",
+        "ability": "Corrosion",
+        "nature": "Impish",
+        "teraType": "Poison",
+        "level": null,
+        "evs": {
+          "hp": 248,
+          "def": 128,
+          "spd": 132
+        },
+        "ivs": {},
+        "moves": [
+          "Toxic",
+          "Knock Off",
+          "Protect",
+          "Mortal Spin"
+        ]
+      },
+      {
+        "name": "Bulky Sweeper",
+        "item": "Black Sludge",
+        "ability": "Poison Touch",
+        "nature": "Adamant",
+        "teraType": "Poison",
+        "level": null,
+        "evs": {
+          "hp": 124,
+          "atk": 252,
+          "spe": 132
+        },
+        "ivs": {},
+        "moves": [
+          "Poison Jab",
+          "Drain Punch",
+          "Knock Off",
+          "Swords Dance"
+        ]
+      }
+    ]
+  },
+  "crystalking": {
+    "name": "Crystal King",
+    "sets": [
+      {
+        "name": "Wall Breaker",
+        "item": "Choice Specs",
+        "ability": "Refrigerate",
+        "nature": "Timid",
+        "teraType": "Ice",
+        "level": null,
+        "evs": {
+          "spa": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {
+          "atk": 0
+        },
+        "moves": [
+          "Trick",
+          "Shadow Ball",
+          "Tri Attack",
+          "Mystical Fire"
+        ]
+      },
+      {
+        "name": "Fast CM",
+        "item": "Leftovers",
+        "ability": "Refrigerate",
+        "nature": "Timid",
+        "teraType": "Ice",
+        "level": null,
+        "evs": {
+          "spa": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {
+          "atk": 0
+        },
+        "moves": [
+          "Calm Mind",
+          "Substitute",
+          "Tri Attack",
+          "Shadow Ball"
+        ]
+      },
+      {
+        "name": "Bulky CM",
+        "item": "Leftovers",
+        "ability": "Refrigerate",
+        "nature": "Bold",
+        "teraType": "Ice",
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "def": 136,
+          "spa": 64,
+          "spe": 56
+        },
+        "ivs": {
+          "atk": 0
+        },
+        "moves": [
+          "Shadow Ball",
+          "Substitute",
+          "Calm Mind",
+          "Tri Attack"
+        ]
+      }
+    ]
+  },
+  "blueyoshi": {
+    "name": "Blue Yoshi",
+    "sets": [
+      {
+        "name": "Lorb Attacker",
+        "item": "Life Orb",
+        "ability": "Aerilate",
+        "nature": "Modest",
+        "teraType": "Flying",
+        "level": null,
+        "evs": {
+          "hp": 36,
+          "spa": 252,
+          "spe": 220
+        },
+        "ivs": {
+          "atk": 0
+        },
+        "moves": [
+          "Hyper Voice",
+          "Dragon Pulse",
+          "Esper Wing",
+          "Roost"
+        ]
+      },
+      {
+        "name": "Breaker",
+        "item": "Choice Specs",
+        "ability": "Aerilate",
+        "nature": "Timid",
+        "teraType": null,
+        "level": null,
+        "evs": {
+          "spa": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {
+          "atk": 0
+        },
+        "moves": [
+          "Hyper Voice",
+          "Hyper Beam",
+          "Icy Wind",
+          "Esper Wing"
+        ]
+      }
+    ]
+  },
+  "porcupuffer": {
+    "name": "Porcupuffer",
+    "sets": [
+      {
+        "name": "Bulky porc",
+        "item": "Black Sludge",
+        "ability": "Drizzle",
+        "nature": "Relaxed",
+        "teraType": "Water",
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "def": 148,
+          "spd": 108
+        },
+        "ivs": {
+          "spe": 0
+        },
+        "moves": [
+          "Toxic Spikes",
+          "Flip Turn",
+          "Barb Barrage",
+          "Rest"
+        ]
+      },
+      {
+        "name": "Band porc",
+        "item": "Choice Band",
+        "ability": "Drizzle",
+        "nature": "Adamant",
+        "teraType": "Water",
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Flip Turn",
+          "Waterfall",
+          "Barb Barrage",
+          "Psychic Fangs"
+        ]
+      },
+      {
+        "name": "Av porc",
+        "item": "Assault Vest",
+        "ability": "Drizzle",
+        "nature": "Careful",
+        "teraType": "Water",
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "atk": 4,
+          "spd": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Flip Turn",
+          "Waterfall",
+          "Barb Barrage",
+          "Poison Fang"
+        ]
+      }
+    ]
+  },
+  "fishbone": {
+    "name": "Fish Bone",
+    "sets": [
+      {
+        "name": "Rain Breaker",
+        "item": "Choice Band",
+        "ability": "Swift Swim",
+        "nature": "Jolly",
+        "teraType": "Water",
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Liquidation",
+          "Shadow Bone",
+          "Flip Turn",
+          "Shadow Sneak"
+        ]
+      },
+      {
+        "name": "Mixed Attacker",
+        "item": "Life Orb",
+        "ability": "Swift Swim",
+        "nature": "Mild",
+        "teraType": "Water",
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "spa": 216,
+          "spe": 40
+        },
+        "ivs": {},
+        "moves": [
+          "Flip Turn",
+          "Shadow Bone",
+          "Hydro Pump",
+          "Substitute"
+        ]
+      }
+    ]
+  },
+  "mrblizzard": {
+    "name": "Mr. Blizzard",
+    "sets": [
+      {
+        "name": "Veil Setter",
+        "item": "Light Clay",
+        "ability": "Snow Warning",
+        "nature": "Calm",
+        "teraType": "Ice",
+        "level": null,
+        "evs": {
+          "hp": 248,
+          "spd": 84,
+          "spe": 176
+        },
+        "ivs": {
+          "atk": 0
+        },
+        "moves": [
+          "Aurora Veil",
+          "Freeze-Dry",
+          "Encore",
+          "Blizzard"
+        ]
+      }
+    ]
+  },
+  "mawray": {
+    "name": "Maw-Ray",
+    "sets": [
+      {
+        "name": "Defensive Pivot",
+        "item": "Heavy-Duty Boots",
+        "ability": "Intimidate",
+        "nature": "Impish",
+        "teraType": "Water",
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "def": 252,
+          "spd": 4
+        },
+        "ivs": {},
+        "moves": [
+          "Glare",
+          "Flip Turn",
+          "Earthquake",
+          "Superpower"
+        ]
+      },
+      {
+        "name": "Wall Breaker",
+        "item": "Choice Band",
+        "ability": "Intimidate",
+        "nature": "Adamant",
+        "teraType": "Water",
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "atk": 252,
+          "spd": 4
+        },
+        "ivs": {},
+        "moves": [
+          "Flip Turn",
+          "Waterfall",
+          "Earthquake",
+          "Superpower"
+        ]
+      }
+    ]
+  },
+  "clubba": {
+    "name": "Clubba",
+    "sets": [
+      {
+        "name": "Wall Breaker",
+        "item": "Choice Band",
+        "ability": "Huge Power",
+        "nature": "Adamant",
+        "teraType": "Normal",
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "atk": 252,
+          "spd": 4
+        },
+        "ivs": {},
+        "moves": [
+          "First Impression",
+          "Return",
+          "Knock Off",
+          "Brick Break"
+        ]
+      },
+      {
+        "name": "Ultimate Stall Breaker",
+        "item": "Life Orb",
+        "ability": "Huge Power",
+        "nature": "Jolly",
+        "teraType": "Normal",
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "def": 4,
+          "spe": 252
+        },
+        "ivs": {
+          "hp": 29
+        },
+        "moves": [
+          "Swords Dance",
+          "Return",
+          "Knock Off",
+          "Brick Break"
+        ]
+      }
+    ]
+  },
+  "spindrift": {
+    "name": "Spindrift",
+    "sets": [
+      {
+        "name": "Prankster Utility",
+        "item": "Leftovers",
+        "ability": "Prankster",
+        "nature": "Timid",
+        "teraType": "Grass",
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "def": 16,
+          "spd": 144,
+          "spe": 96
+        },
+        "ivs": {
+          "atk": 0
+        },
+        "moves": [
+          "Defog",
+          "Aromatherapy",
+          "Moonblast",
+          "Moonlight"
+        ]
+      },
+      {
+        "name": "Leech Staller",
+        "item": "Leftovers",
+        "ability": "Prankster",
+        "nature": "Timid",
+        "teraType": "Grass",
+        "level": null,
+        "evs": {
+          "hp": 248,
+          "def": 164,
+          "spe": 96
+        },
+        "ivs": {
+          "atk": 0
+        },
+        "moves": [
+          "Substitute",
+          "Leech Seed",
+          "Moonblast",
+          "Whirlwind"
+        ]
+      },
+      {
+        "name": "Sun Attacker",
+        "item": "Life Orb",
+        "ability": "Chlorophyll",
+        "nature": "Modest",
+        "teraType": "Grass",
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "def": 4,
+          "spa": 252
+        },
+        "ivs": {
+          "atk": 0
+        },
+        "moves": [
+          "Giga Drain",
+          "Moonblast",
+          "Weather Ball",
+          "Moonlight"
+        ]
+      }
+    ]
+  },
+  "hisstocrat": {
+    "name": "Hisstocrat",
+    "sets": [
+      {
+        "name": "Bulky Setup",
+        "item": "Leftovers",
+        "ability": "Sand Force",
+        "nature": "Careful",
+        "teraType": "Ground",
+        "level": null,
+        "evs": {
+          "hp": 248,
+          "atk": 84,
+          "spd": 176
+        },
+        "ivs": {},
+        "moves": [
+          "Coil",
+          "Earthquake",
+          "Pyro Ball",
+          "Substitute"
+        ]
+      },
+      {
+        "name": "Sand Sweeper",
+        "item": "Life Orb",
+        "ability": "Sand Rush",
+        "nature": "Adamant",
+        "teraType": "Ground",
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "spd": 144,
+          "spe": 112
+        },
+        "ivs": {
+          "hp": 29
+        },
+        "moves": [
+          "Coil",
+          "Earthquake",
+          "Pyro Ball",
+          "Skitter Smack"
+        ]
+      },
+      {
+        "name": "Rocks Setter",
+        "item": "Leftovers",
+        "ability": "Sand Force",
+        "nature": "Adamant",
+        "teraType": "Ground",
+        "level": null,
+        "evs": {
+          "hp": 248,
+          "atk": 176,
+          "def": 84
+        },
+        "ivs": {},
+        "moves": [
+          "Glare",
+          "Stealth Rock",
+          "Earthquake",
+          "Pyro Ball"
+        ]
+      },
+      {
+        "name": "Fast setup",
+        "item": "Leftovers",
+        "ability": "Earth Eater",
+        "nature": "Adamant",
+        "teraType": null,
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Substitute",
+          "Coil",
+          "Pyro Ball",
+          "Earthquake"
+        ]
+      }
+    ]
+  },
+  "trex": {
+    "name": "T-Rex",
+    "sets": [
+      {
+        "name": "Choiced Breaker",
+        "item": "Choice Band",
+        "ability": "Mold Breaker",
+        "nature": "Jolly",
+        "teraType": "Dragon",
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Outrage",
+          "Iron Head",
+          "Earthquake",
+          "Play Rough"
+        ]
+      },
+      {
+        "name": "Breaker",
+        "item": "Loaded Dice",
+        "ability": "Mold Breaker",
+        "nature": "Jolly",
+        "teraType": null,
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Swords Dance",
+          "Scale Shot",
+          "Iron Head",
+          "Earthquake"
+        ]
+      }
+    ]
+  },
+  "angrysun": {
+    "name": "Angry Sun",
+    "sets": [
+      {
+        "name": "Sun Breaker",
+        "item": "Choice Band",
+        "ability": "Drought",
+        "nature": "Adamant",
+        "teraType": "Fire",
+        "level": null,
+        "evs": {
+          "hp": 4,
+          "atk": 252,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Sacred Fire",
+          "Solar Blade",
+          "Stomping Tantrum",
+          "Morning Sun"
+        ]
+      },
+      {
+        "name": "Sun Setter",
+        "item": "Heat Rock",
+        "ability": "Drought",
+        "nature": "Impish",
+        "teraType": "Fire",
+        "level": null,
+        "evs": {
+          "hp": 248,
+          "def": 252,
+          "spd": 8
+        },
+        "ivs": {},
+        "moves": [
+          "Morning Sun",
+          "Sacred Fire",
+          "Solar Blade",
+          "Defog"
+        ]
+      }
+    ]
+  },
+  "phanto": {
+    "name": "Phanto",
+    "sets": [
+      {
+        "name": "Wall Breaker",
+        "item": "Choice Specs",
+        "ability": "Infiltrator",
+        "nature": "Timid",
+        "teraType": "Dark",
+        "level": null,
+        "evs": {
+          "def": 4,
+          "spa": 252,
+          "spe": 252
+        },
+        "ivs": {
+          "atk": 0
+        },
+        "moves": [
+          "Moonblast",
+          "Dark Pulse",
+          "Parting Shot",
+          "Trick"
+        ]
+      },
+      {
+        "name": "Screener",
+        "item": "Light Clay",
+        "ability": "Infiltrator",
+        "nature": "Timid",
+        "teraType": "Dark",
+        "level": null,
+        "evs": {
+          "hp": 248,
+          "spd": 8,
+          "spe": 252
+        },
+        "ivs": {
+          "atk": 0
+        },
+        "moves": [
+          "Reflect",
+          "Light Screen",
+          "Parting Shot",
+          "Moonblast"
+        ]
+      },
+      {
+        "name": "Disruptive Pivot",
+        "item": "Heavy-Duty Boots",
+        "ability": "Infiltrator",
+        "nature": "Timid",
+        "teraType": "Dark",
+        "level": null,
+        "evs": {
+          "hp": 116,
+          "spa": 252,
+          "spe": 140
+        },
+        "ivs": {
+          "atk": 0
+        },
+        "moves": [
+          "Will-O-Wisp",
+          "Glare",
+          "Moonblast",
+          "Parting Shot"
+        ]
+      }
+    ]
+  },
+  "lavadrop": {
+    "name": "Lava Drop",
+    "sets": [
+      {
+        "name": "Sun Breaker",
+        "item": "Choice Specs",
+        "ability": "Solar Power",
+        "nature": "Timid",
+        "teraType": "Fire",
+        "level": null,
+        "evs": {
+          "spa": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Fire Blast",
+          "Flamethrower",
+          "Thunderbolt",
+          "U-turn"
+        ]
+      },
+      {
+        "name": "Sun setup sweeper",
+        "item": "Charcoal",
+        "ability": "Solar Power",
+        "nature": "Timid",
+        "teraType": null,
+        "level": null,
+        "evs": {
+          "spa": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {
+          "atk": 0
+        },
+        "moves": [
+          "Nasty Plot",
+          "Flamethrower",
+          "Thunderbolt",
+          "Scorching Sands"
+        ]
+      }
+    ]
+  },
+  "kingboo": {
+    "name": "King Boo",
+    "sets": [
+      {
+        "name": "Bulky Offensive Sweeper",
+        "item": "Leftovers",
+        "ability": "Levitate",
+        "nature": "Modest",
+        "teraType": "Ghost",
+        "level": null,
+        "evs": {
+          "hp": 172,
+          "def": 120,
+          "spa": 216
+        },
+        "ivs": {
+          "atk": 0
+        },
+        "moves": [
+          "Shadow Ball",
+          "Draining Kiss",
+          "Will-O-Wisp",
+          "Nasty Plot"
+        ]
+      },
+      {
+        "name": "Spinblocker",
+        "item": "Leftovers",
+        "ability": "Levitate",
+        "nature": "Calm",
+        "teraType": "Ghost",
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "spa": 4,
+          "spd": 252
+        },
+        "ivs": {
+          "atk": 0
+        },
+        "moves": [
+          "Hex",
+          "Will-O-Wisp",
+          "Sleep Talk",
+          "Rest"
+        ]
+      }
+    ]
+  },
+  "balloonboo": {
+    "name": "Balloon Boo",
+    "sets": [
+      {
+        "name": "Staller",
+        "item": "Eviolite",
+        "ability": "Levitate",
+        "nature": "Bold",
+        "teraType": "Ghost",
+        "level": null,
+        "evs": {
+          "hp": 248,
+          "def": 252,
+          "spd": 8
+        },
+        "ivs": {
+          "atk": 0
+        },
+        "moves": [
+          "Will-O-Wisp",
+          "Night Shade",
+          "Rest",
+          "Sleep Talk"
+        ]
+      }
+    ]
+  },
+  "hooktail": {
+    "name": "Hooktail",
+    "sets": [
+      {
+        "name": "Choiced Breaker",
+        "item": "Choice Specs",
+        "ability": "Berserk",
+        "nature": "Timid",
+        "teraType": "Fire",
+        "level": null,
+        "evs": {
+          "spa": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {
+          "atk": 0
+        },
+        "moves": [
+          "Draco Meteor",
+          "Fire Blast",
+          "Dragon Pulse",
+          "Trick"
+        ]
+      },
+      {
+        "name": "Work up sweeper",
+        "item": "Leftovers",
+        "ability": "Berserk",
+        "nature": "Hasty",
+        "teraType": null,
+        "level": null,
+        "evs": {
+          "atk": 4,
+          "spa": 252,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Work Up",
+          "Fire Blast",
+          "Draco Meteor",
+          "Play Rough"
+        ]
+      }
+    ]
+  },
+  "paratroopa": {
+    "name": "Paratroopa",
+    "sets": [
+      {
+        "name": "Defensive Spinner",
+        "item": "Sturdy Shell",
+        "ability": "Speed Boost",
+        "nature": "Impish",
+        "teraType": "Flying",
+        "level": null,
+        "evs": {
+          "hp": 248,
+          "def": 224,
+          "spe": 36
+        },
+        "ivs": {},
+        "moves": [
+          "Brave Bird",
+          "Charm",
+          "Roost",
+          "Defog"
+        ]
+      },
+      {
+        "name": "Shell smash sweeper",
+        "item": "White Herb",
+        "ability": "Speed Boost",
+        "nature": "Adamant",
+        "teraType": null,
+        "level": null,
+        "evs": {
+          "hp": 212,
+          "atk": 252,
+          "spd": 4,
+          "spe": 40
+        },
+        "ivs": {},
+        "moves": [
+          "Shell Smash",
+          "Acrobatics",
+          "Brick Break",
+          "Triple Axel"
+        ]
+      }
+    ]
+  },
+  "twirler": {
+    "name": "Twirler",
+    "sets": [
+      {
+        "name": "Rock Setter",
+        "item": "Leftovers",
+        "ability": "Cursed Body",
+        "nature": "Impish",
+        "teraType": "Ghost",
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "def": 96,
+          "spd": 160
+        },
+        "ivs": {},
+        "moves": [
+          "Stealth Rock",
+          "Will-O-Wisp",
+          "U-turn",
+          "Poltergeist"
+        ]
+      },
+      {
+        "name": "Staller",
+        "item": "Leftovers",
+        "ability": "Cursed Body",
+        "nature": "Calm",
+        "teraType": "Ghost",
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "spd": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Knock Off",
+          "Will-O-Wisp",
+          "Stealth Rock",
+          "Rest"
+        ]
+      },
+      {
+        "name": "Unvurden sweeper",
+        "item": "Red Card",
+        "ability": "Unburden",
+        "nature": "Jolly",
+        "teraType": null,
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Swords Dance",
+          "Poltergeist",
+          "Drain Punch",
+          "Earthquake"
+        ]
+      },
+      {
+        "name": "Lorb breaker",
+        "item": "Life Orb",
+        "ability": "Unburden",
+        "nature": "Adamant",
+        "teraType": null,
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Swords Dance",
+          "Poltergeist",
+          "Drain Punch",
+          "Shadow Sneak"
+        ]
+      }
+    ]
+  },
+  "pyoro": {
+    "name": "Pyoro",
+    "sets": [
+      {
+        "name": "Fast Sweeper",
+        "item": "Heavy-Duty Boots",
+        "ability": "Gale Wings",
+        "nature": "Jolly",
+        "teraType": "Flying",
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Brave Bird",
+          "Knock Off",
+          "Swords Dance",
+          "Roost"
+        ]
+      },
+      {
+        "name": "Revenge Killer",
+        "item": "Heavy-Duty Boots",
+        "ability": "Gale Wings",
+        "nature": "Adamant",
+        "teraType": "Flying",
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Dual Wingbeat",
+          "Knock Off",
+          "Sucker Punch",
+          "Roost"
+        ]
+      },
+      {
+        "name": "Utility",
+        "item": "Heavy-Duty Boots",
+        "ability": "Super Luck",
+        "nature": "Impish",
+        "teraType": null,
+        "level": null,
+        "evs": {
+          "hp": 148,
+          "atk": 8,
+          "def": 252,
+          "spe": 100
+        },
+        "ivs": {},
+        "moves": [
+          "Thunder Wave",
+          "Roost",
+          "Defog",
+          "Knock Off"
+        ]
+      }
+    ]
+  },
+  "majorburrows": {
+    "name": "Major Burrows",
+    "sets": [
+      {
+        "name": "Bulky Sweeper",
+        "item": "Air Balloon",
+        "ability": "Sand Force",
+        "nature": "Adamant",
+        "teraType": "Ground",
+        "level": null,
+        "evs": {
+          "hp": 128,
+          "atk": 252,
+          "spd": 128
+        },
+        "ivs": {},
+        "moves": [
+          "Swords Dance",
+          "Earthquake",
+          "Iron Head",
+          "Sucker Punch"
+        ]
+      },
+      {
+        "name": "Wall Breaker",
+        "item": "Choice Band",
+        "ability": "Sand Force",
+        "nature": "Adamant",
+        "teraType": "Ground",
+        "level": null,
+        "evs": {
+          "hp": 168,
+          "atk": 252,
+          "spe": 88
+        },
+        "ivs": {},
+        "moves": [
+          "Earthquake",
+          "Iron Head",
+          "Superpower",
+          "Sucker Punch"
+        ]
+      }
+    ]
+  },
+  "plungelo": {
+    "name": "Plungelo",
+    "sets": [
+      {
+        "name": "Choiced",
+        "item": "Choice Specs",
+        "ability": "Mega Launcher",
+        "nature": "Timid",
+        "teraType": "Water",
+        "level": null,
+        "evs": {
+          "def": 4,
+          "spa": 252,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Water Pulse",
+          "Dragon Pulse",
+          "Aura Sphere",
+          "Flip Turn"
+        ]
+      },
+      {
+        "name": "AV Pivot",
+        "item": "Assault Vest",
+        "ability": "Water Absorb",
+        "nature": "Modest",
+        "teraType": "Water",
+        "level": null,
+        "evs": {
+          "hp": 248,
+          "def": 8,
+          "spa": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Aura Sphere",
+          "Surf",
+          "Knock Off",
+          "Flip Turn"
+        ]
+      },
+      {
+        "name": "Physical setup plungelo",
+        "item": "Life Orb",
+        "ability": "Opportunist",
+        "nature": "Adamant",
+        "teraType": null,
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Swords Dance",
+          "Aqua Step",
+          "Storm Throw",
+          "Stomping Tantrum"
+        ]
+      }
+    ]
+  },
+  "madpiano": {
+    "name": "Mad Piano",
+    "sets": [
+      {
+        "name": "Choiced Breaker",
+        "item": "Choice Band",
+        "ability": "Strong Jaw",
+        "nature": "Jolly",
+        "teraType": "Ghost",
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Poltergeist",
+          "Crunch",
+          "Psychic Fangs",
+          "Superpower"
+        ]
+      },
+      {
+        "name": "Sash Unburden",
+        "item": "Focus Sash",
+        "ability": "Unburden",
+        "nature": "Adamant",
+        "teraType": "Ghost",
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "spe": 252
+        },
+        "ivs": {
+          "hp": 0,
+          "def": 0,
+          "spd": 0
+        },
+        "moves": [
+          "Poltergeist",
+          "Sucker Punch",
+          "Superpower",
+          "Swords Dance"
+        ]
+      }
+    ]
+  },
+  "kingbobomb": {
+    "name": "King Bob-Omb",
+    "sets": [
+      {
+        "name": "Thermonuclear Bomb",
+        "item": "Choice Scarf",
+        "ability": "Blaze",
+        "nature": "Jolly",
+        "teraType": "Fire",
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Final Gambit",
+          "Superpower",
+          "Flare Blitz",
+          "Earthquake"
+        ]
+      },
+      {
+        "name": "Belly drum",
+        "item": "Sitrus Berry",
+        "ability": "Aftermath",
+        "nature": "Jolly",
+        "teraType": null,
+        "level": null,
+        "evs": {
+          "hp": 4,
+          "def": 100,
+          "spd": 152,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Belly Drum",
+          "Flame Charge",
+          "Drain Punch",
+          "Earthquake"
+        ]
+      }
+    ]
+  },
+  "spark": {
+    "name": "Spark",
+    "sets": [
+      {
+        "name": "Choiced Attacker",
+        "item": "Choice Band",
+        "ability": "Static",
+        "nature": "Jolly",
+        "teraType": "Electric",
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "def": 4,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Bolt Strike",
+          "Volt Tackle",
+          "U-turn",
+          "Nuzzle"
+        ]
+      }
+    ]
+  },
+  "klepto": {
+    "name": "Klepto",
+    "sets": [
+      {
+        "name": "Klepto",
+        "item": "Rocky Helmet",
+        "ability": "Pickpocket",
+        "nature": "Impish",
+        "teraType": "Flying",
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "def": 176,
+          "spd": 80
+        },
+        "ivs": {},
+        "moves": [
+          "Earthquake",
+          "Roost",
+          "U-turn",
+          "Defog"
+        ]
+      },
+      {
+        "name": "Stall klepto",
+        "item": "Rocky Helmet",
+        "ability": "Pickpocket",
+        "nature": "Careful",
+        "teraType": null,
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "spd": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Charm",
+          "Earthquake",
+          "Roost",
+          "Knock Off"
+        ]
+      },
+      {
+        "name": "Offensive klepto",
+        "item": "Eject Pack",
+        "ability": "Pickpocket",
+        "nature": "Jolly",
+        "teraType": null,
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Superpower",
+          "Headlong Rush",
+          "Drill Peck",
+          "U-turn"
+        ]
+      }
+    ]
+  },
+  "ukiki": {
+    "name": "Ukiki",
+    "sets": [
+      {
+        "name": "Ukiki",
+        "item": "Life Orb",
+        "ability": "Defiant",
+        "nature": "Jolly",
+        "teraType": "Normal",
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "def": 4,
+          "spe": 252
+        },
+        "ivs": {
+          "hp": 29
+        },
+        "moves": [
+          "Earthquake",
+          "Triple Axel",
+          "Brick Break",
+          "Swords Dance"
+        ]
+      },
+      {
+        "name": "Choice item set",
+        "item": "Choice Band",
+        "ability": "Defiant",
+        "nature": "Jolly",
+        "teraType": null,
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "U-turn",
+          "Earthquake",
+          "Brick Break",
+          "Triple Axel"
+        ]
+      }
+    ]
+  },
+  "lakitu": {
+    "name": "Lakitu",
+    "sets": [
+      {
+        "name": "Physical",
+        "item": "White Herb",
+        "ability": "Cloud Nine",
+        "nature": "Adamant",
+        "teraType": "Steel",
+        "level": null,
+        "evs": {
+          "hp": 76,
+          "atk": 252,
+          "def": 152,
+          "spe": 28
+        },
+        "ivs": {},
+        "moves": [
+          "Shell Smash",
+          "Acrobatics",
+          "Iron Head",
+          "Revenge"
+        ]
+      },
+      {
+        "name": "Choice set",
+        "item": "Choice Scarf",
+        "ability": "Rocky Payload",
+        "nature": "Adamant",
+        "teraType": "Steel",
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Stone Edge",
+          "Meteor Mash",
+          "U-turn",
+          "Mountain Gale"
+        ]
+      },
+      {
+        "name": "Hazard Lead",
+        "item": "Focus Sash",
+        "ability": "Cloud Nine",
+        "nature": "Jolly",
+        "teraType": "Steel",
+        "level": null,
+        "evs": {
+          "hp": 4,
+          "atk": 252,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Stealth Rock",
+          "Spikes",
+          "Charm",
+          "Iron Head"
+        ]
+      }
+    ]
+  },
+  "tweester": {
+    "name": "Tweester",
+    "sets": [
+      {
+        "name": "Sand Setter",
+        "item": "Smooth Rock",
+        "ability": "Sand Stream",
+        "nature": "Timid",
+        "teraType": "Ground",
+        "level": null,
+        "evs": {
+          "hp": 248,
+          "spa": 44,
+          "spe": 216
+        },
+        "ivs": {},
+        "moves": [
+          "Stealth Rock",
+          "U-turn",
+          "Earth Power",
+          "Heat Wave"
+        ]
+      },
+      {
+        "name": "Lorb Attacker",
+        "item": "Life Orb",
+        "ability": "Sand Stream",
+        "nature": "Timid",
+        "teraType": "Ground",
+        "level": null,
+        "evs": {
+          "spa": 252,
+          "spe": 252
+        },
+        "ivs": {
+          "atk": 0
+        },
+        "moves": [
+          "Earth Power",
+          "Heat Wave",
+          "Hurricane",
+          "Thunderbolt"
+        ]
+      }
+    ]
+  },
+  "elitexnaut": {
+    "name": "Elite X-Naut",
+    "sets": [
+      {
+        "name": "Lorb Attacker",
+        "item": "Life Orb",
+        "ability": "Regenerator",
+        "nature": "Jolly",
+        "teraType": "Normal",
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Drain Punch",
+          "Knock Off",
+          "Sucker Punch",
+          "Swords Dance"
+        ]
+      },
+      {
+        "name": "Scarf",
+        "item": "Choice Scarf",
+        "ability": "Regenerator",
+        "nature": "Jolly",
+        "teraType": "Normal",
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Triple Axel",
+          "Double-Edge",
+          "Knock Off",
+          "Drain Punch"
+        ]
+      }
+    ]
+  },
+  "huffnpuff": {
+    "name": "Huff n Puff",
+    "sets": [
+      {
+        "name": "Disruptor",
+        "item": "Black Sludge",
+        "ability": "Levitate",
+        "nature": "Bold",
+        "teraType": "Poison",
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "def": 176,
+          "spd": 80
+        },
+        "ivs": {
+          "atk": 0
+        },
+        "moves": [
+          "Trick",
+          "Ice Beam",
+          "Sludge Bomb",
+          "Volt Switch"
+        ]
+      },
+      {
+        "name": "Scarfed",
+        "item": "Choice Scarf",
+        "ability": "Neutralizing Gas",
+        "nature": "Timid",
+        "teraType": "Poison",
+        "level": null,
+        "evs": {
+          "def": 4,
+          "spa": 252,
+          "spe": 252
+        },
+        "ivs": {
+          "atk": 0
+        },
+        "moves": [
+          "Trick",
+          "Ice Beam",
+          "Sludge Bomb",
+          "Volt Switch"
+        ]
+      }
+    ]
+  },
+  "thwomp": {
+    "name": "Thwomp",
+    "sets": [
+      {
+        "name": "Stall Setter",
+        "item": "Leftovers",
+        "ability": "Rock Head",
+        "nature": "Careful",
+        "teraType": "Rock",
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "def": 4,
+          "spd": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Stealth Rock",
+          "Spikes",
+          "Head Smash",
+          "Knock Off"
+        ]
+      },
+      {
+        "name": "Suicide Lead",
+        "item": "Custap Berry",
+        "ability": "Sturdy",
+        "nature": "Adamant",
+        "teraType": "Rock",
+        "level": null,
+        "evs": {
+          "hp": 4,
+          "atk": 252,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Stealth Rock",
+          "Spikes",
+          "Head Smash",
+          "Explosion"
+        ]
+      }
+    ]
+  },
+  "snoozorb": {
+    "name": "Snoozorb",
+    "sets": [
+      {
+        "name": "Twave Spreader",
+        "item": "Air Balloon",
+        "ability": "Unaware",
+        "nature": "Relaxed",
+        "teraType": "Electric",
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "atk": 4,
+          "def": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Slack Off",
+          "Thunder Wave",
+          "Iron Head",
+          "Volt Switch"
+        ]
+      }
+    ]
+  },
+  "yux": {
+    "name": "Yux",
+    "sets": [
+      {
+        "name": "Stall",
+        "item": "Colbur Berry",
+        "ability": "Magic Bounce",
+        "nature": "Bold",
+        "teraType": "Psychic",
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "def": 252,
+          "spa": 4
+        },
+        "ivs": {},
+        "moves": [
+          "Moonblast",
+          "Psyshield Bash",
+          "Giga Drain",
+          "Recover"
+        ]
+      },
+      {
+        "name": "Twave Spreader",
+        "item": "Leftovers",
+        "ability": "Magic Bounce",
+        "nature": "Bold",
+        "teraType": "Psychic",
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "def": 56,
+          "spd": 200
+        },
+        "ivs": {
+          "atk": 0
+        },
+        "moves": [
+          "Recover",
+          "Thunder Wave",
+          "Giga Drain",
+          "Moonblast"
+        ]
+      }
+    ]
+  },
+  "muncher": {
+    "name": "Muncher",
+    "sets": [
+      {
+        "name": "Staller",
+        "item": "Leftovers",
+        "ability": "Strong Jaw",
+        "nature": "Sassy",
+        "teraType": "Grass",
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "def": 4,
+          "spd": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Crunch",
+          "Strength Sap",
+          "Spore",
+          "Snap Trap"
+        ]
+      }
+    ]
+  },
+  "hammerbro": {
+    "name": "Hammer Bro",
+    "sets": [
+      {
+        "name": "Snow Sweeper",
+        "item": "Sturdy Shell",
+        "ability": "Forecast",
+        "nature": "Naughty",
+        "teraType": "Normal",
+        "level": null,
+        "evs": {
+          "hp": 76,
+          "atk": 152,
+          "spa": 104,
+          "spe": 176
+        },
+        "ivs": {},
+        "moves": [
+          "Flamethrower",
+          "Frustration",
+          "Shell Smash",
+          "Gigaton Hammer"
+        ]
+      }
+    ]
+  },
+  "fuzzy": {
+    "name": "Fuzzy",
+    "sets": [
+      {
+        "name": "Wall Breaker",
+        "item": "Choice Band",
+        "ability": "Schooling",
+        "nature": "Adamant",
+        "teraType": "Bug",
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "atk": 252,
+          "def": 4
+        },
+        "ivs": {},
+        "moves": [
+          "U-turn",
+          "Leech Life",
+          "Knock Off",
+          "First Impression"
+        ]
+      },
+      {
+        "name": "Bulky SD",
+        "item": "Heavy-Duty Boots",
+        "ability": "Schooling",
+        "nature": "Adamant",
+        "teraType": "Bug",
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "atk": 252,
+          "def": 4
+        },
+        "ivs": {},
+        "moves": [
+          "Swords Dance",
+          "Sucker Punch",
+          "Knock Off",
+          "Leech Life"
+        ]
+      }
+    ]
+  },
+  "redyoshi": {
+    "name": "Red Yoshi",
+    "sets": [
+      {
+        "name": "Special Wall",
+        "item": "Heavy-Duty Boots",
+        "ability": "Flame Body",
+        "nature": "Careful",
+        "teraType": "Fire",
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "atk": 4,
+          "spd": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Will-O-Wisp",
+          "Soft-Boiled",
+          "Flare Blitz",
+          "Knock Off"
+        ]
+      }
+    ]
+  },
+  "charginchuck": {
+    "name": "Chargin' Chuck",
+    "sets": [
+      {
+        "name": "Guts Breaker",
+        "item": "Flame Orb",
+        "ability": "Guts",
+        "nature": "Adamant",
+        "teraType": "Fighting",
+        "level": null,
+        "evs": {
+          "hp": 92,
+          "atk": 252,
+          "spd": 164
+        },
+        "ivs": {},
+        "moves": [
+          "Bulk Up",
+          "Drain Punch",
+          "Facade",
+          "Play Rough"
+        ]
+      }
+    ]
+  },
+  "goombastack": {
+    "name": "Goomba Stack",
+    "sets": [
+      {
+        "name": "Omni Boost Sweeper",
+        "item": "Goomba Boots",
+        "ability": "Quick Feet",
+        "nature": "Adamant",
+        "teraType": "Normal",
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "def": 148,
+          "spe": 108
+        },
+        "ivs": {},
+        "moves": [
+          "Play Rough",
+          "Return",
+          "No Retreat",
+          "Endeavor"
+        ]
+      }
+    ]
+  },
+  "duplighost": {
+    "name": "Duplighost",
+    "sets": [
+      {
+        "name": "Ditto",
+        "item": "Choice Scarf",
+        "ability": "Imposter",
+        "nature": "Modest",
+        "teraType": "Ghost",
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "spa": 252,
+          "spd": 4
+        },
+        "ivs": {
+          "atk": 30
+        },
+        "moves": [
+          "Transform"
+        ]
+      }
+    ]
+  },
+  "superfly": {
+    "name": "Super Fly",
+    "sets": [
+      {
+        "name": "Status tank pivot",
+        "item": "Choice Band",
+        "ability": "Guts",
+        "nature": "Jolly",
+        "teraType": null,
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "U-turn",
+          "Drain Punch",
+          "Play Rough",
+          "Ice Punch"
+        ]
+      }
+    ]
+  },
+  "bandit": {
+    "name": "Bandit",
+    "sets": [
+      {
+        "name": "Band pivot",
+        "item": "Choice Band",
+        "ability": "Super Luck",
+        "nature": "Jolly",
+        "teraType": null,
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Knock Off",
+          "U-turn",
+          "Sucker Punch",
+          "Trick"
+        ]
+      }
+    ]
+  },
+  "bossbrolder": {
+    "name": "Boss Brolder",
+    "sets": [
+      {
+        "name": "Sturdy spinner",
+        "item": "Heavy-Duty Boots",
+        "ability": "Sturdy",
+        "nature": "Impish",
+        "teraType": null,
+        "level": null,
+        "evs": {
+          "hp": 220,
+          "def": 252,
+          "spd": 36
+        },
+        "ivs": {},
+        "moves": [
+          "Sizzly Slide",
+          "Rapid Spin",
+          "Stealth Rock",
+          "Earthquake"
+        ]
+      }
+    ]
+  },
+  "ironcleft": {
+    "name": "Iron Cleft",
+    "sets": [
+      {
+        "name": "Suicide lead",
+        "item": "Focus Sash",
+        "ability": "Rock Head",
+        "nature": "Jolly",
+        "teraType": null,
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Stealth Rock",
+          "Taunt",
+          "Head Smash",
+          "Iron Head"
+        ]
+      },
+      {
+        "name": "Setup sweeper",
+        "item": "Focus Sash",
+        "ability": "Rock Head",
+        "nature": null,
+        "teraType": null,
+        "level": null,
+        "evs": {},
+        "ivs": {},
+        "moves": [
+          "Shell Smash",
+          "Iron Head",
+          "Head Smash",
+          "Earthquake"
+        ]
+      }
+    ]
+  },
+  "uproot": {
+    "name": "Uproot",
+    "sets": [
+      {
+        "name": "Uproot",
+        "item": "Life Orb",
+        "ability": "Disguise",
+        "nature": "Jolly",
+        "teraType": null,
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Swords Dance",
+          "Knock Off",
+          "Sucker Punch",
+          "Horn Leech"
+        ]
+      }
+    ]
+  },
+  "rex": {
+    "name": "Rex",
+    "sets": [
+      {
+        "name": "Rex",
+        "item": "Sitrus Berry",
+        "ability": "Defeatist",
+        "nature": "Adamant",
+        "teraType": null,
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Dragon Hammer",
+          "Dragon Dance",
+          "Iron Head",
+          "Earthquake"
+        ]
+      }
+    ]
+  },
+  "tarantox": {
+    "name": "Tarantox",
+    "sets": [
+      {
+        "name": "Spinner trapper",
+        "item": "Black Sludge",
+        "ability": "Corrosion",
+        "nature": "Bold",
+        "teraType": null,
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "def": 252,
+          "spa": 4
+        },
+        "ivs": {
+          "atk": 0
+        },
+        "moves": [
+          "Sticky Web",
+          "Infestation",
+          "Toxic",
+          "Protect"
+        ]
+      }
+    ]
+  },
+  "mechachomp": {
+    "name": "Mechachomp",
+    "sets": [
+      {
+        "name": "Sweeper",
+        "item": "Air Balloon",
+        "ability": "Reckless",
+        "nature": "Adamant",
+        "teraType": null,
+        "level": null,
+        "evs": {
+          "hp": 4,
+          "atk": 252,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Shift Gear",
+          "Head Smash",
+          "Iron Head",
+          "Supercell Slam"
+        ]
+      }
+    ]
+  },
+  "mawmaw": {
+    "name": "Maw-Maw",
+    "sets": [
+      {
+        "name": "Band breaker",
+        "item": "Choice Band",
+        "ability": "Dragon's Maw",
+        "nature": "Adamant",
+        "teraType": null,
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "atk": 252,
+          "spd": 4
+        },
+        "ivs": {},
+        "moves": [
+          "Return",
+          "Dragon Claw",
+          "Iron Head",
+          "Superpower"
+        ]
+      },
+      {
+        "name": "Mixed breaker",
+        "item": "Life Orb",
+        "ability": "Dragon's Maw",
+        "nature": "Naughty",
+        "teraType": "Dragon",
+        "level": null,
+        "evs": {
+          "atk": 212,
+          "spa": 76,
+          "spe": 220
+        },
+        "ivs": {},
+        "moves": [
+          "Draco Meteor",
+          "Dragon Claw",
+          "Superpower",
+          "Iron Head"
+        ]
+      }
+    ]
+  },
+  "wiggler": {
+    "name": "Wiggler",
+    "sets": [
+      {
+        "name": "Scarf cleaner",
+        "item": "Choice Scarf",
+        "ability": "Anger Point",
+        "nature": "Jolly",
+        "teraType": null,
+        "level": null,
+        "evs": {
+          "atk": 252,
+          "spd": 4,
+          "spe": 252
+        },
+        "ivs": {},
+        "moves": [
+          "Close Combat",
+          "U-turn",
+          "Earthquake",
+          "Rage Fist"
+        ]
+      }
+    ]
+  },
+  "weirdvirus": {
+    "name": "Weird Virus",
+    "sets": [
+      {
+        "name": "Weird Virus",
+        "item": "Rocky Helmet",
+        "ability": "Static",
+        "nature": "Bold",
+        "teraType": null,
+        "level": null,
+        "evs": {
+          "hp": 252,
+          "def": 252,
+          "spd": 4
+        },
+        "ivs": {},
+        "moves": [
+          "Will-O-Wisp",
+          "Knock Off",
+          "Recover",
+          "Thunderbolt"
+        ]
+      }
+    ]
+  }
+}

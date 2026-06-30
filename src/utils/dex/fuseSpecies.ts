@@ -146,6 +146,44 @@ export const fuseTypes = (
 };
 
 /**
+ * Computes the fused typing **authoritatively** by reading Head & Body types from the
+ * `gen9infinitefusion` mod dex — exactly mirroring the live client's `getPokemonTypes()`.
+ *
+ * * The IF mod's species data already encodes the correct (sometimes swapped) type order, so no
+ *   manual swap table is needed here. This is preferred over the base-dex + `orderFusionTypes()`
+ *   approach since it can't drift from the server.
+ * * Returns `null` if the client / IF mod data isn't available, so callers can fall back.
+ *
+ * @since 1.0.4
+ */
+export const fuseTypesFromMod = (
+  headForme: string,
+  bodyForme: string,
+): TypeName[] => {
+  if (typeof Dex === 'undefined' || !headForme || !bodyForme) {
+    return null;
+  }
+
+  try {
+    const mod = (Dex as unknown as {
+      mod?: (id: string) => { species?: { get?: (f: string) => { exists?: boolean; types?: TypeName[] } } };
+    })?.mod?.('gen9infinitefusion');
+
+    const head = mod?.species?.get?.(headForme);
+    const body = mod?.species?.get?.(bodyForme);
+
+    if (head?.exists && body?.exists && head.types?.length && body.types?.length) {
+      // fuseTypes() applies the exact same Set-based algorithm the client uses
+      return fuseTypes(head.types, body.types);
+    }
+  } catch {
+    // fall through -> caller uses its base-dex fallback
+  }
+
+  return null;
+};
+
+/**
  * Computes a single fused base stat.
  *
  * HP / Sp. Atk / Sp. Def are biased toward the Head (2/3 head, 1/3 body).

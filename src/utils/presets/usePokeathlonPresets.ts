@@ -34,6 +34,15 @@ interface PokeathlonUsageFormat {
 
 type PokeathlonUsageResponse = Record<string, PokeathlonUsageFormat>;
 
+/**
+ * Module-level cache of fetched monthly usage JSON (keyed by `YYYY-MM`).
+ *
+ * * Persists across battles/hook remounts within a page session so we don't re-download & re-parse
+ *   the same (multi-MB) usage dump every time a Calcdex opens.
+ * * `null` is cached for months that 404'd / failed, so we don't retry them either.
+ */
+const PokeathlonUsageCache = new Map<string, PokeathlonUsageResponse | null>();
+
 const l = logger('@showdex/utils/presets/usePokeathlonPresets()');
 
 /** Returns the most recent `count` months as `YYYY-MM` strings, newest first. */
@@ -182,14 +191,20 @@ export const usePokeathlonPresets = (
       try {
         // eslint-disable-next-line no-restricted-syntax
         for (const month of recentMonths(PokeathlonUsageMonthsToTry)) {
-          // eslint-disable-next-line no-await-in-loop
-          const response = await runtimeFetch<PokeathlonUsageResponse>(`${PokeathlonUsageBaseUrl}/${month}.json`);
+          let json = PokeathlonUsageCache.get(month);
 
-          if (!response?.ok) {
+          if (json === undefined) {
+            // eslint-disable-next-line no-await-in-loop
+            const response = await runtimeFetch<PokeathlonUsageResponse>(`${PokeathlonUsageBaseUrl}/${month}.json`);
+
+            json = response?.ok ? response.json() : null;
+            PokeathlonUsageCache.set(month, json);
+          }
+
+          if (!json) {
             continue;
           }
 
-          const json = response.json();
           const formatData = json?.[formatKey];
 
           if (formatData?.sets && Object.keys(formatData.sets).length) {

@@ -42,7 +42,7 @@ export const PokeathlonItemStatMods: PokeathlonItemStatModRule[] = [
   { items: ['focusingorb'], species: ['clamperlorion'], mods: { def: 2, spd: 2 } },
   { items: ['radiantorb'], species: ['illumiseorion'], mods: { spa: 1.5, spd: 1.5 } },
   { items: ['voidheart'], species: ['volbeatorion'], mods: { atk: 1.5, def: 1.5 } },
-  { items: ['dandelight'], species: ['delcattytemporal'], mods: { def: 1.25, spd: 1.25 } },
+  { items: ['dandelight'], species: ['delcattyorion', 'delcattytemporal'], mods: { def: 1.25, spd: 1.25 } },
   // Anchor: holder's Spe is halved (any holder); Dhelmise additionally gets 1.5x Atk
   { items: ['anchor'], mods: { spe: 0.5 } },
   { items: ['anchor'], species: ['dhelmise'], mods: { atk: 1.5 } },

@@ -2,7 +2,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import { type ItemName } from '@smogon/calc';
 import { type CalcdexPokemon } from '@showdex/interfaces/calc';
-import { getFusionSpriteUrl, getPokemonSpriteUrl, getShowdownSpriteUrl } from '@showdex/utils/dex';
+import { getFusionSpriteUrl, getPokemonSpriteUrl } from '@showdex/utils/dex';
 import { ItemIcon } from '../ItemIcon';
 import styles from './Picon.module.scss';
 
@@ -45,22 +45,23 @@ export const Picon = ({
   const headBackground = isFusion ? piconBackground(headForme, facingLeft) : null;
   const bodyBackground = isFusion ? piconBackground(bodyForme, facingLeft) : null;
 
-  // Pokéathlon sprite fallback chain (tried in order, advancing on each <img> error):
+  // Pokéathlon sprite chain (tried in order, advancing on each <img> error):
   //   1. the custom Head+Body fusion art (play.pokeathlon.com/sprites/fusion-sprites)
-  //   2. the Head species' sprite via the live client resolver (handles fangame/Chaos/etc.)
-  //   3. the Head species' plain Pokémon Showdown sprite
-  // This guarantees something renders even when a fusion pair has no custom art (e.g. Chaos fusions).
-  // If every candidate fails on a fusion, we fall back to the half-&-half Head/Body icons.
+  //   2. the Head species' sprite via the live client resolver (format-correct: handles fangame/
+  //      Chaos/etc. for the *current* format)
+  // We intentionally do NOT add a vanilla Showdown gen-5 guess as a fallback — for custom species
+  // that mis-resolves to a *different format's* sprite. If both fail on a fusion, we drop to the
+  // half-&-half Head/Body icons instead of showing a wrong-format sprite.
   const spriteCandidates = React.useMemo<string[]>(() => {
     if (!headForme) {
       return [];
     }
 
     const list = isFusion
-      ? [getFusionSpriteUrl(headForme, bodyForme), getPokemonSpriteUrl(headForme), getShowdownSpriteUrl(headForme)]
-      : [getPokemonSpriteUrl(headForme), getShowdownSpriteUrl(headForme)];
+      ? [getFusionSpriteUrl(headForme, bodyForme), getPokemonSpriteUrl(headForme)]
+      : [getPokemonSpriteUrl(headForme)];
 
-    // dedupe & drop nulls (e.g. getPokemonSpriteUrl may already return the Showdown sprite)
+    // dedupe & drop nulls
     return list.filter((url, i, arr) => !!url && arr.indexOf(url) === i);
   }, [bodyForme, headForme, isFusion]);
 

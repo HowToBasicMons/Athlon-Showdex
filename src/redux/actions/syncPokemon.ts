@@ -33,8 +33,11 @@ import {
 import {
   detectGenFromFormat,
   detectLegacyGen,
+  fuseTypes,
+  fuseTypesFromMod,
   getDexForFormat,
   hasMegaForme,
+  orderFusionTypes,
 } from '@showdex/utils/dex';
 import { capitalize } from '@showdex/utils/humanize';
 
@@ -152,6 +155,19 @@ export const syncPokemon = (
         syncedPokemon.types = [
           ...(updatedSpecies?.types || syncedPokemon.types || []),
         ];
+
+        // Pokéathlon Infinite Fusion: re-fuse the typing with the Body species (`fusion`) so the
+        // fused typing is preserved across re-syncs (e.g. switching out & back in) instead of
+        // reverting to the Head's types.
+        const bodyForme = (clientPokemon as { fusion?: string })?.fusion || syncedPokemon.fusion;
+        const fusionSpecies = bodyForme ? dex.species.get(bodyForme) : null;
+
+        if (fusionSpecies?.exists && fusionSpecies.types?.length && updatedSpecies?.types?.length) {
+          syncedPokemon.types = fuseTypesFromMod(updatedSpecies.name, bodyForme) || fuseTypes(
+            orderFusionTypes(updatedSpecies.name, updatedSpecies.types as never),
+            orderFusionTypes(fusionSpecies.name, fusionSpecies.types as never),
+          ) as Showdown.TypeName[];
+        }
 
         if (nonEmptyObject(updatedSpecies?.abilities)) {
           syncedPokemon.abilities = [
@@ -454,6 +470,30 @@ export const syncPokemon = (
           if (cosmeticFormeChange) {
             syncedPokemon.transformedForme = dexForme.baseSpecies;
             syncedPokemon.transformedCosmeticForme = formeChange;
+          }
+        }
+
+        // Pokéathlon: emulate Aegislash's Stance Change for fusions — the IF client doesn't emit a
+        // `formechange` volatile for a fused Aegislash, so derive Shield <-> Blade from the last
+        // move used (damaging -> Blade, King's Shield -> Shield). Base stats re-fuse via the
+        // re-sanitize at the end of this function, so the correct forme's stats are reflected.
+        const stanceAbility = formatId(syncedPokemon.dirtyAbility || syncedPokemon.ability);
+
+        if (
+          !transformedForme
+            && stanceAbility === 'stancechange'
+            && formatId(syncedPokemon.speciesForme).replace(/blade$/, '') === 'aegislash'
+        ) {
+          const lastMoveId = formatId(syncedPokemon.lastMove);
+
+          if (lastMoveId === 'kingsshield') {
+            syncedPokemon.speciesForme = 'Aegislash';
+          } else if (lastMoveId) {
+            const lastMoveData = dex.moves.get(syncedPokemon.lastMove);
+
+            if (lastMoveData?.exists && lastMoveData.category && lastMoveData.category !== 'Status') {
+              syncedPokemon.speciesForme = 'Aegislash-Blade';
+            }
           }
         }
 

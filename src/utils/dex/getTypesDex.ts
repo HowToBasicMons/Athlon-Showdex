@@ -15,6 +15,14 @@ const DamageTakenToMultiplier: Record<number, number> = {
 };
 
 /**
+ * Per-gen cache of the built `Types` resolver, plus the `BattleTypeChart` reference it was built
+ * from. Rebuilding the resolver iterates the entire chart, & `getTypesDex()` is called for every
+ * matchup — so we cache it & only rebuild when the chart object itself changes (e.g. a mod swap).
+ */
+let cachedChart: object | null = null;
+const cachedTypesDex: Partial<Record<GenerationNum, Types>> = {};
+
+/**
  * Returns the `types` property used in the `Generation` class.
  *
  * * Note that the object returned by `Dex.types.get()` (from the global `Dex` object) does not
@@ -28,15 +36,25 @@ const DamageTakenToMultiplier: Record<number, number> = {
  * @since 1.0.3
  */
 export const getTypesDex = (gen: GenerationNum): Types => {
-  const fallback = new Types(gen);
-
   const chart = (typeof window !== 'undefined'
     && (window as unknown as { BattleTypeChart?: Record<string, { damageTaken?: Record<string, number> }> })?.BattleTypeChart)
     || null;
 
   if (!chart || typeof chart !== 'object') {
-    return fallback;
+    return new Types(gen);
   }
+
+  // invalidate the cache if the chart object changed (e.g. switched into a different mod's battle)
+  if (chart !== cachedChart) {
+    cachedChart = chart;
+    (Object.keys(cachedTypesDex) as unknown as GenerationNum[]).forEach((g) => delete cachedTypesDex[g]);
+  }
+
+  if (cachedTypesDex[gen]) {
+    return cachedTypesDex[gen];
+  }
+
+  const fallback = new Types(gen);
 
   // chart keys are lowercase type ids; damageTaken keys are Proper-cased type names
   // (build a id -> Proper Name lookup from every damageTaken object)
@@ -91,7 +109,7 @@ export const getTypesDex = (gen: GenerationNum): Types => {
     return cache[key];
   };
 
-  return {
+  const result = {
     get,
     * [Symbol.iterator]() {
       // eslint-disable-next-line no-restricted-syntax
@@ -100,4 +118,8 @@ export const getTypesDex = (gen: GenerationNum): Types => {
       }
     },
   } as unknown as Types;
+
+  cachedTypesDex[gen] = result;
+
+  return result;
 };

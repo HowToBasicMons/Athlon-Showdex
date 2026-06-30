@@ -9,6 +9,7 @@ import {
   getDynamicMoveType,
   getMaxMove,
   getZMove,
+  getFusionExpertMoves,
   getPokemonLearnset,
   legalLockedFormat,
 } from '@showdex/utils/dex';
@@ -254,6 +255,10 @@ export const buildMoveOptions = (
   // Body (fusion), so merge the Body's learnset into the pool too.
   if (pokemon.fusion && !transformedForme) {
     learnset.push(...getPokemonLearnset(format, pokemon.fusion, showAllMoves));
+
+    // ...plus any "Expert Moves" the Head+Body fusion qualifies for (signature tutor moves).
+    const fusedTypes = (pokemon.dirtyTypes?.length ? pokemon.dirtyTypes : pokemon.types) || [];
+    learnset.push(...getFusionExpertMoves(format, speciesForme, pokemon.fusion, fusedTypes));
   }
 
   if (learnset.length) {

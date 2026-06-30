@@ -9,7 +9,7 @@ import {
   nonEmptyObject,
   similarArrays,
 } from '@showdex/utils/core';
-import { detectGenFromFormat, detectLegacyGen, fuseBaseStats, fuseTypes, getDexForFormat, orderFusionTypes } from '@showdex/utils/dex';
+import { detectGenFromFormat, detectLegacyGen, fuseBaseStats, fuseTypes, fuseTypesFromMod, getDexForFormat, orderFusionTypes } from '@showdex/utils/dex';
 import { flattenAlts } from '@showdex/utils/presets';
 import { detectPlayerKeyFromPokemon } from './detectPlayerKey';
 import { detectPokemonIdent } from './detectPokemonIdent';
@@ -391,12 +391,19 @@ export const sanitizePokemon = <
       ? dex.species.get(sanitizedPokemon.fusion)
       : null;
 
-    sanitizedPokemon.types = fusionSpecies?.exists && fusionSpecies.types?.length
-      ? fuseTypes(
-        orderFusionTypes((transformedSpecies || species)?.name, speciesTypes as TypeName[]) as TypeName[],
-        orderFusionTypes(fusionSpecies.name, fusionSpecies.types as TypeName[]) as TypeName[],
-      ) as Showdown.TypeName[]
-      : [...speciesTypes];
+    sanitizedPokemon.types = (
+      fusionSpecies?.exists
+        && fusionSpecies.types?.length
+        // authoritative: read fused typing straight from the IF mod dex (matches the client 1:1);
+        // falls back to base-dex + orderFusionTypes() if the mod data isn't available
+        && (
+          fuseTypesFromMod((transformedSpecies || species)?.name, sanitizedPokemon.fusion)
+            || fuseTypes(
+              orderFusionTypes((transformedSpecies || species)?.name, speciesTypes as TypeName[]) as TypeName[],
+              orderFusionTypes(fusionSpecies.name, fusionSpecies.types as TypeName[]) as TypeName[],
+            ) as Showdown.TypeName[]
+        )
+    ) || [...speciesTypes];
   }
 
   // clear the dirtyTypes if it matches the current types
