@@ -30,6 +30,8 @@
     "test:watch": "vitest",
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
     "lint:fix": "eslint \"src/**/*.{ts,tsx}\" --fix",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "update:bldb": "pnpm browserslist --update-db",
     "cache:purge": "pnpm cache:purge:swc; pnpm cache:purge:webpack",
     "cache:purge:swc": "rimraf ./node_modules/.cache/swc",
@@ -99,6 +101,7 @@
     "i18next-intervalplural-postprocessor": "^3.0.0",
     "lexical": "^0.42.0",
     "lz-string": "^1.5.0",
+    "pino": "^10.3.1",
     "prismjs": "^1.30.0",
     "qs": "^6.11.2",
     "react": "^19.2.4",
@@ -180,6 +183,10 @@
     "overrides": {
       "webpack-visualizer-plugin2>react": "$react",
       "webpack-visualizer-plugin2>react-dom": "$react-dom"
+    },
+    "patchedDependencies": {
+      "@smogon/calc@0.11.0": "patches/@smogon__calc@0.11.0.patch",
+      "react-select@5.10.2": "patches/react-select@5.10.2.patch"
     }
   }
 }

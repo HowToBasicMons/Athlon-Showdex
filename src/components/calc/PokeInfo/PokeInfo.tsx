@@ -102,6 +102,7 @@ export const PokeInfo = ({
     formeUsages,
     formeUsageFinder,
     formeUsageSorter,
+    formePool,
     addPokemon,
     importPresets,
     applyPreset,
@@ -328,11 +329,13 @@ export const PokeInfo = ({
       usageAlts: formeUsages,
       usageFinder: formeUsageFinder,
       usageSorter: formeUsageSorter,
+      poolFormes: formePool,
       translate: (v) => t(`pokedex:species.${formatId(v)}`, v),
       translateHeader: (v) => t(`pokedex:headers.${formatId(v)}`, v),
     },
   )) || [], [
     format,
+    formePool,
     formeUsageFinder,
     formeUsages,
     formeUsageSorter,
@@ -734,7 +737,7 @@ export const PokeInfo = ({
                   ? containerSize
                   : null
               )}
-              highlight={gen < 9 || !pokemon?.terastallized}
+              highlight={gen < 9 || format?.includes('champions') || !pokemon?.terastallized}
               highlightTypes={pokemon?.types}
               revealedTypes={pokemon?.types}
               readOnly={!editableTypes}
@@ -742,7 +745,7 @@ export const PokeInfo = ({
             />
 
             {
-              (!!pokemon?.speciesForme && gen > 8) &&
+              (!!pokemon?.speciesForme && gen > 8 && !format?.includes('champions')) &&
               <PokeTypeField
                 className={cx(styles.typesField, styles.teraTypeField)}
                 label={t('poke.info.teraType.aria', { pokemon: friendlyPokemonName }) as string}

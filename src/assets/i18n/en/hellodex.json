@@ -59,6 +59,10 @@
       "newAria": "Create New Note",
       "untitledLabel": "untitled $t(common:products.note_one)",
       "undoLabel": "$t(instances.honkdex.undoLabel)"
+    },
+    "devdex": {
+      "newAria": "Open the Devdex",
+      "newLabel": "<strong>Dev</strong>dex"
     }
   },
 

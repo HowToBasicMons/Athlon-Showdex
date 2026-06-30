@@ -135,7 +135,7 @@ export const createSmogonPokemon = (
     level: pokemon.level,
     gender: pokemon.gender,
 
-    teraType: ((pokemon.terastallized && (pokemon.dirtyTeraType || pokemon.teraType)) || null) as SmogonPokemonOptions['teraType'],
+    teraType: ((!format?.includes('champions') && pokemon.terastallized && (pokemon.dirtyTeraType || pokemon.teraType)) || null) as SmogonPokemonOptions['teraType'],
     status,
     toxicCounter: pokemon.toxicCounter,
 
