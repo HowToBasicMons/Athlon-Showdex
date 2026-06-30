@@ -33,6 +33,11 @@ describe('getPokeathlonItemStatMods', () => {
     expect(getPokeathlonItemStatMods('Choice Band', 'Garchomp')).toEqual({});
     expect(getPokeathlonItemStatMods('', 'Garchomp')).toEqual({});
   });
+
+  it('applies the Orion orbs at their authoritative x2 (Soulstones code, not the stale 1.5x desc)', () => {
+    expect(getPokeathlonItemStatMods('Void Heart', 'Volbeat-Orion')).toEqual({ atk: 2, def: 2 });
+    expect(getPokeathlonItemStatMods('Radiant Orb', 'Illumise-Orion')).toEqual({ spa: 2, spd: 2 });
+  });
 });
 
 describe('getPokeathlonAbilityStatMods', () => {
