@@ -3,6 +3,7 @@ import {
   fuseBaseStats,
   fuseStat,
   fuseTypes,
+  getPokeathlonModId,
   orderFusionTypes,
 } from './fuseSpecies';
 
@@ -89,5 +90,38 @@ describe('orderFusionTypes', () => {
 
   it('leaves normal species type order unchanged', () => {
     expect(orderFusionTypes('Togekiss', ['Fairy', 'Flying'])).toEqual(['Fairy', 'Flying']);
+  });
+});
+
+describe('getPokeathlonModId', () => {
+  it('maps full mod keywords to their server mod id', () => {
+    expect(getPokeathlonModId('gen9soulstonesou')).toBe('gen9soulstones');
+    expect(getPokeathlonModId('gen9insurgenceou')).toBe('gen9insurgence');
+    expect(getPokeathlonModId('gen9uraniumou')).toBe('gen9uranium');
+    expect(getPokeathlonModId('gen9infinityou')).toBe('gen9infinity');
+    expect(getPokeathlonModId('gen9mariomonou')).toBe('gen9mariomon');
+    expect(getPokeathlonModId('gen9infinitefusionou')).toBe('gen9infinitefusion');
+    expect(getPokeathlonModId('gen9chaosou')).toBe('gen9chaos');
+    expect(getPokeathlonModId('gen9chaosfusionou')).toBe('gen9chaosfusion');
+  });
+
+  it('maps abbreviations without mis-matching longer keywords', () => {
+    expect(getPokeathlonModId('gen9ifdexou')).toBe('gen9infinitefusion'); // if -> infinitefusion
+    expect(getPokeathlonModId('gen9newlandsou')).toBe('gen9infinitefusion');
+    expect(getPokeathlonModId('gen9insrandombattle')).toBe('gen9insurgence');
+    expect(getPokeathlonModId('gen6urarandombattle')).toBe('gen6uranium');
+    expect(getPokeathlonModId('gen6infrandombattle')).toBe('gen6infinity');
+  });
+
+  it('respects the gen prefix', () => {
+    expect(getPokeathlonModId('gen6insurgenceou')).toBe('gen6insurgence');
+    expect(getPokeathlonModId('gen7infinitefusionou')).toBe('gen7infinitefusion');
+  });
+
+  it('returns null for non-mod / vanilla formats', () => {
+    expect(getPokeathlonModId('gen9ou')).toBeNull();
+    expect(getPokeathlonModId('gen9randombattle')).toBeNull();
+    expect(getPokeathlonModId('gen9championsou')).toBeNull();
+    expect(getPokeathlonModId('')).toBeNull();
   });
 });

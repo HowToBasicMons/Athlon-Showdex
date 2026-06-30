@@ -98,6 +98,56 @@ export const detectPokeathlonModFormat = (
   format: string,
 ): boolean => !!format && PokeathlonModFormatRegex.test(format);
 
+/**
+ * Ordered [keyword regex, mod slug] pairs mapping a (genless) Pokéathlon format to its server mod.
+ *
+ * * Order matters: longer/more-specific keywords come first so abbreviations don't mis-match (e.g.
+ *   `infinitefusion` before `if`, `insurgence` before `ins`, `infinity`/`inf` after the fusion ones).
+ *
+ * @since 1.0.7
+ */
+const PokeathlonModSlugs: [RegExp, string][] = [
+  [/^(?:infinitefusion|newlands|if)/, 'infinitefusion'],
+  [/^chaosfusion/, 'chaosfusion'],
+  [/^chaos/, 'chaos'],
+  [/^soulstones/, 'soulstones'],
+  [/^(?:insurgence|ins)/, 'insurgence'],
+  [/^(?:uranium|ura)/, 'uranium'],
+  [/^(?:infinity|inf)/, 'infinity'],
+  [/^mariomon/, 'mariomon'],
+  [/^pokeathlon/, 'pokeathlon'],
+];
+
+/**
+ * Resolves the Pokéathlon **server mod id** (e.g. `'gen9soulstones'`) for a battle format, or `null`
+ * if the format isn't a recognized custom mod.
+ *
+ * * Used by `getDexForFormat()` to return the correct modded `Dex` so per-mod move types (e.g.
+ *   Soulstones' Aura Sphere → Light, Hyper Voice/Boomburst → Sound), base stats, learnsets, abilities
+ *   & items resolve everywhere — instead of falling back to the base gen dex.
+ *
+ * @example getPokeathlonModId('gen9soulstonesou') // 'gen9soulstones'
+ * @since 1.0.7
+ */
+export const getPokeathlonModId = (
+  format: string,
+): string => {
+  if (!format) {
+    return null;
+  }
+
+  const match = /^gen(\d+)(.+)$/.exec(formatId(format));
+
+  if (!match) {
+    return null;
+  }
+
+  const [, gen, rest] = match;
+  const found = PokeathlonModSlugs.find(([re]) => re.test(rest));
+
+  return found ? `gen${gen}${found[1]}` : null;
+};
+
 /** Normalizes a Normal/Flying type pair down to `['Flying']` (reference parity). */
 const normalizeTypes = (
   types: readonly TypeName[],
