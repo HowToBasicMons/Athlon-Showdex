@@ -84,3 +84,19 @@ ls ../pokeathlon-server/data/mods/gen9soulstones
 # find stat-modifying abilities in a mod
 grep -nE "onModify(Atk|Def|SpA|SpD|Spe|Damage)|onBasePower" ../pokeathlon-server/data/mods/gen9soulstones/abilities.ts
 ```
+
+## Per-mod porting status (v1.0.6 line)
+
+| Mod | Status | Notes |
+| --- | --- | --- |
+| **Soulstones** | ✅ done | redefined-vanilla abilities (Battle/Shell Armor, Snow Cloak, Sand Veil, Overcoat), Attunement (SpA), 13 custom-type offensive boosters, Light Bulb/Terrorize defender resist, Orion orbs ×2. Skipped: Superconductive (frostbite-specific status), Stakeout (turn-state). |
+| **Insurgence** | ✅ done | custom-type "call" boosters (Shadow Synergy/Call, Spirit Call, Psycho Call); Delta items (Dragon Fang/Scale, Light Ball→Pikachu-Delta). Shared abilities reuse Soulstones rules. |
+| **Chaos** | ✅ covered, no new code | sandydefense/psychoslider/anchor reuse existing rules; onBasePower abilities are vanilla (@smogon/calc). Skipped: Bushido (turn-order "moves first"), Light Ball on Pikachu *fusions* (niche). |
+| **Uranium** | ⏳ pending | ~16 stat hooks. |
+| **Mariomon** | ⏳ pending | ~4 stat hooks. |
+| **Infinity** | ⏳ pending | ~3 stat hooks. |
+| **Infinite Fusion** | ✅ engine done | fusion stats/typing/sprites/expert moves; 0 stat-hook abilities. |
+
+**Cross-cutting (works for all mods):** per-mod dex routing (types/stats/learnsets/items), live type chart, mod-scoped ability stat-mods, custom-type offensive boosters, defender type-resists.
+
+**General unmodelable patterns (skipped across mods):** turn-order conditions (moves first / foe's first turn), specific custom-status gates we don't track (frostbite), and ally-dependent effects.
