@@ -79,12 +79,21 @@ const consoleMethod = (level: LoggerLevel): 'log' | 'info' | 'warn' | 'error' =>
 
 const emit = (scope: string, level: LoggerLevel, data: unknown[]): void => {
   try {
+    const printable = consolePrintable(level);
+    const capturable = teledex.shouldCapture(level);
+
+    // prod's dev-only firehose (debug/verbose/silly logs in syncBattle + the update reducers): nothing
+    // prints & nothing gets captured, so bail before the pino object-build, the `...data` spread, & capture()
+    if (!printable && !capturable) {
+      return;
+    }
+
     // route through pino so the level is registered/serialized (write is a no-op)
     const pinoLevel = level in pinoLogger ? level : 'info';
     (pinoLogger as Record<string, LoggerLogFunction>)[pinoLevel]?.({ scope }, ...data);
 
     // 1) console output (existing `__DEV__`/devOnly gating)
-    if (consolePrintable(level)) {
+    if (printable) {
       const method = consoleMethod(level);
       // eslint-disable-next-line no-console
       (console[method] || console.log)(`[${scope || '?'}]`, `(${level})`, ...data);

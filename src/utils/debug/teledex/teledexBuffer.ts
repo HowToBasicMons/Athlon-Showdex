@@ -56,15 +56,30 @@ export class TeledexBuffer {
     return view.slice(Math.max(0, view.length - Math.max(0, n)));
   }
 
-  public filter(predicate: { level?: number; scope?: string; text?: string }): TeledexRecord[] {
+  public filter(
+    predicate: { level?: number; scope?: string; text?: string },
+    limit?: number,
+  ): TeledexRecord[] {
     const scope = predicate.scope?.toLowerCase();
     const text = predicate.text?.toLowerCase();
+    const view = this.capped();
 
-    return this.capped().filter((r) => (
-      (predicate.level == null || r.value >= predicate.level)
+    // walk newest -> oldest & stop once `limit` matches are collected, so a text filter only runs the
+    // (expensive) boundedStringify over the tail it actually needs instead of all up-to-maxRecords entries
+    const matches: TeledexRecord[] = [];
+
+    for (let i = view.length - 1; i >= 0 && (limit == null || matches.length < limit); i--) {
+      const r = view[i];
+      const ok = (predicate.level == null || r.value >= predicate.level)
         && (!scope || r.scope.toLowerCase().includes(scope))
-        && (!text || boundedStringify(r.args, 4_000, 8).toLowerCase().includes(text))
-    ));
+        && (!text || boundedStringify(r.args, 4_000, 8).toLowerCase().includes(text));
+
+      if (ok) {
+        matches.push(r);
+      }
+    }
+
+    return matches.reverse(); // back to chronological order
   }
 
   public clear(): void {

@@ -60,7 +60,10 @@ let developerMode = false;
 let pending: TeledexRecord[] = [];
 let flushTimer: ReturnType<typeof setTimeout> = null;
 
-const notify = () => subscribers.forEach((fn) => { try { fn(); } catch { /* noop */ } });
+const notify = () => {
+  if (!subscribers.size) { return; } // no Devdex mounted (always, in prod) -> skip per-capture
+  subscribers.forEach((fn) => { try { fn(); } catch { /* noop */ } });
+};
 
 const mirrorSoon = () => {
   if (!developerMode || flushTimer || !sink.writeRecords) {
@@ -115,7 +118,7 @@ export const teledex = {
   },
 
   tail(n?: number): TeledexRecord[] { return buf().tail(n); },
-  filter(pred: Parameters<TeledexBuffer['filter']>[0]): TeledexRecord[] { return buf().filter(pred); },
+  filter(pred: Parameters<TeledexBuffer['filter']>[0], limit?: number): TeledexRecord[] { return buf().filter(pred, limit); },
   all(): TeledexRecord[] { return buf().all(); },
 
   subscribe(fn: () => void): () => void {

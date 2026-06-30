@@ -84,8 +84,9 @@ export const Devdex = ({
     };
   }, []);
 
-  // only render the live tail (the full history is always in a flush) — keeps the DOM + reconciliation cheap
-  const rows = teledex.filter({ level: LoggerLevelValues[minLevel], scope, text }).slice(-200);
+  // only render the live tail (the full history is always in a flush) — keeps the DOM + reconciliation cheap.
+  // the limit (200) is pushed into filter() so a text search only stringifies the matching tail, not all 5000
+  const rows = teledex.filter({ level: LoggerLevelValues[minLevel], scope, text }, 200);
 
   // attach a scroll listener to the (SimpleBar) scroll element once it's mounted
   React.useEffect(() => {
