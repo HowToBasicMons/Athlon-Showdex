@@ -78,7 +78,7 @@ export const guessMatchingPresets = (
     // '\n', 'guessedMoves[]', guessedMoves,
   );
 
-  return presets.filter((preset) => {
+  const matched = presets.filter((preset) => {
     const matchingUsage = findMatchingUsage(usages, preset);
     const guaranteedMoves = ((matchingUsage?.altMoves as typeof usageMoves) || usageMoves || []).filter((m) => m?.[1] === 1).map((m) => m[0]);
     const guessedMoves = replaceBehemothMoves(preset.speciesForme, dedupeArray([...revealedSourceMoves, ...guaranteedMoves]));
@@ -146,4 +146,16 @@ export const guessMatchingPresets = (
 
     return formatsMatch && teraTypesMatch && abilitiesMatch && itemsMatch && movesMatch;
   });
+
+  // concise, object-free info summary so a prod bug report (info+ only, no debug firehose) can still reconstruct
+  // the guess: who, what was revealed, the pool size, & what (if anything) it resolved to. the per-preset gate
+  // breakdown above stays at debug (developerMode/__DEV__ only).
+  l.info(
+    'Guessed', pokemon?.ident || pokemon?.speciesForme || '???', 'in', format,
+    '|', 'revealed item', revealedItem || '—', 'moves', revealedSourceMoves.join('/') || '—',
+    '|', `${matched.length}/${presets.length} matched`,
+    ...(matched.length ? ['->', matched.map((p) => `${p.name} (${p.speciesForme})`).join(', ')] : []),
+  );
+
+  return matched;
 };
