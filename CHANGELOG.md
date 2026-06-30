@@ -21,10 +21,21 @@ Merged **upstream Showdex v1.4.0** into the Pokéathlon fork — all of our work
 - **Type-resist / immunity abilities** — Light Bulb/Terrorize (halve incoming Dark/Bug), Crystalline (halve Ground/Water), and full immunities Disenchant (Fairy), Lead Skin (Nuclear), Windy Wall (Flying).
 - **Mod-scoped redefined abilities** — Soulstones' Battle Armor/Shell Armor/Snow Cloak/Sand Veil/Overcoat/Attunement only apply in Soulstones (no leaking into other formats).
 - **Custom items** — Soulstones Orion orbs corrected to ×2, Insurgence Delta items (Dragon Fang/Scale, Light Ball → Pikachu-Delta).
-- Covers **Soulstones, Insurgence, Uranium, Chaos, Mariomon, Infinity** & Infinite Fusion. (Custom type charts were already read live from the client.)
+- Covers **Soulstones, Insurgence, Uranium, Chaos, Mariomon, Infinity** & Infinite Fusion.
+
+**Authoritative custom-type charts**
+- The five custom types (Sound, Light, Cosmic, Nuclear, Crystal) now resolve their immunities/resistances from the **server's own per-mod type charts** (bundled into the extension), instead of the live client chart that could be stale or incomplete. Example: in Soulstones, Cosmic is now correctly immune to Ground & Sound and resists Fire (the client previously reported it immune to Fire).
+- Added `scripts/build-pokeathlon-typecharts.mjs` (merges the base chart with each mod's overrides; run via `pnpm build:typecharts`).
+
+**Aegislash Stance Change — fixed**
+- Blade forme now swaps the **final computed stats** (Atk↔Def, SpA↔SpD) instead of the base stats, matching Infinite Fusion (your Defense investment effectively becomes Attack). The previous base-stat swap applied EVs to the wrong slot, producing incorrect numbers.
+- The manual Shield ⟷ Blade toggle now works when Aegislash is the **body** of a fusion (was head-only), and persists across syncs.
+
+**Frostburn (`frb`)**
+- Modeled the special analog of Burn: halves Special-move damage (skipped with Guts), mirroring the server which remaps Freeze to it.
 
 **Internal**
-- Added regression tests for the custom item/ability stat-mod resolvers (now **132** tests total).
+- Added regression tests for the custom item/ability stat-mod resolvers, the bundled type-chart resolution, and the fusion stance/forme helpers (now **138** tests total).
 - Consolidated on the upstream Vitest config; fixed an incomplete teledex test mock.
 
 ## v1.0.5
