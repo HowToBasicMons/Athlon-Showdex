@@ -171,6 +171,15 @@ describe('getPokeathlonAbilityIncomingMoveMod (Soulstones defender type-resist)'
     expect(getPokeathlonAbilityIncomingMoveMod('Light Bulb', 'Dark', { modId: 'gen9ou' })).toBe(1);
     expect(getPokeathlonAbilityIncomingMoveMod('Levitate', 'Ground', ss)).toBe(1);
   });
+
+  it('custom type-immunity abilities return 0 (Uranium Disenchant/Lead Skin, Chaos Windy Wall)', () => {
+    expect(getPokeathlonAbilityIncomingMoveMod('Disenchant', 'Fairy', { modId: 'gen9uranium' })).toBe(0);
+    expect(getPokeathlonAbilityIncomingMoveMod('Lead Skin', 'Nuclear', { modId: 'gen9uranium' })).toBe(0);
+    expect(getPokeathlonAbilityIncomingMoveMod('Windy Wall', 'Flying', { modId: 'gen9chaos' })).toBe(0);
+    // other types / wrong mod unaffected
+    expect(getPokeathlonAbilityIncomingMoveMod('Lead Skin', 'Normal', { modId: 'gen9uranium' })).toBe(1);
+    expect(getPokeathlonAbilityIncomingMoveMod('Disenchant', 'Fairy', { modId: 'gen9soulstones' })).toBe(1);
+  });
 });
 
 describe('Insurgence custom-type "call" abilities + Delta items', () => {

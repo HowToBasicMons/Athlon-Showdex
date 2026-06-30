@@ -91,8 +91,8 @@ grep -nE "onModify(Atk|Def|SpA|SpD|Spe|Damage)|onBasePower" ../pokeathlon-server
 | --- | --- | --- |
 | **Soulstones** | ✅ done | redefined-vanilla abilities (Battle/Shell Armor, Snow Cloak, Sand Veil, Overcoat), Attunement (SpA), 13 custom-type offensive boosters, Light Bulb/Terrorize defender resist, Orion orbs ×2. Skipped: Superconductive (frostbite-specific status), Stakeout (turn-state). |
 | **Insurgence** | ✅ done | custom-type "call" boosters (Shadow Synergy/Call, Spirit Call, Psycho Call); Delta items (Dragon Fang/Scale, Light Ball→Pikachu-Delta). Shared abilities reuse Soulstones rules. |
-| **Chaos** | ✅ covered, no new code | sandydefense/psychoslider/anchor reuse existing rules; onBasePower abilities are vanilla (@smogon/calc). Skipped: Bushido (turn-order "moves first"), Light Ball on Pikachu *fusions* (niche). |
-| **Uranium** | ⏳ pending | ~16 stat hooks. |
+| **Chaos** | ✅ done | sandydefense/psychoslider/anchor reuse existing rules; Windy Wall (Flying immunity) added; onBasePower abilities are vanilla (@smogon/calc). Skipped: Bushido (turn-order), Natural Anomaly (conditional), Light Ball on Pikachu *fusions* (niche). |
+| **Uranium** | ✅ done | Sharp Coral reused; custom type-immunity abilities Disenchant (Fairy) & Lead Skin (Nuclear) added (×0). No custom stat items. |
 | **Mariomon** | ⏳ pending | ~4 stat hooks. |
 | **Infinity** | ⏳ pending | ~3 stat hooks. |
 | **Infinite Fusion** | ✅ engine done | fusion stats/typing/sprites/expert moves; 0 stat-hook abilities. |

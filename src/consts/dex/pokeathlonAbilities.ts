@@ -282,6 +282,12 @@ export const PokeathlonAbilityIncomingMoveMods: PokeathlonAbilityMoveBoostRule[]
   // Soulstones: Light Bulb halves incoming Dark; Terrorize halves incoming Bug
   { abilities: ['lightbulb'], moveTypes: ['Dark'], multiplier: 0.5, scope: ['soulstones'] },
   { abilities: ['terrorize'], moveTypes: ['Bug'], multiplier: 0.5, scope: ['soulstones'] },
+
+  // custom type-immunity abilities (multiplier 0 = the move deals no damage). @smogon/calc doesn't
+  // know these, so it'd otherwise calc full damage against an immune holder.
+  { abilities: ['disenchant'], moveTypes: ['Fairy'], multiplier: 0, scope: ['uranium'] }, // Uranium
+  { abilities: ['leadskin'], moveTypes: ['Nuclear'], multiplier: 0, scope: ['uranium'] }, // Uranium
+  { abilities: ['windywall'], moveTypes: ['Flying'], multiplier: 0, scope: ['chaos'] }, // Chaos
 ];
 
 /**
