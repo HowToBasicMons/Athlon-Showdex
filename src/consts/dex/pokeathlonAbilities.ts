@@ -172,3 +172,89 @@ export const getPokeathlonAbilityStatMods = (
 
   return output;
 };
+
+/**
+ * A Pokéathlon custom **move-type damage-booster** ability rule.
+ *
+ * * These abilities multiply the holder's offensive output for moves of a specific type (the fangame
+ *   equivalent of Blaze/Transistor for custom types), which `@smogon/calc` doesn't know. Showdex
+ *   approximates them as a base-power modifier on the move (see `createSmogonMove()`).
+ *
+ * @since 1.0.7
+ */
+export interface PokeathlonAbilityMoveBoostRule {
+  /** Ability ids (via `formatId()`) this rule applies to. */
+  abilities: string[];
+  /** Move types (proper-cased) the boost applies to. */
+  moveTypes: string[];
+  /** Damage multiplier (e.g. `1.5`, `2`). */
+  multiplier: number;
+  /** If set, only applies while the holder is at <= 1/3 of its max HP (Blaze/Overgrow-style). */
+  requiresLowHp?: boolean;
+  /** Mod slugs this applies in (e.g. `['soulstones']`) — see `PokeathlonAbilityStatModRule.scope`. */
+  scope?: string[];
+}
+
+/**
+ * Custom-type offensive booster abilities (Soulstones).
+ *
+ * * Ported from the server `data/mods/gen9soulstones/abilities.ts` (`onModifyAtk`/`onModifySpA`
+ *   gated on `move.type`). Mod-scoped so they never fire in other formats.
+ * * Note: Light Bulb & Terrorize *also* halve an incoming type defensively (Dark/Bug respectively);
+ *   only their offensive boost is modeled here.
+ *
+ * @since 1.0.7
+ */
+export const PokeathlonAbilityMoveBoosts: PokeathlonAbilityMoveBoostRule[] = [
+  { abilities: ['affection'], moveTypes: ['Fairy'], multiplier: 1.5, scope: ['soulstones'] },
+  { abilities: ['arsonist'], moveTypes: ['Fire'], multiplier: 1.5, scope: ['soulstones'] },
+  { abilities: ['requiem'], moveTypes: ['Dark'], multiplier: 1.5, scope: ['soulstones'] },
+  { abilities: ['haunted'], moveTypes: ['Ghost'], multiplier: 1.5, scope: ['soulstones'] },
+  { abilities: ['bonecollector'], moveTypes: ['Ground'], multiplier: 1.5, scope: ['soulstones'] },
+  { abilities: ['virtuoso'], moveTypes: ['Sound'], multiplier: 1.5, scope: ['soulstones'] },
+  { abilities: ['hivemind'], moveTypes: ['Bug'], multiplier: 1.5, scope: ['soulstones'] },
+  { abilities: ['lightbulb'], moveTypes: ['Light'], multiplier: 2, scope: ['soulstones'] },
+  { abilities: ['terrorize'], moveTypes: ['Psychic'], multiplier: 2, scope: ['soulstones'] },
+  { abilities: ['maestro'], moveTypes: ['Sound'], multiplier: 1.5, requiresLowHp: true, scope: ['soulstones'] },
+  { abilities: ['spellcaster'], moveTypes: ['Psychic'], multiplier: 1.5, requiresLowHp: true, scope: ['soulstones'] },
+  { abilities: ['starstruck'], moveTypes: ['Cosmic'], multiplier: 1.5, requiresLowHp: true, scope: ['soulstones'] },
+  { abilities: ['irradiate'], moveTypes: ['Light'], multiplier: 1.5, requiresLowHp: true, scope: ['soulstones'] },
+];
+
+/**
+ * Computes the damage multiplier a custom move-type-booster ability applies to a move of `moveType`.
+ *
+ * * Returns `1` if the ability doesn't boost that type (or its mod/HP condition isn't met).
+ * * `lowHp` = holder is at <= 1/3 max HP; `modId` = active server mod id (for scoping).
+ *
+ * @since 1.0.7
+ */
+export const getPokeathlonAbilityMoveBoost = (
+  ability: string,
+  moveType: string,
+  context: { lowHp?: boolean; modId?: string } = {},
+): number => {
+  const id = formatId(ability);
+
+  if (!id || !moveType) {
+    return 1;
+  }
+
+  const activeModSlug = context.modId ? context.modId.replace(/^gen\d+/, '') : null;
+
+  return PokeathlonAbilityMoveBoosts.reduce((mult, rule) => {
+    if (!rule.abilities.includes(id) || !rule.moveTypes.includes(moveType)) {
+      return mult;
+    }
+
+    if (rule.scope?.length && (!activeModSlug || !rule.scope.includes(activeModSlug))) {
+      return mult;
+    }
+
+    if (rule.requiresLowHp && !context.lowHp) {
+      return mult;
+    }
+
+    return mult * rule.multiplier;
+  }, 1);
+};

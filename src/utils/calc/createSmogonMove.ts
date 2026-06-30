@@ -1,5 +1,6 @@
 import { type AbilityName, type MoveName, Move as SmogonMove } from '@smogon/calc';
 import { MOVES } from '@smogon/calc/dist/data/moves';
+import { getPokeathlonAbilityMoveBoost } from '@showdex/consts/dex';
 import { type CalcdexBattleField, type CalcdexMoveOverride, type CalcdexPokemon } from '@showdex/interfaces/calc';
 import { clamp, formatId } from '@showdex/utils/core';
 import {
@@ -7,8 +8,10 @@ import {
   determineCriticalHit,
   determineMoveTargets,
   getGenDexForFormat,
+  getPokeathlonModId,
 } from '@showdex/utils/dex';
 // import { calcMoveBasePower } from './calcMoveBasePower';
+import { calcPokemonHpPercentage } from './calcPokemonHp';
 import { getMoveOverrideDefaults } from './getMoveOverrideDefaults';
 import { shouldBoostTeraStab } from './shouldBoostTeraStab';
 
@@ -218,13 +221,37 @@ export const createSmogonMove = (
     return 1;
   })();
 
+  // resolved move type (override wins, else the mod dex's type) for the ability-boost check below
+  const resolvedMoveType = (overrides.type as string)
+    || dex.moves.get(moveName as Parameters<typeof dex.moves.get>[0])?.type;
+
+  // Pokéathlon custom-type offensive abilities (Soulstones): e.g. Virtuoso (Sound ×1.5), Light Bulb
+  // (Light ×2), Affection (Fairy ×1.5), plus HP-gated ones (Maestro/Starstruck/… at <= 1/3 HP).
+  // @smogon/calc doesn't know these, so approximate the offensive multiplier as a base-power mod.
+  const abilityMoveBoost = (() => {
+    const attackerAbility = pokemon.dirtyAbility || pokemon.ability;
+
+    if (!attackerAbility || !resolvedMoveType) {
+      return 1;
+    }
+
+    const hpPercentage = calcPokemonHpPercentage(pokemon);
+
+    return getPokeathlonAbilityMoveBoost(attackerAbility, resolvedMoveType, {
+      lowHp: hpPercentage > 0 && hpPercentage <= 1 / 3,
+      modId: getPokeathlonModId(format),
+    });
+  })();
+
+  const bpFactor = newMoonFactor * abilityMoveBoost;
+
   // applies all our post-construction `bp` mods (calculate() rebuilds the move via clone(), so this
   // must run on both the original & the clone)
   const applyBpMods = (move: SmogonMove) => {
     overrideUltBp(move);
 
-    if (newMoonFactor !== 1 && move.bp > 0) {
-      move.bp = Math.max(0, Math.floor(move.bp * newMoonFactor));
+    if (bpFactor !== 1 && move.bp > 0) {
+      move.bp = Math.max(0, Math.floor(move.bp * bpFactor));
     }
   };
 

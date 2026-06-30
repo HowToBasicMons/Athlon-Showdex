@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { getPokeathlonAbilityStatMods, isPokeathlonStatAbility } from './pokeathlonAbilities';
+import { getPokeathlonAbilityMoveBoost, getPokeathlonAbilityStatMods, isPokeathlonStatAbility } from './pokeathlonAbilities';
 import { getPokeathlonItemStatMods } from './pokeathlonItems';
 
 describe('getPokeathlonItemStatMods', () => {
@@ -93,5 +93,37 @@ describe('getPokeathlonAbilityStatMods', () => {
     expect(isPokeathlonStatAbility('athenian')).toBe(true);
     expect(isPokeathlonStatAbility('Sharp Coral')).toBe(true);
     expect(isPokeathlonStatAbility('Levitate')).toBe(false);
+  });
+});
+
+describe('getPokeathlonAbilityMoveBoost (Soulstones custom-type boosters)', () => {
+  const ss = { modId: 'gen9soulstones' };
+
+  it('boosts the matching move type for the ability', () => {
+    expect(getPokeathlonAbilityMoveBoost('Virtuoso', 'Sound', ss)).toBe(1.5);
+    expect(getPokeathlonAbilityMoveBoost('Affection', 'Fairy', ss)).toBe(1.5);
+    expect(getPokeathlonAbilityMoveBoost('Light Bulb', 'Light', ss)).toBe(2);
+    expect(getPokeathlonAbilityMoveBoost('Terrorize', 'Psychic', ss)).toBe(2);
+  });
+
+  it('does not boost a non-matching move type', () => {
+    expect(getPokeathlonAbilityMoveBoost('Virtuoso', 'Normal', ss)).toBe(1);
+    expect(getPokeathlonAbilityMoveBoost('Affection', 'Fire', ss)).toBe(1);
+  });
+
+  it('only applies in its mod', () => {
+    expect(getPokeathlonAbilityMoveBoost('Virtuoso', 'Sound', { modId: 'gen9ou' })).toBe(1);
+    expect(getPokeathlonAbilityMoveBoost('Virtuoso', 'Sound', {})).toBe(1);
+  });
+
+  it('HP-gated boosters require <= 1/3 HP', () => {
+    expect(getPokeathlonAbilityMoveBoost('Maestro', 'Sound', { ...ss, lowHp: true })).toBe(1.5);
+    expect(getPokeathlonAbilityMoveBoost('Maestro', 'Sound', { ...ss, lowHp: false })).toBe(1);
+    expect(getPokeathlonAbilityMoveBoost('Starstruck', 'Cosmic', { ...ss, lowHp: true })).toBe(1.5);
+  });
+
+  it('returns 1 for unknown abilities / empty type', () => {
+    expect(getPokeathlonAbilityMoveBoost('Levitate', 'Ghost', ss)).toBe(1);
+    expect(getPokeathlonAbilityMoveBoost('Virtuoso', '', ss)).toBe(1);
   });
 });
